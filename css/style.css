@@ -1,0 +1,208 @@
+#bemvindo {
+  height: 95vh;
+  background-color: #E8F1F2;
+  text-align: center;
+  transition: background-color 0.8s ease, color 0.8s ease;
+}
+.dark-mode #bemvindo {
+  background-color: #13293D;
+}
+#bemvindo a {
+  padding: 5px 10px;
+  text-decoration: none;
+  font-size: 20px;
+  border-radius: 50px;
+  margin-left: 10px;
+  transition: 500ms;
+  background-color: #006494;
+  color: #E8F1F2;
+}
+.dark-mode #bemvindo a {
+  background-color: #006494;
+  color: #E8F1F2;
+}
+#bemvindo a:hover {
+  transition: 500ms;
+  background-color: #E8F1F2;
+  color: #006494;
+}
+.dark-mode #bemvindo a:hover {
+  background-color: #13293D;
+  color: #E8F1F2;
+}
+#comecarcom {
+  width: 25%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-40%);
+  margin-left: 10%;
+}
+.dark-mode #comecarcom h1 {
+  color: #ffffff;
+}
+#comecarcom h1 {
+  font-size: 40pt;
+}
+#imagem-contraria {
+  background-image: url('../medias/estoquemob.webp');
+  background-position: center;
+  background-size: cover;
+  width: 50%;
+  height: 80%;
+  position: relative;
+  top: 10%;
+  left: 40%;
+  border-radius: 30px;
+}
+.dark-mode #imagem-contraria {
+  filter: brightness(90%);
+}
+.comecarcomsupbutton {
+  display: none;
+}
+
+#conteudo {
+  font-family: Arial;
+}
+
+
+.imgright {
+    background-position: center;
+    background-size: cover;
+    width: 50%;
+    height: 100vh;
+    left: 50%;
+    position: absolute;
+}
+.logimg {
+  background-image: url('../medias/estoqueseg.webp');
+}
+.signupimg {
+  background-image: url('../medias/contract.jpg');
+}
+
+
+#left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100vh;
+}
+#left p {
+  margin-top: 0px;
+  padding-bottom: 10px;
+}
+#left h1 {
+  font-weight: bolder;
+  margin-bottom: 0px;
+}
+#left img {
+  width: 60%;
+}
+#left a {
+  color: #0b63b6;
+}
+.dark-mode #left a {
+  color: #52c5fa;
+}
+#left form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 50%;
+}
+#datas label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+#datas input, #datas select {
+  width: 95%;
+  height: 35pt;
+  border-radius: 50px;
+  border: 3px solid #006494;
+  padding-left: 15px;
+  
+  font-family: Arial, sans-serif; 
+  font-size: 14pt; 
+  color: #333; 
+  margin-bottom: 10px;
+  background-color: light-dark(rgb(232, 240, 254), rgba(70, 90, 126, 0.4));
+}
+.dark-mode #datas input, .dark-mode #datas select {
+  border: 3px solid #1B98E0;
+  color: #000000; 
+  text-indent: 10px;
+}
+#datas select {
+  width: 100%;
+  padding-right: 35px;
+  appearance: none;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/44/44571.png');
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 20px;
+  cursor: pointer;
+}
+
+#voltarbut {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+.back-toggle {
+  font-size: 40px;
+  background: none;
+  border: none;
+  color: #13293D;
+  cursor: pointer;
+}
+.dark-mode .back-toggle {
+  color: #E8F1F2;
+}
+
+
+.remember-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+#remember-me {
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+#rememberlabel {
+  margin-left: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+
+.forgot-password {
+  align-self: flex-start;
+  margin-bottom: 20px;
+  color: #006494;
+}
+.submit-button {
+  width: 100%;
+  padding: 15px;
+  border-radius: 50px;
+  background-color: #006494;
+  color: white;
+  font-size: 16pt;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.submit-button:hover {
+  background-color: #01324d;
+}
+.dark-mode .submit-button {
+  background-color: #1B98E0;
+}
+.dark-mode .submit-button:hover {
+  background-color: #006494;
+}

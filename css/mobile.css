@@ -1,0 +1,216 @@
+@media (max-width: 980px) {
+    body {
+        font-size: 30pt;
+    }
+    header {
+        height: 200px;
+        font-size: 30pt;
+    }
+    header .menu-toggle {
+        font-size: 50pt;
+    }
+    header .login-button {
+        margin-right: 60px;
+    }
+    header img {
+        width: 300px;
+    }
+    .config-menu {
+        display: block;
+    }
+    .config-menu .config-options {
+        padding-left: 0px;
+    }
+    #darkModeToggle {
+        background-color: #98e2ff;
+        color: #08007c;
+        border: none;
+        border-radius: 20px;
+        padding: 10px 15px;
+        cursor: pointer;
+        transition: background-color 1s ease, color 1s ease;
+    }
+    #toggleIcon {
+        font-size: 50pt;
+        transition: transform 1s ease;
+    }
+    
+    .dark-mode #darkModeToggle {
+        background-color: #333;
+    }
+    
+    .dark-mode #toggleIcon {
+        transform: rotate(360deg);
+    }
+    .dark-mode #toggleIcon {
+        color: #f0f0f0;
+    }
+
+    #bemvindo {
+        margin-top: -50px;
+        height: 1000px;
+    }
+    #comecarcom {
+        width: 40%;
+        position: relative;
+        top: 45%;
+        margin-left: 7%;
+    }
+    #comecarcom h1 {
+        font-size: 57pt;
+    }
+    #comecarcom a {
+        font-size: 25pt;
+    }
+    #imagem-contraria {
+        left: 54%;
+        top: -300px;
+        width: 40%;
+    }
+    .comecarcomanti {
+        display: none;
+    }
+    .comecarcomsupbutton {
+        display: block;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+
+    #vlibras {
+        display: none;
+    }
+    #mobile-nav {
+        opacity: 0;
+        transform: translateX(100%);
+        position: fixed;
+        height: 100vh;
+        width: 65%;
+        top: 0;
+        right: 0;
+        background-color: #E8F1F2;
+        padding-top: 140px;
+        z-index: 99;
+        transition: opacity 300ms ease, transform 300ms ease, background-color 1s ease;
+    }
+    #mobile-nav.show {
+        opacity: 1;
+        transform: translateX(0); 
+    }
+    .dark-mode #mobile-nav {
+        background-color: #2b4257;
+    }
+    #mobile-nav ul {
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    #mobile-nav ul li {
+        margin: 15px 0;
+        text-align: center;
+        width: 100%;
+    }
+    #mobile-nav ul li a {
+        width: 100%;
+        padding: 10px 30px;
+        font-size: 40pt;
+    }
+    #mobile-nav .config-menu .config-options {
+        opacity: 0;
+        transform: translateY(-40px);
+        transition: opacity 300ms, transform 300ms, visibility 300ms;
+        visibility: hidden;
+        pointer-events: none;
+    }
+    #mobile-nav .config-menu .config-options.open {
+        opacity: 1;
+        transform: translateY(0); 
+        visibility: visible;
+        pointer-events: auto;
+    }
+    .menu-toggle {
+        display: block;
+        z-index: 99;
+    }
+    .Befixed {
+        position: fixed;
+    }
+    .config-toggle {
+        display: none;
+    }
+    
+
+    
+    #conteudo h1 {
+        font-size: 50pt;
+    }
+
+
+
+
+    .imgright {
+        display: none;
+    }
+    #left {
+        font-size: 30pt;
+        width: 100%;
+    }
+    #left form {
+        width: 80%;
+    }
+    #datas input, #datas select {
+        margin-bottom: 30px;
+        height: 60pt;
+        font-size: 25pt; 
+    }
+    #left form button {
+        font-size: 30pt;
+        height: 80pt;
+    }
+    #voltarbut {
+        top: 70px;
+        left: 90px;
+    }
+    .back-toggle {
+        font-size: 50pt;
+    }
+    .forgot-password {
+        margin-top: 10pt;
+        margin-bottom: 30pt;
+    }
+
+
+
+    footer {
+        height: auto;
+        flex-direction: column;
+        padding: 10px;
+        padding-bottom: 80px;
+    }
+    footer h1 {
+        font-size: 50pt;
+    }
+    #parts {
+        width: 100%;
+        margin-bottom: 50px;
+        margin-right: 0px;
+    }
+    #parts p {  
+        line-height: 1em;
+    }
+    #parts img {
+      width: 40%;
+      margin-top: 40px;
+    }
+    #Instagram {
+        font-size: 70pt;
+        padding: 25px;
+    }
+
+    .slider {
+        display: none;
+    }
+}

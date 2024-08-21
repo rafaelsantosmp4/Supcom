@@ -1,0 +1,280 @@
+@font-face {
+  font-family: gotham;
+  src: url(../medias/gotham/GothamBook.ttf);
+}
+body {
+  background-color: #E8F1F2;
+  margin: 0;
+  padding: 0;
+  font-family: gotham;
+  transition: background-color 1s ease;
+}
+body.dark-mode {
+  background-color: #212f3d;
+  color: #E8F1F2;
+  padding-bottom: 20px;
+}
+body h1, h2, h3 {
+  color: #13293D;
+  transition: color 1s ease;
+}
+.dark-mode h1, .dark-mode h2, .dark-mode h3 {
+    color: #ffffff;
+}
+#container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 1s ease, color 1s ease;
+}
+#conteudo {
+  width: 70%;
+  padding-top: 20px;
+  text-align: justify;
+  padding-bottom: 20px;
+}
+#conteudo h1 {
+  text-align: center;
+  font-size: 30pt;
+}
+
+
+
+
+header {
+    background-color: #E8F1F2;
+    padding: 20px 70px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 0px 20px black;
+    position: relative;
+    font-size: 14pt;
+    transition: background-color 1s ease, color 1s ease;
+  }
+  .dark-mode header {
+    background-color: #13293D;
+  }
+  header a {
+    color: #13293D;
+    text-align: center;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: 500ms;
+    margin-right: 10px;
+  }
+  .dark-mode header a {
+    color: #E8F1F2;
+  }
+  header a:hover {
+    transition: 500ms;
+    background-color: #006494;
+    color: rgb(255, 255, 255);
+  }
+  .dark-mode header a:hover {
+    background-color: #1B98E0;
+  }
+  header a.active {
+    background-color: #006494;
+    color: white;
+  }
+  .dark-mode header a#active {
+    background-color: #1B98E0;
+  }
+  #mobile-nav ul {
+    display: flex;
+  }
+  #mobile-nav ul li {
+    list-style: none;
+  }
+  #header-left {
+    display: flex;
+    align-items: center;
+  }
+  #button-logo-index:hover {
+    background-color: transparent;
+  }
+  .menu-toggle {  
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #13293D;
+    cursor: pointer;
+    position: absolute; 
+    right: 20px;
+    transition: background-color 1s ease, color 1s ease;
+  }
+  .dark-mode .menu-toggle {
+    color: #E8F1F2;
+  }
+  #trilho{
+    width: 110px;
+    height: 55px;
+    background-color: #006494;
+    border-radius: 150px;
+    position: relative;
+    cursor: pointer;
+  }
+  #trilho #indicador {
+    width: 55px;
+    height: 55px;
+    background-color: #000000;
+    border-radius: 50%;
+    transform: scale(.9);
+    position: absolute;
+    left: 0;
+    transition: .5s;
+  }
+  #trilho.darktrilho #indicador {
+    left: 54px;
+  }
+  .dark-mode #trilho {
+    background-color: #7ea5ca;
+  }
+  .dark-mode #trilho #indicador {
+    background-color: #000000;
+  }
+
+
+
+
+
+
+
+
+  .config-toggle {
+    font-size: 40px;
+    background: none;
+    border: none;
+    color: #13293D;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 1s ease, color 1s ease;
+  }
+  .dark-mode .config-toggle {
+    color: #E8F1F2;
+  }
+  #configpcnav {
+    opacity: 0;
+    transform: translateY(500%);
+    transition: opacity 300ms, transform 300ms, background-color 1s ease;
+    position: fixed;
+    height: 300px;
+    width: 400px;
+    background-color: #E8F1F2;
+    z-index: 99;
+    border-radius: 50px;
+    top: 35%;
+    left: 40%;
+
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  .dark-mode #configpcnav {
+    background-color: #547696;
+  }
+  #configpcnav.show {
+      opacity: 1;
+      transform: translateY(0); 
+  }
+  #configpcnav ul {
+    color: #13293D;
+    text-decoration: none;
+
+    padding-top: 40px;
+    padding-left: 0px;
+  }
+  .dark-mode #configpcnav ul {
+    color: white;
+  }
+  #configpcnav ul li {
+    list-style: none;
+    font-weight: bold;
+    font-size: 15pt;
+    margin-bottom: 5px;
+  }
+  .config-menu {
+    display: none;
+  }
+  #closenav {
+    position: absolute;
+    right: 40px;
+    top: 20px;
+    font-size: 20pt;
+    cursor: pointer;
+  }
+  
+
+
+  .overlay2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 1s;
+    z-index: 98;
+    display: none;
+}
+  .overlay2.show {
+      display: block;
+      opacity: 1;
+  }
+
+
+  
+  footer {
+    background-color: #13293D;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding: 10px;
+    box-shadow: 0px 0px 10px black;
+    height: 300px;
+    transition: background-color 1s ease, color 1s ease;
+  }
+  footer h1 {
+    color: #fff;
+  }
+  .dark-mode footer {
+    background-color: #13293D;
+  }
+  .nomes_inte {
+    font-size: 10pt;
+  }
+  #parts {
+    width: 30%;
+    margin-right: 10px;
+  }
+  #parts p {
+    font-size: 15pt;
+    line-height: 0.3em;
+  }
+  #parts img {
+    width: 200px;
+  }
+  .fab {
+    border-radius: 50%;
+    padding: 15px 15px;
+    font-size: 18pt;
+    transition: 500ms;
+    box-shadow: 5px 5px 10px 5px black;
+  }
+  .fab:hover {
+    transition: 500ms;
+  }
+  #Instagram {
+    background-color: #1B98E0;
+    color: white;
+  }
+  #Instagram:hover {
+    background-color: #E8F1F2;
+    color: #0065a0;
+  }
