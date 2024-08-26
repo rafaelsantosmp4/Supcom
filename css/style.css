@@ -139,7 +139,7 @@
   width: 100%;
   padding-right: 35px;
   appearance: none;
-  background-image: url('https://cdn-icons-png.flaticon.com/512/44/44571.png');
+  background-image: url('../medias/setabaixo.png');
   background-repeat: no-repeat;
   background-position: right 15px center;
   background-size: 20px;
@@ -205,4 +205,100 @@
 }
 .dark-mode .submit-button:hover {
   background-color: #006494;
+}
+
+
+#conteudo label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+#conteudo select {
+  height: 35pt;
+  border-radius: 50px;
+  padding-left: 15px;
+  
+  font-family: Arial, sans-serif; 
+  font-size: 14pt; 
+  color: white; 
+  margin-bottom: 10px;
+  background-color: #006494;
+  padding-right: 35px;
+  appearance: none;
+  background-image: url('../medias/setabaixobranca.png');
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 20px;
+  cursor: pointer;
+}
+
+#conteudo #filter {
+  appearance: none;
+  background-image: url('../medias/filterwhite.png');
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 20px;
+  cursor: pointer;
+}
+
+#rightfilters {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+
+.categoria {
+  margin-bottom: 40px;
+}
+.categoria h2 {
+  margin-bottom: 20px;
+}
+.produto {
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  width: 20%;
+  box-shadow: 0 1px 10px black;
+  cursor: pointer;
+  transition: 300ms;
+}
+.dark-mode .produto {
+  background-color: #3b4652;
+}
+.produto:hover {
+  transition: 300ms;
+  transform: scale(1.1);
+}
+.dark-mode .produto p {
+  color: rgb(209, 209, 209);
+}
+.produto img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+.produtos {
+  display: flex;
+  justify-content: space-between;
+}
+.produto h3 {
+  font-size: 20px;
+  margin: 10px 0;
+}
+.produto p {
+  font-size: 14px;
+  color: #666;
+  margin: 5px 0;
+}
+.avaliacao {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.avaliacao img {
+  margin-right: 5px;
+  width: 16px;
+  height: 16px;
 }

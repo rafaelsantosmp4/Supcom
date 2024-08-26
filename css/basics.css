@@ -28,7 +28,7 @@ body h1, h2, h3 {
   transition: background-color 1s ease, color 1s ease;
 }
 #conteudo {
-  width: 70%;
+  width: 85%;
   padding-top: 20px;
   text-align: justify;
   padding-bottom: 20px;
