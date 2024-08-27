@@ -200,7 +200,7 @@ header {
   }
   
 
-  .overlay2 {
+  .overlay2{
     position: fixed;
     top: 0;
     left: 0;
@@ -215,6 +215,22 @@ header {
   .overlay2.show {
       display: block;
       opacity: 1;
+  }  
+
+  .overlay3 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 1s;
+    z-index: 10;
+    display: none;
+}
+  .overlay3.show {
+    display: block;
+    opacity: 1;
   }
 
 

@@ -302,3 +302,40 @@
   width: 16px;
   height: 16px;
 }
+
+
+
+#accountfat {
+  width: 250px;
+  position: relative;
+  z-index: 11; 
+}
+
+#account-button {
+  cursor: pointer;
+  padding: 10px;
+  position: relative;
+}
+
+#account-options {
+  padding: 15px;
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid black;
+  position: absolute;
+  top: 80px;
+  right: 65px;
+  transform: translateY(-10px);
+  transition: opacity 300ms, transform 300ms, visibility 300ms;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 100;
+}
+
+#account-options.open {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
+}

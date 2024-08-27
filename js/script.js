@@ -55,6 +55,20 @@ function toggleConfigMenu() {
   options.classList.toggle('open');
 }
 
+const account = document.querySelector('#account-options');
+const overlay3 = document.querySelector('.overlay3');
+
+function toggleAccountMenu() {
+  account.classList.toggle('open');
+  overlay3.classList.toggle('show');
+}
+
+overlay3.addEventListener('click', () => {
+    account.classList.remove('open');  // Corrigido de 'show' para 'open'
+    overlay3.classList.remove('show');
+});
+
+
 function menu_toggle() {
     const mobileNav = document.getElementById('mobile-nav');
     if (mobileNav) {
