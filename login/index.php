@@ -43,11 +43,6 @@
                 <input type="password" name="password" id="password" required/>
             </div>
 
-            <div class="remember-container">
-                <input type="checkbox" id="remember-me" name="remember-me">
-                <label for="remember-me" id="rememberlabel">Me manter conectado.</label>
-            </div>
-
             <a href="../iforgot/index.php" class="forgot-password">Esqueceu a senha?</a>
             
             <button type="submit" class="submit-button">Entrar</button>

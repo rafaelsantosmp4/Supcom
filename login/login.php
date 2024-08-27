@@ -18,15 +18,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $usuario = mysqli_fetch_assoc($result);
 
         if (password_verify($senha, $usuario['senha'])) {
-            echo "Login realizado com sucesso!";
+            session_start();
+            $_SESSION['log'] = 'ativo';
+            echo "<script>window.location.href='../home/'</script>";
         } else {
-            echo "Senha incorreta.";
+            echo "<script>alert('Senha incorreta.'); window.location.href='index.php'</script>";
         }
     } else {
-        echo "Usu·rio n„o encontrado.";
+        echo "<script>alert('Usu√°rio n√£o encontrado.'); window.location.href='index.php'</script>";
     }
 }
 
 $db->fechar();
 ?>
-

@@ -39,7 +39,7 @@
                 <input type="text" name="nome" id="nome" required/>
 
                 <label for="email">E-mail</label>
-                <input type="email" name="email" id="email" required/>
+                <input type="email" name="email" id="email" placeholder="xxxxx@email.com" required/>
 
                 <label for="tipoconta">O que pretende na SUPCOM?</label>
                 <select name="tipoconta" id="tipoconta" style="margin-bottom: 0px;">
@@ -49,10 +49,10 @@
                 <div><a href="#"><i>saiba mais</i></a></div><br>
                 
                 <label for="cnpj">CNPJ</label>
-                <input type="text" name="cnpj" id="cnpj" required/>
+                <input type="text" name="cnpj" id="cnpj" placeholder="00.000.000/0000-00" maxlength="18" required/>
                 
                 <label for="tel">Telefone</label>
-                <input type="text" name="tel" id="tel" required/>
+                <input type="text" name="tel" id="tel" placeholder="(99)9999-9999" maxlength="14" required/>
                 
                 <label for="password">Senha</label>
                 <input type="password" name="password" id="password" required/>
