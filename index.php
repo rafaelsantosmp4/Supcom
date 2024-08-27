@@ -39,6 +39,8 @@
     <button class="menu-toggle" id="menu_toggle" onclick="menu_toggle()">&#9776;</button>
 </header>
 
+
+
 <nav id="configpcnav" class="configpcnav">        
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div id="closenav"><i class="fa fa-times"></i></div>
@@ -248,7 +250,7 @@
     function config_toggle() {
         const pcnav = document.getElementById('configpcnav');
         if (pcnav) {
-        pcnav.classList.toggle('show');
+            pcnav.classList.toggle('show');
             overlay2.classList.toggle('show');
             document.getElementById('config_toggle').classList.toggle('Befixed');
         }

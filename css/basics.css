@@ -38,9 +38,6 @@ body h1, h2, h3 {
   font-size: 30pt;
 }
 
-
-
-
 header {
     background-color: #E8F1F2;
     padding: 20px 70px;
@@ -138,13 +135,6 @@ header {
     background-color: #000000;
   }
 
-
-
-
-
-
-
-
   .config-toggle {
     font-size: 40px;
     background: none;
@@ -165,10 +155,11 @@ header {
     height: 300px;
     width: 400px;
     background-color: #E8F1F2;
-    z-index: 99;
     border-radius: 50px;
-    top: 35%;
-    left: 40%;
+    z-index: 99;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 100%);
 
     display: flex;
     justify-content: center;
@@ -179,7 +170,7 @@ header {
   }
   #configpcnav.show {
       opacity: 1;
-      transform: translateY(0); 
+      transform: translate(-50%, -50%);
   }
   #configpcnav ul {
     color: #13293D;
@@ -208,7 +199,6 @@ header {
     cursor: pointer;
   }
   
-
 
   .overlay2 {
     position: fixed;
