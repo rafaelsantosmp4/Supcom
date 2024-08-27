@@ -2,15 +2,12 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Bem vindo(a)</title>
+    <title>Bem-vindo(a)</title>
     <link rel="shortcut icon" href="../medias/logo/Supcom-white.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/basics.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/mobile.css">
 </head>
-
-
-
 <body>
     <div id="vlibras">
         <div vw class="enabled">
@@ -33,30 +30,30 @@
     <div class="imgright logimg"></div>
 
     <div id="left">
-    <form action="../connect/" method="post">
-        <center><img id="default-logo"></center>
-        <h1>Entre na sua conta</h1>
-        <p>Não tem uma conta? <a href="../signup/"><i>cadastrar</i></a></p>
+        <form action="login.php" method="post">
+            <center><img id="default-logo"></center>
+            <h1>Entre na sua conta</h1>
+            <p>Não tem uma conta? <a href="../signup/index.php"><i>cadastrar</i></a></p>
 
-        <div id="datas">
-            <label for="email" id="emaillabel">E-mail</label>
-            <input type="email" name="email" id="email" required/>
+            <div id="datas">
+                <label for="email" id="emaillabel">E-mail</label>
+                <input type="email" name="email" id="email" required/>
+                
+                <label for="password" id="passwordlabel">Senha</label>
+                <input type="password" name="password" id="password" required/>
+            </div>
+
+            <div class="remember-container">
+                <input type="checkbox" id="remember-me" name="remember-me">
+                <label for="remember-me" id="rememberlabel">Me manter conectado.</label>
+            </div>
+
+            <a href="../iforgot/index.php" class="forgot-password">Esqueceu a senha?</a>
             
-            <label for="password" id="passwordlabel">Senha</label>
-            <input type="password" name="password" id="password" required/>
-        </div>
+            <button type="submit" class="submit-button">Entrar</button>
+        </form>
+    </div>
 
-        <div class="remember-container">
-            <input type="checkbox" id="remember-me" name="remember-me">
-            <label for="remember-me" id="rememberlabel">Me manter conectado.</label>
-        </div>
-
-        <a href="../iforgot/" class="forgot-password">Esqueceu a senha?</a>
-        
-        <button type="submit" class="submit-button">Entrar</button>
-    </form>
-</div>
-
-
-<script src="../js/script.js"></script>
+    <script src="../js/script.js"></script>
+</body>
 </html>
