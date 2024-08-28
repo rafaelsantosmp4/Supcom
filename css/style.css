@@ -318,8 +318,8 @@
 }
 
 #account-options {
-  padding: 15px;
-  backdrop-filter: blur(10px);
+  padding: 30px;
+  backdrop-filter: blur(50px);
   border-radius: 10px;
   border: 1px solid black;
   position: absolute;
@@ -331,6 +331,7 @@
   visibility: hidden;
   pointer-events: none;
   z-index: 100;
+  box-shadow: 0px 0px 10px black;
 }
 
 #account-options.open {

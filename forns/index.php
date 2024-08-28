@@ -9,7 +9,12 @@
     <link rel="stylesheet" href="../css/mobile.css">
 </head>
 
-
+<?php
+    session_start();
+    if($_SESSION['log'] != "ativo") {
+        echo"<script>alert('Você precisa entrar na sua conta para continuar.'); window.location.href = '../login/index.php';</script>";
+    }
+?>
 
 <nav id="configpcnav" class="configpcnav">        
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -20,9 +25,53 @@
     </ul>
 </nav>
 
-<?php include '../universal/header.php'; ?>
+<header>
+    <a href="../home" id="button-logo-index"><img width="120px" id="default-logo"></a>
+    <nav id="mobile-nav">
+        <ul>
+            <li><a href="../home">Início</a></li>
+            <li><a href="../forns/" class="active">Fornecedores</a></li>
+            <li><a href="../sobre/">Sobre nós</a></li>
+            <li><a href="../contact/">Fale conosco</a></li>
+            <li class="config-menu">
+                <div style="font-size: 40pt; padding: 10px 30px;"  id="config-button" onclick="toggleConfigMenu()">Configurações <i class="fa fa-caret-down"></i></div>
+                <ul id="config-options" class="config-options">
+                    <li style="margin-bottom: 5px; margin-top: 30px;">MODO ESCURO</li>
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                    <li><button id="darkModeToggle" aria-label="Toggle Dark Mode" class="btn btn-light">
+                        <i id="toggleIcon" class="bi bi-brightness-high"></i>
+                    </button>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div style="justify-content: center; align-items: center; display: flex;">
+        <button class="config-toggle" id="config_toggle" onclick="config_toggle()"><i class="fa fa-gear"></i></button>
+        <div id='account-button' onclick='toggleAccountMenu()' style="position: relative;">
+            <?php
+                include('../conexao/conexao.php');
+                $db = new BancodeDados();
+                $db->conecta();
+                $iduser = $_SESSION['id'];
+                $query = "SELECT * FROM usuarios WHERE id_usuario = '$iduser'";
+                $result = mysqli_query($db->con, $query);
+                $usuario = mysqli_fetch_assoc($result);
+                $nome = $usuario['nome'];
+                echo "Bem-vindo, $nome";
+                $db->fechar();
+            ?>
+            <i class='fa fa-caret-down'></i>
+        </div>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <div id='account-options'><a href='../logout/'>Sair da conta <i class="fa fa-sign-out" style="font-family: FontAwesome;"></i></a></div>
+    </div>
+
+    <button class="menu-toggle" id="menu_toggle" onclick="menu_toggle()">&#9776;</button>
+</header>
 
 <div class="overlay2" id="overlay2"></div>
+<div class="overlay3" id="overlay3"></div>
 
 <body>
     <div id="vlibras">

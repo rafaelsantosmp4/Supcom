@@ -16,13 +16,13 @@
     }
 ?>
 <header>
-    <a href="#" id="button-logo-index"><img width="120px" id="default-logo"></a>
+    <a href="../home" id="button-logo-index"><img width="120px" id="default-logo"></a>
     <nav id="mobile-nav">
         <ul>
-            <li><a href="#" class="active">Início</a></li>
-            <li><a href="forns/">Fornecedores</a></li>
-            <li><a href="sobre/">Sobre nós</a></li>
-            <li><a href="contact/">Fale conosco</a></li>
+            <li><a href="../home" class="active">Início</a></li>
+            <li><a href="../forns/">Fornecedores</a></li>
+            <li><a href="../sobre/">Sobre nós</a></li>
+            <li><a href="../contact/">Fale conosco</a></li>
             <li class="config-menu">
                 <div style="font-size: 40pt; padding: 10px 30px;"  id="config-button" onclick="toggleConfigMenu()">Configurações <i class="fa fa-caret-down"></i></div>
                 <ul id="config-options" class="config-options">
@@ -138,5 +138,5 @@
     </div>
 </footer>
 
-<<script src="../js/script.js"></script>
+<script src="../js/script.js"></script>
 </html>
