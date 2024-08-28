@@ -2,7 +2,6 @@
 
 # SUPCOM 🧭
 ![homewhite](https://github.com/user-attachments/assets/5db7a5a6-41d3-4087-a4ed-457a090c423a)
-![homeblack](https://github.com/user-attachments/assets/f7562e7d-c5f5-459e-8f80-ddc75269d55c)
 
 # Problem ⛔
 SUPCOM is a capstone project developed for my TCC in Information Technology, designed to address a significant challenge in B2B communication. Many small retailers struggle to find reliable suppliers, leading to inefficiencies and delays in maintaining their supply chains. The lack of a centralized platform for connecting retailers with potential suppliers often results in missed opportunities and hampers business growth.
