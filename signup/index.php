@@ -30,7 +30,7 @@
 
     <div id="left">
         <form action="signup.php" method="post">
-            <center><img id="default-logo"></center>
+            <center><img id="default-logo" src="../medias/logo/Logo-white.png"></center>
             <h1>Cadastre sua empresa na SUPCOM!</h1>
             <p>Já tem uma conta? <a href="../login/index.php"><i>entrar</i></a></p>
 

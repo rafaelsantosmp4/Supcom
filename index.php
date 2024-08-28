@@ -11,7 +11,7 @@
 </head>
 
 <header>
-    <a href="#" id="button-logo-index"><img width="120px" id="default-logo"></a>
+    <a href="#" id="button-logo-index"><img width="120px" id="default-logo" src="medias/logo/Logo-white.png"></a>
     <div id="direita" style="justify-content: center; align-items: center; display: flex;">
         <a href="login/" class="login-button">Entrar</a>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -159,59 +159,11 @@
         document.getElementById("radio" + count).checked = true;
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
     const imglogo = document.querySelector("#default-logo");
     const imgiconedark = document.querySelector("#indicador");
     const body = document.body;
     const trilho = document.getElementById('trilho');
     const overlay = document.querySelector('.overlay');
-    const darkModeToggle = document.getElementById('darkModeToggle');
-
-    const updateTheme = (isDarkMode) => {
-        body.classList.toggle('dark-mode', isDarkMode);
-        if (imglogo) {
-        imglogo.setAttribute('src', isDarkMode ? 'medias/logo/Black-logo.png' : 'medias/logo/Logo-white.png');
-        }
-        if (imgiconedark) {
-        imgiconedark.setAttribute('src', isDarkMode ? 'medias/moon.png' : 'medias/sun.png');
-        }
-        if (trilho) {
-        trilho.classList.toggle('darktrilho', isDarkMode);
-        }
-    };
-
-    const updateButtonIcon = (isDarkMode) => {
-        const icon = document.getElementById('toggleIcon');
-        if (icon) {
-        icon.className = isDarkMode ? 'fa fa-moon-o' : 'fa fa-sun-o';
-        }
-    };
-
-    const handleDarkModeToggle = () => {
-        overlay.style.opacity = 1;
-        const isDarkMode = !body.classList.contains('dark-mode');
-        updateTheme(isDarkMode);
-        updateButtonIcon(isDarkMode);
-
-        setTimeout(() => {
-        overlay.style.opacity = 0;
-        localStorage.setItem('darkMode', isDarkMode ? 'true' : 'false');
-        }, 400);
-    };
-
-    const isDarkMode = localStorage.getItem('darkMode') === 'true';
-    updateTheme(isDarkMode);
-    updateButtonIcon(isDarkMode);
-
-    if (trilho) {
-        trilho.addEventListener('click', handleDarkModeToggle);
-    }
-    if (darkModeToggle) {
-        darkModeToggle.addEventListener('click', handleDarkModeToggle);
-    }
-    });
-
-
 
 
     function toggleConfigMenu() {

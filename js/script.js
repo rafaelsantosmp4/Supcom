@@ -1,54 +1,8 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const imglogo = document.querySelector("#default-logo");
-  const imgiconedark = document.querySelector("#indicador");
-  const body = document.body;
-  const trilho = document.getElementById('trilho');
-  const darkModeToggle = document.getElementById('darkModeToggle');
-
-  const updateTheme = (isDarkMode) => {
-    body.classList.toggle('dark-mode', isDarkMode);
-    if (imglogo) {
-      imglogo.setAttribute('src', isDarkMode ? '../medias/logo/Black-logo.png' : '../medias/logo/Logo-white.png');
-    }
-    if (imgiconedark) {
-      imgiconedark.setAttribute('src', isDarkMode ? '../medias/moon.png' : '../medias/sun.png');
-    }
-    if (trilho) {
-      trilho.classList.toggle('darktrilho', isDarkMode);
-    }
-  };
-
-  const updateButtonIcon = (isDarkMode) => {
-    const icon = document.getElementById('toggleIcon');
-    if (icon) {
-      icon.className = isDarkMode ? 'fa fa-moon-o' : 'fa fa-sun-o';
-    }
-  };
-
-  const handleDarkModeToggle = () => {
-    const isDarkMode = !body.classList.contains('dark-mode');
-    updateTheme(isDarkMode);
-    updateButtonIcon(isDarkMode);
-
-    setTimeout(() => {
-      localStorage.setItem('darkMode', isDarkMode ? 'true' : 'false');
-    }, 400);
-  };
-
-  const isDarkMode = localStorage.getItem('darkMode') === 'true';
-  updateTheme(isDarkMode);
-  updateButtonIcon(isDarkMode);
-
-  if (trilho) {
-    trilho.addEventListener('click', handleDarkModeToggle);
-  }
-  if (darkModeToggle) {
-    darkModeToggle.addEventListener('click', handleDarkModeToggle);
-  }
-});
-
-
-
+const imglogo = document.querySelector("#default-logo");
+const imgiconedark = document.querySelector("#indicador");
+const body = document.body;
+const trilho = document.getElementById('trilho');
+const darkModeToggle = document.getElementById('darkModeToggle');
 
 function toggleConfigMenu() {
   const options = document.querySelector('.config-options');
@@ -64,7 +18,7 @@ function toggleAccountMenu() {
 }
 
 overlay3.addEventListener('click', () => {
-    account.classList.remove('open');  // Corrigido de 'show' para 'open'
+    account.classList.remove('open');
     overlay3.classList.remove('show');
 });
 

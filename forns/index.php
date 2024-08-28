@@ -26,7 +26,7 @@
 </nav>
 
 <header>
-    <a href="../home" id="button-logo-index"><img width="120px" id="default-logo"></a>
+    <a href="../home" id="button-logo-index"><img width="120px" id="default-logo" src="../medias/logo/Logo-white.png"></a>
     <nav id="mobile-nav">
         <ul>
             <li><a href="../home">Início</a></li>

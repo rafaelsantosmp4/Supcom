@@ -34,17 +34,6 @@
         font-size: 50pt;
         transition: transform 1s ease;
     }
-    
-    .dark-mode #darkModeToggle {
-        background-color: #333;
-    }
-    
-    .dark-mode #toggleIcon {
-        transform: rotate(360deg);
-    }
-    .dark-mode #toggleIcon {
-        color: #f0f0f0;
-    }
 
     #bemvindo {
         margin-top: -50px;

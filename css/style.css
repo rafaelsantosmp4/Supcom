@@ -4,9 +4,6 @@
   text-align: center;
   transition: background-color 0.8s ease, color 0.8s ease;
 }
-.dark-mode #bemvindo {
-  background-color: #13293D;
-}
 #bemvindo a {
   padding: 5px 10px;
   text-decoration: none;
@@ -17,18 +14,10 @@
   background-color: #006494;
   color: #E8F1F2;
 }
-.dark-mode #bemvindo a {
-  background-color: #006494;
-  color: #E8F1F2;
-}
 #bemvindo a:hover {
   transition: 500ms;
   background-color: #E8F1F2;
   color: #006494;
-}
-.dark-mode #bemvindo a:hover {
-  background-color: #13293D;
-  color: #E8F1F2;
 }
 #comecarcom {
   width: 25%;
@@ -36,9 +25,6 @@
   top: 50%;
   transform: translateY(-40%);
   margin-left: 10%;
-}
-.dark-mode #comecarcom h1 {
-  color: #ffffff;
 }
 #comecarcom h1 {
   font-size: 40pt;
@@ -53,9 +39,6 @@
   top: 10%;
   left: 40%;
   border-radius: 30px;
-}
-.dark-mode #imagem-contraria {
-  filter: brightness(90%);
 }
 .comecarcomsupbutton {
   display: none;
@@ -104,9 +87,6 @@
 #left a {
   color: #0b63b6;
 }
-.dark-mode #left a {
-  color: #52c5fa;
-}
 #left form {
   display: flex;
   flex-direction: column;
@@ -129,11 +109,6 @@
   color: #333; 
   margin-bottom: 10px;
   background-color: light-dark(rgb(232, 240, 254), rgba(70, 90, 126, 0.4));
-}
-.dark-mode #datas input, .dark-mode #datas select {
-  border: 3px solid #1B98E0;
-  color: #000000; 
-  text-indent: 10px;
 }
 #datas select {
   width: 100%;
@@ -200,12 +175,6 @@
 .submit-button:hover {
   background-color: #01324d;
 }
-.dark-mode .submit-button {
-  background-color: #1B98E0;
-}
-.dark-mode .submit-button:hover {
-  background-color: #006494;
-}
 
 
 #conteudo label {
@@ -271,9 +240,6 @@
 .produto:hover {
   transition: 300ms;
   transform: scale(1.1);
-}
-.dark-mode .produto p {
-  color: rgb(209, 209, 209);
 }
 .produto img {
   max-width: 100%;

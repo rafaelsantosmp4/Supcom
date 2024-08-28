@@ -9,17 +9,9 @@ body {
   font-family: gotham;
   transition: background-color 1s ease;
 }
-body.dark-mode {
-  background-color: #212f3d;
-  color: #E8F1F2;
-  padding-bottom: 20px;
-}
 body h1, h2, h3 {
   color: #13293D;
   transition: color 1s ease;
-}
-.dark-mode h1, .dark-mode h2, .dark-mode h3 {
-    color: #ffffff;
 }
 #container {
   display: flex;
@@ -50,9 +42,6 @@ header {
     font-size: 14pt;
     transition: background-color 1s ease, color 1s ease;
   }
-  .dark-mode header {
-    background-color: #13293D;
-  }
   header a {
     color: #13293D;
     text-align: center;
@@ -62,23 +51,14 @@ header {
     transition: 500ms;
     margin-right: 10px;
   }
-  .dark-mode header a {
-    color: #E8F1F2;
-  }
   header a:hover {
     transition: 500ms;
     background-color: #006494;
     color: rgb(255, 255, 255);
   }
-  .dark-mode header a:hover {
-    background-color: #1B98E0;
-  }
   header a.active {
     background-color: #006494;
     color: white;
-  }
-  .dark-mode header a#active {
-    background-color: #1B98E0;
   }
   #mobile-nav ul {
     display: flex;
@@ -104,9 +84,6 @@ header {
     right: 20px;
     transition: background-color 1s ease, color 1s ease;
   }
-  .dark-mode .menu-toggle {
-    color: #E8F1F2;
-  }
   #trilho{
     width: 110px;
     height: 55px;
@@ -128,12 +105,6 @@ header {
   #trilho.darktrilho #indicador {
     left: 54px;
   }
-  .dark-mode #trilho {
-    background-color: #7ea5ca;
-  }
-  .dark-mode #trilho #indicador {
-    background-color: #000000;
-  }
 
   .config-toggle {
     font-size: 40px;
@@ -143,9 +114,6 @@ header {
     cursor: pointer;
     position: relative;
     transition: background-color 1s ease, color 1s ease;
-  }
-  .dark-mode .config-toggle {
-    color: #E8F1F2;
   }
   #configpcnav {
     opacity: 0;
@@ -164,9 +132,6 @@ header {
     justify-content: center;
     text-align: center;
   }
-  .dark-mode #configpcnav {
-    background-color: #547696;
-  }
   #configpcnav.show {
       opacity: 1;
       transform: translate(-50%, -50%);
@@ -177,9 +142,6 @@ header {
 
     padding-top: 40px;
     padding-left: 0px;
-  }
-  .dark-mode #configpcnav ul {
-    color: white;
   }
   #configpcnav ul li {
     list-style: none;
@@ -247,9 +209,6 @@ header {
   }
   footer h1 {
     color: #fff;
-  }
-  .dark-mode footer {
-    background-color: #13293D;
   }
   .nomes_inte {
     font-size: 10pt;

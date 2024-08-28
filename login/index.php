@@ -31,7 +31,7 @@
 
     <div id="left">
         <form action="login.php" method="post">
-            <center><img id="default-logo"></center>
+            <center><img id="default-logo" src="../medias/logo/Logo-white.png"></center>
             <h1>Entre na sua conta</h1>
             <p>Não tem uma conta? <a href="../signup/index.php"><i>cadastrar</i></a></p>
 
