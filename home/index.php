@@ -64,8 +64,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div id="closenav"><i class="fa fa-times"></i></div>
     <ul>
-        <li>MODO ESCURO</li>
-        <li style="display: flex; justify-content: center;"><div id="trilho"><img src="../medias/sun.png" id="indicador"></div></div></li>
+        <li>CONFIGS HERE</li>
     </ul>
 </nav>
 

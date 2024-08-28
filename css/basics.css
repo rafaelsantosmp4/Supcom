@@ -84,27 +84,6 @@ header {
     right: 20px;
     transition: background-color 1s ease, color 1s ease;
   }
-  #trilho{
-    width: 110px;
-    height: 55px;
-    background-color: #006494;
-    border-radius: 150px;
-    position: relative;
-    cursor: pointer;
-  }
-  #trilho #indicador {
-    width: 55px;
-    height: 55px;
-    background-color: #000000;
-    border-radius: 50%;
-    transform: scale(.9);
-    position: absolute;
-    left: 0;
-    transition: .5s;
-  }
-  #trilho.darktrilho #indicador {
-    left: 54px;
-  }
 
   .config-toggle {
     font-size: 40px;
