@@ -28,7 +28,7 @@
     </div>
     <div class="imgright signupimg"></div>
 
-    <div id="left">
+    <div id="left" class="signup">
         <form action="signup.php" method="post">
             <center><img id="default-logo" src="../medias/logo/Logo-white.png"></center>
             <h1>Cadastre sua empresa na SUPCOM!</h1>
@@ -42,11 +42,10 @@
                 <input type="email" name="email" id="email" placeholder="xxxxx@email.com" required/>
 
                 <label for="tipoconta">O que pretende na SUPCOM?</label>
-                <select name="tipoconta" id="tipoconta" style="margin-bottom: 0px;">
+                <select name="tipoconta" id="tipoconta">
                     <option value="loj">Encontrar fornecedores para minha empresa</option>
                     <option value="forn">Vender mercadorias da minha empresa fornecedora</option>
                 </select>
-                <div><a href="#"><i>saiba mais</i></a></div><br>
                 
                 <label for="cnpj">CNPJ</label>
                 <input type="text" name="cnpj" id="cnpj" placeholder="00.000.000/0000-00" maxlength="18" required/>

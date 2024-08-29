@@ -29,7 +29,7 @@
 
     <div class="imgright logimg"></div>
 
-    <div id="left">
+    <div id="left" class="login">
         <form action="login.php" method="post">
             <center><img id="default-logo" src="../medias/logo/Logo-white.png"></center>
             <h1>Entre na sua conta</h1>

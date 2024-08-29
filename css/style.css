@@ -55,7 +55,7 @@
     width: 50%;
     height: 100vh;
     left: 50%;
-    position: absolute;
+    position: fixed;
 }
 .logimg {
   background-image: url('../medias/estoqueseg.webp');
@@ -65,13 +65,20 @@
 }
 
 
+.signup {
+  height: 100%;
+  padding-top: 100px;
+  padding-bottom: 50px;
+}
+.login {
+  height: 100vh;
+}
 #left {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 50%;
-  height: 100vh;
 }
 #left p {
   margin-top: 0px;
