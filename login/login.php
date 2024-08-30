@@ -20,6 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (password_verify($senha, $usuario['senha'])) {
             $_SESSION['log'] = 'ativo';
             $_SESSION['id'] = $usuario['id_usuario'];
+            $_SESSION['nome'] = $usuario['nome'];
+            $_SESSION['email'] = $usuario['email'];
+            $_SESSION['cnpj'] = $usuario['cnpj'];
+            $_SESSION['telefone'] = $usuario['telefone'];
+            $_SESSION['tipo'] = $usuario['tipo_usuario'];
+            $_SESSION['data'] = $usuario['data_cadastro'];
             echo "<script>window.location.href='../home/'</script>";
         } else {
             echo "<script>alert('Senha incorreta.'); window.location.href='index.php'</script>";

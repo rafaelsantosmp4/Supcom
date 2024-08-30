@@ -10,7 +10,7 @@
         font-size: 50pt;
     }
     header .login-button {
-        margin-right: 60px;
+        margin-right: 0px;
     }
     header img {
         width: 300px;
@@ -20,15 +20,6 @@
     }
     .config-menu .config-options {
         padding-left: 0px;
-    }
-    #darkModeToggle {
-        background-color: #98e2ff;
-        color: #08007c;
-        border: none;
-        border-radius: 20px;
-        padding: 10px 15px;
-        cursor: pointer;
-        transition: background-color 1s ease, color 1s ease;
     }
     #toggleIcon {
         font-size: 50pt;
@@ -201,5 +192,14 @@
 
     .slider {
         display: none;
+    }
+
+
+    #account-button {
+        margin-right: 30px;
+    }
+    #account-options {
+        margin-top: 100px;
+        margin-right: 30px;
     }
 }

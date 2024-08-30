@@ -16,8 +16,7 @@ body h1, h2, h3 {
 #container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  transition: background-color 1s ease, color 1s ease;
+  align-items: center
 }
 #conteudo {
   width: 85%;
@@ -40,26 +39,40 @@ header {
     box-shadow: 0px 0px 20px black;
     position: relative;
     font-size: 14pt;
-    transition: background-color 1s ease, color 1s ease;
+  }
+  header a.active:after {
+    width: 100%; 
+    left: 0;
   }
   header a {
     color: #13293D;
-    text-align: center;
-    padding: 5px 10px;
     text-decoration: none;
-    border-radius: 50px;
-    transition: 500ms;
+    position: relative;
+    color: #13293D;
+    text-align: center;
+    padding: 5px 20px;
     margin-right: 10px;
   }
-  header a:hover {
-    transition: 500ms;
-    background-color: #006494;
-    color: rgb(255, 255, 255);
+  header a:after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: #13293D;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
   }
-  header a.active {
-    background-color: #006494;
-    color: white;
+  header a:hover:after { 
+    width: 100%; 
+    left: 0;
   }
+
+
+
+
   #mobile-nav ul {
     display: flex;
   }
@@ -82,7 +95,6 @@ header {
     cursor: pointer;
     position: absolute; 
     right: 20px;
-    transition: background-color 1s ease, color 1s ease;
   }
 
   .config-toggle {
@@ -92,7 +104,19 @@ header {
     color: #13293D;
     cursor: pointer;
     position: relative;
-    transition: background-color 1s ease, color 1s ease;
+    transition: transform 0.6s ease;
+  }
+  .config-toggle:hover {
+    animation: spin 2s linear infinite;
+    transition: none;
+  }
+  @keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
   }
   #configpcnav {
     opacity: 0;
@@ -184,7 +208,6 @@ header {
     padding: 10px;
     box-shadow: 0px 0px 10px black;
     height: 300px;
-    transition: background-color 1s ease, color 1s ease;
   }
   footer h1 {
     color: #fff;

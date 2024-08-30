@@ -70,7 +70,3 @@ closebutton.addEventListener('click', () => {
     overlay2.classList.remove('show');
   }
 });
-
-function voltar() {
-  window.history.go(-1);
-}

@@ -2,7 +2,6 @@
   height: 95vh;
   background-color: #E8F1F2;
   text-align: center;
-  transition: background-color 0.8s ease, color 0.8s ease;
 }
 #bemvindo a {
   padding: 5px 10px;
@@ -50,12 +49,12 @@
 
 
 .imgright {
-    background-position: center;
-    background-size: cover;
-    width: 50%;
-    height: 100vh;
-    left: 50%;
-    position: fixed;
+  background-position: center;
+  background-size: cover;
+  width: 50%;
+  height: 100vh;
+  left: 50%;
+  position: fixed;
 }
 .logimg {
   background-image: url('../medias/estoqueseg.webp');
@@ -292,24 +291,85 @@
 
 #account-options {
   padding: 30px;
-  backdrop-filter: blur(50px);
+  background-color: #E8F1F2;
   border-radius: 10px;
   border: 1px solid black;
   position: absolute;
   top: 80px;
   right: 65px;
-  transform: translateY(-10px);
+  transform: translateY(-50px);
   transition: opacity 300ms, transform 300ms, visibility 300ms;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   z-index: 100;
   box-shadow: 0px 0px 10px black;
+  text-align: center;
 }
-
 #account-options.open {
   opacity: 1;
   transform: translateY(0);
   visibility: visible;
   pointer-events: auto;
+}
+#account-options ul { 
+  list-style-type: none;
+  margin-bottom: 0;
+  padding: 0;
+}
+#account-options ul li { 
+  margin-bottom: 20px;
+}
+
+
+
+#profile {
+  position: relative;
+  width: 100%;
+  height: 350px;
+}
+.banner-sobreposto {
+  position: absolute;
+  top: 0;
+  left: -15px;
+  right: 0px;
+  height: 100%;
+  background-image: url('../medias/frutas.jpg');
+  background-position: center;
+  background-size: cover;
+  filter: brightness(0.5) contrast(0.8) blur(10px);
+}
+#pfp {
+  position: relative;
+  padding-left: 60px;
+  padding-top: 40px;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+}
+#nomebio {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+#pfp h1 {
+  color: #E8F1F2;
+  font-size: 60pt;
+  margin: 0px;
+}
+#pfp img {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  margin-right: 30pt;
+}
+#pfp p {
+  color: #dfdfdf;
+  font-size: 14pt;
+  margin: 0;
+  padding-top: 10px;
+  line-height: 1.1;
+}
+#pfp p a {
+  color: #dfdfdf;
 }

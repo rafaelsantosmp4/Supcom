@@ -24,7 +24,7 @@
 
     <div id="voltarbut">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <button class="back-toggle" onclick="voltar()"><i class="fa fa-chevron-left"></i></button>
+        <a href="../"><button class="back-toggle"><i class="fa fa-chevron-left"></i></button></a>
     </div>
 
     <div class="imgright logimg"></div>
@@ -43,7 +43,7 @@
                 <input type="password" name="password" id="password" required/>
             </div>
 
-            <a href="../iforgot/index.php" class="forgot-password">Esqueceu a senha?</a>
+            <a href="../iforgot/" class="forgot-password">Esqueceu a senha?</a>
             
             <button type="submit" class="submit-button">Entrar</button>
         </form>

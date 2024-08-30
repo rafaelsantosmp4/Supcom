@@ -30,17 +30,12 @@
         <ul>
             <li><a href="../home">Início</a></li>
             <li><a href="../forns/" class="active">Fornecedores</a></li>
-            <li><a href="../sobre/">Sobre nós</a></li>
+            <li><a href="../about/">Sobre nós</a></li>
             <li><a href="../contact/">Fale conosco</a></li>
             <li class="config-menu">
                 <div style="font-size: 40pt; padding: 10px 30px;"  id="config-button" onclick="toggleConfigMenu()">Configurações <i class="fa fa-caret-down"></i></div>
                 <ul id="config-options" class="config-options">
-                    <li style="margin-bottom: 5px; margin-top: 30px;">MODO ESCURO</li>
-                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-                    <li><button id="darkModeToggle" aria-label="Toggle Dark Mode" class="btn btn-light">
-                        <i id="toggleIcon" class="bi bi-brightness-high"></i>
-                    </button>
-                    </li>
+                    <li>CONFIGS HERE</li>
                 </ul>
             </li>
         </ul>
@@ -63,7 +58,12 @@
             <i class='fa fa-caret-down'></i>
         </div>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <div id='account-options'><a href='../logout/'>Sair da conta <i class="fa fa-sign-out" style="font-family: FontAwesome;"></i></a></div>
+        <div id='account-options'>
+            <ul>
+                <li><a href='../dashboard/'>Dashboard <i class="fa fa-table" style="font-family: FontAwesome;"></i></a></li>
+                <li><a href='../logout/'>Sair da conta <i class="fa fa-sign-out" style="font-family: FontAwesome;"></i></a></li>
+            </ul>
+        </div>
     </div>
 
     <button class="menu-toggle" id="menu_toggle" onclick="menu_toggle()">&#9776;</button>
