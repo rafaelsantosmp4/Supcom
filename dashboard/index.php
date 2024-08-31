@@ -69,6 +69,7 @@
 
 <div class="overlay2" id="overlay2"></div>
 <div class="overlay3" id="overlay3"></div>
+<div class="overlaybio" id="overlaybio"></div>
 
 <body>
     <div id="vlibras">
@@ -84,37 +85,48 @@
         </script>
     </div>
 
-    <div class="overlay"></div>
+    <nav id="addbio" class="addbio">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <div id="closebio"><i class="fa fa-times"></i></div>
+        <ul>
+            <li>ATUALIZE SUA BIO:</li> 
+            <form id="bioForm" method="POST" action="save_bio.php">
+                <textarea name="bio" id="bio" rows="4" cols="50" maxlength="200" placeholder="max. 200 caracteres"></textarea>
+                <li><input type="submit" class="submit-button bio" value="Salvar"></li>
+            </form>
+        </ul>
+    </nav>
 
     <?php
-    require_once('../conexao/conexao.php');
-    $db = new BancodeDados();
-    $db->conecta();
+        require_once('../conexao/conexao.php');
+        $db = new BancodeDados();
+        $db->conecta();
 
-    $id = $_SESSION['id'];
-    $nome = $_SESSION['nome'];
-    $email = $_SESSION['email'];
-    $cnpj = $_SESSION['cnpj'];
-    $telefone = $_SESSION['telefone'];
-    $tipo = $_SESSION['tipo'];
-    $data = $_SESSION['data'];
-    $datacerta = new DateTime($data);
-    $formatted_date = $datacerta->format('d/m/Y');
-    $formatted_time = $datacerta->format('H:i:s');
+        $id = $_SESSION['id'];
+        $nome = $_SESSION['nome'];
+        $email = $_SESSION['email'];
+        $cnpj = $_SESSION['cnpj'];
+        $telefone = $_SESSION['telefone'];
+        $tipo = $_SESSION['tipo'];
+        $data = $_SESSION['data'];
+        $datacerta = new DateTime($data);
+        $formatted_date = $datacerta->format('d/m/Y');
+        $formatted_time = $datacerta->format('H:i:s');
 
-    $query = "SELECT * FROM usuarios WHERE id_usuario = '$id'";
-    $result = mysqli_query($db->con, $query);
+        $query = "SELECT * FROM usuarios WHERE id_usuario = '$id'";
+        $result = mysqli_query($db->con, $query);
 
-    if ($result && mysqli_num_rows($result) > 0) {
-        $usuario = mysqli_fetch_assoc($result);
-        if($usuario['bio'] != null) {
-            $_SESSION['bio'] = $usuario['bio'];
-        } else {
-            $_SESSION['bio'] = "<a href='bio/'>Adicione uma bio para seu perfil! <i class='fa fa-pencil' style='font-family: FontAwesome;'></i></a>";
+        if ($result && mysqli_num_rows($result) > 0) {
+            $usuario = mysqli_fetch_assoc($result);
+            if($usuario['bio'] != null) {
+                $_SESSION['bio'] = "<p onmouseenter='updatebio()' onmouseleave='resetbio()' id='attbio'>" . $usuario['bio'] . "</p>";
+                echo"<script>textarea = document.getElementById('bio'); textarea.innerHTML = '" . $usuario['bio'] . "'; </script>";
+            } else {
+                $_SESSION['bio'] = "<p> <a style='text-decoration: underline; cursor: pointer;' onclick='addbio()'>Adicione uma bio para seu perfil! <i class='fa fa-pencil' style='font-family: FontAwesome;'></i></a></p>";
+            }
         }
-    }
-    $bio = $_SESSION['bio'];
-    echo "email: $email<br>cnpj: $cnpj <br> telefone: $telefone <br> Tipo da conta: $tipo <br> data de cadastro: $formatted_date <br> Hora de cadastro: $formatted_time";
+        $bio = $_SESSION['bio'];
+        echo "email: $email<br>cnpj: $cnpj <br> telefone: $telefone <br> Tipo da conta: $tipo <br> data de cadastro: $formatted_date <br> Hora de cadastro: $formatted_time";
     ?>
     <div id="profile">
         <div class="banner-sobreposto"></div>
@@ -123,7 +135,7 @@
             <div id="nomebio">
                 <h1><?php echo"$nome" ?></h1>
                 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-                <p><?php echo $bio; ?></p>
+                <?php echo $bio; ?>
             </div>
         </div>
     </div>
@@ -132,8 +144,46 @@
         <div id="conteudo">
         </div>
     </div>
-
 </body>
+
+
+<script>
+    function addbio() {
+        const addbio = document.getElementById('addbio');
+        const overlaybio = document.querySelector('.overlaybio');
+        if (addbio) {
+            addbio.classList.toggle('show');
+            overlaybio.classList.toggle('show');
+        }
+    }
+    overlaybio.addEventListener('click', () => {
+        const addbio = document.getElementById('addbio');
+        if (addbio) {
+            addbio.classList.remove('show');
+            overlaybio.classList.remove('show');
+        }
+    });
+    closebio = document.getElementById("closebio");
+    closebio.addEventListener('click', () => {
+    const addbio = document.getElementById('addbio');
+    if (addbio) {
+        addbio.classList.remove('show');
+        overlaybio.classList.remove('show');
+    }
+    });
+
+    const originalContent = document.querySelector('#attbio').innerHTML;
+    function updatebio() {
+        const bio = document.querySelector('#attbio');
+        const pencil = " <i class='fa fa-pencil' style='font-family: FontAwesome; cursor: pointer;' onclick='addbio()' title='Alterar bio'></i>";
+        bio.innerHTML = originalContent + pencil;
+    }
+
+    function resetbio() {
+        const bio = document.querySelector('#attbio');
+        bio.innerHTML = originalContent;
+    }
+</script>
 
 <?php include '../universal/footer.php';?>
 
