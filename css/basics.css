@@ -156,6 +156,9 @@ header a:hover:after {
     opacity: 1;
     transform: translate(-50%, -50%);
   }
+  #configpcnav.no-transition {
+    transition: none !important;
+}
   #configpcnav ul {
     color: #13293D;
     text-decoration: none;

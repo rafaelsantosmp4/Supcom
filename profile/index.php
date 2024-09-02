@@ -41,7 +41,26 @@
 </nav>
 <script>
     document.getElementById('dark_mode').addEventListener('change', function() {
-        document.getElementById('theme-form').submit();
+        localStorage.setItem('showConfigNav', 'true');
+        setTimeout(() => {
+            document.getElementById('theme-form').submit();
+        }, 300);
+    });
+
+    window.addEventListener('load', function() {
+        const configNavPc = document.getElementById('configpcnav');
+        if (localStorage.getItem('showConfigNav') === 'true') {
+            if (configNavPc) {
+                configNavPc.classList.add('no-transition');
+                overlay2.classList.add('show');
+                configNavPc.classList.add('show');
+                localStorage.removeItem('showConfigNav');
+                
+                setTimeout(() => {
+                    configNavPc.classList.remove('no-transition');
+                }, 0);
+            }
+        }
     });
 </script>
 
