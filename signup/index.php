@@ -8,7 +8,17 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/mobile.css">
 </head>
-<body>
+<?php
+    session_start();
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $_SESSION['dark_mode'] = isset($_POST['dark_mode']);
+    }
+    $themeClass = isset($_SESSION['dark_mode']) && $_SESSION['dark_mode'] ? 'dark-mode' : 'light-mode';
+
+    $logoSrc = $themeClass === 'dark-mode' ? '../medias/logo/Black-logo.png' : '../medias/logo/Logo-white.png';
+?>
+
+<body class="<?php echo $themeClass; ?>">
     <div id="vlibras">
         <div vw class="enabled">
             <div vw-access-button class="active"></div>
@@ -28,9 +38,9 @@
     </div>
     <div class="imgright signupimg"></div>
 
-    <div id="left" class="signup">
+    <div id="left" class="signup <?php echo $themeClass; ?>">
         <form action="signup.php" method="post">
-            <center><img id="default-logo" src="../medias/logo/Logo-white.png"></center>
+            <center><img id="default-logo" src="<?php echo $logoSrc; ?>"></center>
             <h1>Cadastre sua empresa na SUPCOM!</h1>
             <p>Já tem uma conta? <a href="../login/index.php"><i>entrar</i></a></p>
 

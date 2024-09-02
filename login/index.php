@@ -8,7 +8,17 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/mobile.css">
 </head>
-<body>
+<?php
+    session_start();
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $_SESSION['dark_mode'] = isset($_POST['dark_mode']);
+    }
+    $themeClass = isset($_SESSION['dark_mode']) && $_SESSION['dark_mode'] ? 'dark-mode' : 'light-mode';
+
+    $logoSrc = $themeClass === 'dark-mode' ? '../medias/logo/Black-logo.png' : '../medias/logo/Logo-white.png';
+?>
+
+<body class="<?php echo $themeClass; ?>">
     <div id="vlibras">
         <div vw class="enabled">
             <div vw-access-button class="active"></div>
@@ -29,9 +39,9 @@
 
     <div class="imgright logimg"></div>
 
-    <div id="left" class="login">
+    <div id="left" class="login <?php echo $themeClass; ?>">
         <form action="login.php" method="post">
-            <center><img id="default-logo" src="../medias/logo/Logo-white.png"></center>
+            <center><img id="default-logo" src="<?php echo $logoSrc; ?>"></center>
             <h1>Entre na sua conta</h1>
             <p>Não tem uma conta? <a href="../signup/index.php"><i>cadastrar</i></a></p>
 

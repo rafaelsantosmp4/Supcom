@@ -27,11 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['tipo'] = $usuario['tipo_usuario'];
             $_SESSION['data'] = $usuario['data_cadastro'];
             echo "<script>window.location.href='../home/'</script>";
-        } else {
-            echo "<script>alert('Senha incorreta.'); window.location.href='index.php'</script>";
         }
     } else {
-        echo "<script>alert('Usuário não encontrado. Email incorreto.'); window.location.href='index.php'</script>";
+        echo "<script>alert('Senha ou usuário não encontrado'); window.location.href='index.php'</script>";
     }
 }
 

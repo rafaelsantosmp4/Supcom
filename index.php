@@ -10,28 +10,54 @@
     <link rel="stylesheet" href="css/mobile.css">
 </head>
 
-<header>
-    <a href="#" id="button-logo-index"><img width="120px" id="default-logo" src="medias/logo/Logo-white.png"></a>
+<?php
+    session_start();
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $_SESSION['dark_mode'] = isset($_POST['dark_mode']);
+    }
+    $themeClass = isset($_SESSION['dark_mode']) && $_SESSION['dark_mode'] ? 'dark-mode' : 'light-mode';
+
+    $logoSrc = $themeClass === 'dark-mode' ? 'medias/logo/Black-logo.png' : 'medias/logo/Logo-white.png';
+?>
+
+<header class="<?php echo $themeClass; ?>">
+    <a href="#" id="button-logo-index">
+        <img width="120px" id="default-logo" src="<?php echo $logoSrc; ?>" alt="Logo">
+    </a>
     <div id="direita" style="justify-content: center; align-items: center; display: flex;">
-        <a href="login/" class="login-button">Entrar</a>
+        <a href="login/" class="<?php echo $themeClass; ?>">Entrar</a>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <button class="config-toggle" id="config_toggle" onclick="config_toggle()"><i class="fa fa-gear"></i></button>
+        <button class="config-toggle <?php echo $themeClass; ?>" id="config_toggle" onclick="config_toggle()"><i class="fa fa-gear"></i></button>
     </div>
 </header>
 
 
 <nav id="configpcnav" class="configpcnav">        
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <div id="closenav"><i class="fa fa-times"></i></div>
+    <div id="closenav"><i class="fa fa-times <?php echo $themeClass; ?>"></i></div>
     <ul>
-        <li>CONFIGS HERE</li>
+        <li>MODO ESCURO:</li>
+        <div class="theme-switcher">
+            <form id="theme-form" method="POST" action="">
+                <label class="switch">
+                    <input type="checkbox" id="dark_mode" name="dark_mode" <?php if (isset($_SESSION['dark_mode']) && $_SESSION['dark_mode']) echo 'checked'; ?>>
+                    <span class="toggle-slider round"></span>
+                </label>
+            </form>
+        </div>
     </ul>
 </nav>
+<script>
+    document.getElementById('dark_mode').addEventListener('change', function() {
+        document.getElementById('theme-form').submit();
+    });
+</script>
+
 
 <div class="overlay2" id="overlay2"></div>
 
-<body>
-    <div id="bemvindo">
+<body class="<?php echo $themeClass; ?>">
+    <div id="bemvindo" class="<?php echo $themeClass; ?>">
         <div id="comecarcom">
             <h1>Bem vindo(a) a <br> SUPCOM!</h1>
             <a href="signup/" class="comecarcomanti" style="font-family: arial;">Começar com SUPCOM!</a>
@@ -109,8 +135,7 @@
                     <li><b>Eficiência:</b> Priorizamos a eficiência em todos os aspectos do nosso trabalho, desde a interface do usuário até o suporte técnico, para garantir uma experiência fluida e produtiva para nossos clientes.</li>
                     <li><b>Empoderamento:</b> Acreditamos no poder das micro e pequenas empresas e estamos empenhados em capacitá-las, fornecendo as ferramentas e recursos necessários para que alcancem o sucesso.</li>
                     <li><b>Compromisso com o cliente:</b> Colocamos as necessidades e interesses dos nossos clientes em primeiro lugar, comprometendo-nos a oferecer um serviço excepcional e atendimento personalizado em todas as etapas da jornada do usuário.</li>
-                </ul>
-            </p>                
+            </p>
         </div>
     </div>
 

@@ -11,6 +11,14 @@
 
 <?php
     session_start();
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $_SESSION['dark_mode'] = isset($_POST['dark_mode']);
+    }
+    $themeClass = isset($_SESSION['dark_mode']) && $_SESSION['dark_mode'] ? 'dark-mode' : 'light-mode';
+
+    $logoSrc = $themeClass === 'dark-mode' ? '../medias/logo/Black-logo.png' : '../medias/logo/Logo-white.png';
+
+
     if($_SESSION['log'] != "ativo") {
         echo"<script>alert('Você precisa entrar na sua conta para continuar.'); window.location.href = '../login/index.php';</script>";
     }
@@ -18,14 +26,27 @@
 
 <nav id="configpcnav" class="configpcnav">        
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <div id="closenav"><i class="fa fa-times"></i></div>
+    <div id="closenav"><i class="fa fa-times <?php echo $themeClass; ?>"></i></div>
     <ul>
-        <li>CONFIGS HERE</li>
+        <li>MODO ESCURO:</li>
+        <div class="theme-switcher">
+            <form id="theme-form" method="POST" action="">
+                <label class="switch">
+                    <input type="checkbox" id="dark_mode" name="dark_mode" <?php if (isset($_SESSION['dark_mode']) && $_SESSION['dark_mode']) echo 'checked'; ?>>
+                    <span class="toggle-slider round"></span>
+                </label>
+            </form>
+        </div>
     </ul>
 </nav>
+<script>
+    document.getElementById('dark_mode').addEventListener('change', function() {
+        document.getElementById('theme-form').submit();
+    });
+</script>
 
-<header>
-    <a href="../home" id="button-logo-index"><img width="120px" id="default-logo" src="../medias/logo/Logo-white.png"></a>
+<header class='<?php echo $themeClass; ?>'>
+    <a href="../home" id="button-logo-index"><img width="120px" id="default-logo" src="<?php echo $logoSrc; ?>"></a>
     <nav id="mobile-nav">
         <ul>
             <li><a href="../home">Início</a></li>
@@ -33,7 +54,7 @@
             <li><a href="../about/">Sobre nós</a></li>
             <li><a href="../contact/">Fale conosco</a></li>
             <li class="config-menu">
-                <div style="font-size: 40pt; padding: 10px 30px;"  id="config-button" onclick="toggleConfigMenu()">Configurações <i class="fa fa-caret-down"></i></div>
+                <div style="font-size: 40pt; padding: 10px 30px;" id="config-button" onclick="toggleConfigMenu()">Configurações <i class="fa fa-caret-down"></i></div>
                 <ul id="config-options" class="config-options">
                     <li>CONFIGS HERE</li>
                 </ul>
@@ -41,7 +62,7 @@
         </ul>
     </nav>
     <div style="justify-content: center; align-items: center; display: flex;">
-        <button class="config-toggle" id="config_toggle" onclick="config_toggle()"><i class="fa fa-gear"></i></button>
+        <button class="config-toggle <?php echo $themeClass; ?>" id="config_toggle" onclick="config_toggle()"><i class="fa fa-gear"></i></button>
         <div id='account-button' onclick='toggleAccountMenu()' style="position: relative;">
             <?php
                 include('../conexao/conexao.php');
@@ -58,7 +79,7 @@
             <i class='fa fa-caret-down'></i>
         </div>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <div id='account-options'>
+        <div id='account-options' class="<?php echo $themeClass; ?>">
             <ul>
                 <li><a href='../profile/'>Perfil <i class="fa fa-user" style="font-family: FontAwesome;"></i></a></li>
                 <li><a href='../dashboard/'>Dashboard <i class="fa fa-table" style="font-family: FontAwesome;"></i></a></li>
@@ -73,7 +94,7 @@
 <div class="overlay2" id="overlay2"></div>
 <div class="overlay3" id="overlay3"></div>
 
-<body>
+<body class="<?php echo $themeClass; ?>">
     <div id="vlibras">
         <div vw class="enabled">
             <div vw-access-button class="active"></div>
@@ -110,7 +131,7 @@
             <div class="categoria">
                 <h2>Categoria 1</h2>
                 <div class="produtos">
-                    <div class="produto">
+                    <div class="produto <?php echo $themeClass; ?>">
                         <img src="../medias/paes.webp" alt="Produto 1">
                         <h3>Nome do produto</h3>
                         <p>Breve descrição do produto</p>
@@ -124,7 +145,7 @@
                         </div>
                     </div>
                     
-                    <div class="produto">
+                    <div class="produto <?php echo $themeClass; ?>">
                         <img src="../medias/paes.webp" alt="Produto 1">
                         <h3>Nome do produto</h3>
                         <p>Breve descrição do produto</p>
@@ -138,7 +159,7 @@
                         </div>
                     </div>
 
-                    <div class="produto">
+                    <div class="produto <?php echo $themeClass; ?>">
                         <img src="../medias/paes.webp" alt="Produto 1">
                         <h3>Nome do produto</h3>
                         <p>Breve descrição do produto</p>
@@ -152,7 +173,7 @@
                         </div>
                     </div>
 
-                    <div class="produto">
+                    <div class="produto <?php echo $themeClass; ?>">
                         <img src="../medias/paes.webp" alt="Produto 1">
                         <h3>Nome do produto</h3>
                         <p>Breve descrição do produto</p>
@@ -171,7 +192,7 @@
             <div class="categoria">
                 <h2>Categoria 2</h2>
                 <div class="produtos">
-                    <div class="produto">
+                    <div class="produto <?php echo $themeClass; ?>">
                         <img src="../medias/frutas.jpg" alt="Produto 2">
                         <h3>Nome do produto</h3>
                         <p>Breve descrição do produto</p>
@@ -185,7 +206,7 @@
                         </div>
                     </div>
 
-                    <div class="produto">
+                    <div class="produto <?php echo $themeClass; ?>">
                         <img src="../medias/frutas.jpg" alt="Produto 2">
                         <h3>Nome do produto</h3>
                         <p>Breve descrição do produto</p>
@@ -199,7 +220,7 @@
                         </div>
                     </div>
 
-                    <div class="produto">
+                    <div class="produto <?php echo $themeClass; ?>">
                         <img src="../medias/frutas.jpg" alt="Produto 2">
                         <h3>Nome do produto</h3>
                         <p>Breve descrição do produto</p>
@@ -213,7 +234,7 @@
                         </div>
                     </div>
               
-                    <div class="produto">
+                    <div class="produto <?php echo $themeClass; ?>">
                         <img src="../medias/frutas.jpg" alt="Produto 2">
                         <h3>Nome do produto</h3>
                         <p>Breve descrição do produto</p>

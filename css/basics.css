@@ -3,15 +3,17 @@
   src: url(../medias/gotham/GothamBook.ttf);
 }
 body {
-  background-color: #E8F1F2;
   margin: 0;
   padding: 0;
   font-family: gotham;
-  transition: background-color 1s ease;
 }
-body h1, h2, h3 {
+body.light-mode {
+  background-color: #E8F1F2;
   color: #13293D;
-  transition: color 1s ease;
+}
+body.dark-mode {
+  background-color: #233e53;
+  color: #E8F1F2;
 }
 #container {
   display: flex;
@@ -30,45 +32,55 @@ body h1, h2, h3 {
 }
 
 header {
-    background-color: #E8F1F2;
-    padding: 20px 70px;
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0px 0px 20px black;
-    position: relative;
-    font-size: 14pt;
-  }
-  header a.active:after {
-    width: 100%; 
-    left: 0;
-  }
-  header a {
-    color: #13293D;
-    text-decoration: none;
-    position: relative;
-    color: #13293D;
-    text-align: center;
-    padding: 5px 20px;
-    margin-right: 10px;
-  }
-  header a:after {
-    background: none repeat scroll 0 0 transparent;
-    bottom: 0;
-    content: "";
-    display: block;
-    height: 2px;
-    left: 50%;
-    position: absolute;
-    background: #13293D;
-    transition: width 0.3s ease 0s, left 0.3s ease 0s;
-    width: 0;
-  }
-  header a:hover:after { 
-    width: 100%; 
-    left: 0;
-  }
+  padding: 20px 70px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 0px 20px black;
+  position: relative;
+  font-size: 14pt;
+}
+header.light-mode {
+  background-color: #E8F1F2;
+}
+header.dark-mode {
+  background-color: #13293D;
+}
+header a {
+  text-decoration: none;
+  position: relative;
+  text-align: center;
+  padding: 5px 20px;
+  margin-right: 10px;
+}
+header.light-mode a {
+  color: #13293D;
+}
+header.dark-mode a {
+  color: #E8F1F2;
+}
+header a.active:after {
+  width: 100%;
+  left: 0;
+}
+header a:after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+  background: currentColor;
+}
+header a:hover:after {
+  width: 100%;
+  left: 0;
+}
+
 
 
 
@@ -101,10 +113,15 @@ header {
     font-size: 40px;
     background: none;
     border: none;
-    color: #13293D;
     cursor: pointer;
     position: relative;
     transition: transform 0.6s ease;
+  }
+  .config-toggle.light-mode {
+    color: #13293D;
+  }
+  .config-toggle.dark-mode {
+    color: #E8F1F2;
   }
   .config-toggle:hover {
     animation: spin 2s linear infinite;
@@ -124,11 +141,11 @@ header {
     position: fixed;
     height: 300px;
     width: 400px;
-    background-color: #E8F1F2;
     border-radius: 50px;
     z-index: 99;
     top: 50%;
     left: 50%;
+    background-color: #E8F1F2;
     transform: translate(-50%, 500%);
 
     display: flex;
@@ -136,8 +153,8 @@ header {
     text-align: center;
   }
   #configpcnav.show {
-      opacity: 1;
-      transform: translate(-50%, -50%);
+    opacity: 1;
+    transform: translate(-50%, -50%);
   }
   #configpcnav ul {
     color: #13293D;
@@ -161,6 +178,9 @@ header {
     top: 20px;
     font-size: 20pt;
     cursor: pointer;
+  }
+  #closenav i.dark-mode {
+    color: #13293D;
   }
   
 
@@ -261,3 +281,50 @@ header {
     background-color: #E8F1F2;
     color: #0065a0;
   }
+
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  border-radius: 50%;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+}
+input:checked + .toggle-slider {
+  background-color: #2196F3;
+}
+input:checked + .toggle-slider:before {
+  transform: translateX(26px);
+}
+.toggle-slider.round {
+  border-radius: 34px;
+}
+.toggle-slider.round:before {
+  border-radius: 50%;
+}
