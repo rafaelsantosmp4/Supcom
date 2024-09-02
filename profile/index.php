@@ -169,7 +169,6 @@
             }
         }
         $bio = $_SESSION['bio'];
-        echo "email: $email<br>cnpj: $cnpj <br> telefone: $telefone <br> Tipo da conta: $tipo <br> data de cadastro: $formatted_date <br> Hora de cadastro: $formatted_time";
     ?>
     <div id="profile">
         <div class="banner-sobreposto"></div>
@@ -185,6 +184,15 @@
 
     <div id="container">
         <div id="conteudo">
+            <h1>Informações da empresa:</h1>
+            <ul align='center' style="list-style: none;">
+                <li><b>Email: </b><?php echo $email ?></li><br>
+                <li><b>CNPJ: </b><?php echo $cnpj ?></li><br>
+                <li><b>Telefone: </b><?php echo $telefone ?></li><br>
+                <li><b>Tipo da conta: </b><?php echo $tipo ?></li><br>
+                <li><b>Data de cadastro: </b><?php echo $formatted_date ?></li><br>
+                <li><b>Hora de cadastro: </b><?php echo $formatted_time ?></li>
+            </ul>
         </div>
     </div>
 </body>
