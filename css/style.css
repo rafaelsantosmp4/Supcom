@@ -380,7 +380,6 @@
   position: fixed;
   height: 300px;
   width: 60%;
-  background-color: #E8F1F2;
   border-radius: 50px;
   z-index: 99;
   top: 50%;
@@ -391,6 +390,15 @@
   display: flex;
   justify-content: center;
   text-align: center;
+}
+#addbio.light-mode {
+  background-color: #E8F1F2;
+}
+#addbio.dark-mode {
+  background-color: #01324d;
+}
+#addbio.dark-mode ul li {
+  color: #E8F1F2;
 }
 #addbio.show {
   opacity: 1;
@@ -420,7 +428,7 @@
   color: #01324d;
 }
 #closebio i.dark-mode {
-  color: #01324d;
+  color: #E8F1F2;
 }
 #addbio textarea {
   width: 80%;

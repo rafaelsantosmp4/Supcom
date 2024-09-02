@@ -128,7 +128,7 @@
         </script>
     </div>
 
-    <nav id="addbio" class="addbio">
+    <nav id="addbio" class="addbio <?php echo $themeClass; ?>">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <div id="closebio"><i class="fa fa-times <?php echo $themeClass; ?>"></i></div>
         <ul>
