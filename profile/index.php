@@ -24,7 +24,7 @@
     }
 ?>
 
-<nav id="configpcnav" class="configpcnav">        
+<nav id="configpcnav" class="configpcnav <?php echo $themeClass; ?>">        
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div id="closenav"><i class="fa fa-times <?php echo $themeClass; ?>"></i></div>
     <ul>

@@ -32,7 +32,7 @@
 </header>
 
 
-<nav id="configpcnav" class="configpcnav">        
+<nav id="configpcnav" class="configpcnav <?php echo $themeClass; ?>">        
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div id="closenav"><i class="fa fa-times <?php echo $themeClass; ?>"></i></div>
     <ul>
@@ -49,7 +49,26 @@
 </nav>
 <script>
     document.getElementById('dark_mode').addEventListener('change', function() {
-        document.getElementById('theme-form').submit();
+        localStorage.setItem('showConfigNav', 'true');
+        setTimeout(() => {
+            document.getElementById('theme-form').submit();
+        }, 300);
+    });
+
+    window.addEventListener('load', function() {
+        const configNavPc = document.getElementById('configpcnav');
+        if (localStorage.getItem('showConfigNav') === 'true') {
+            if (configNavPc) {
+                overlay2.classList.add('show');
+                configNavPc.classList.add('no-transition');
+                configNavPc.classList.add('show');
+                localStorage.removeItem('showConfigNav');
+                
+                setTimeout(() => {
+                    configNavPc.classList.remove('no-transition');
+                }, 0);
+            }
+        }
     });
 </script>
 
