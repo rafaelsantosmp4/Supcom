@@ -20,10 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $senha_hashed = password_hash($senha, PASSWORD_DEFAULT);
 
-    $query = "INSERT INTO Usuarios (nome, email, senha, cnpj, telefone, tipo_usuario) VALUES ('$nome', '$email', '$senha_hashed', '$cnpj', '$telefone', '$tipo_conta')";
+    $query = "INSERT INTO Usuarios (nome, bio, email, senha, cnpj, telefone, tipo_usuario) VALUES ('$nome', NULL, '$email', '$senha_hashed', '$cnpj', '$telefone', '$tipo_conta')";
 
     if (mysqli_query($db->con, $query)) {
-        echo "<script> alert('Conta criada com sucesso!'); window.location.href='../login/'</script>";
+        echo "<script>window.location.href='../login/'</script>";
     } else {
         echo "<script>alert('Já existe uma conta cadastrada com esse email, CNPJ ou telefone!'); window.location.href='index.php'</script>";
     }
