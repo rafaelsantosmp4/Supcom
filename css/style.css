@@ -579,6 +579,7 @@
 	position: relative;
 	transition: ease-in-out 750ms;
   border: 2px dashed white;
+  cursor: pointer;
 }
 .input-preview::after {
 	position: absolute;
@@ -611,7 +612,7 @@
 }
 .input-preview-banner {
 	border-radius: 4px;
-	width: 200px;
+	width: 355px;
 	height: 200px;
 	display: flex;
 	justify-content: center;
@@ -622,6 +623,7 @@
 	position: relative;
 	transition: ease-in-out 750ms;
   border: 2px dashed white;
+  cursor: pointer;
 }
 .input-preview-banner::after {
 	position: absolute;

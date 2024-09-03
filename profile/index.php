@@ -208,11 +208,10 @@
         $bio = $_SESSION['bio'];
     ?>
     <div id="profile">
-        <!-- MUDAR URL SE EXISTIR -->
-        <div class="banner-sobreposto"></div>
+        <div class="banner-sobreposto" style="background-image: url('exibir_banner.php');"></div>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-        <div id="edit-icon-banner" style="display: none; position: absolute; top: 0px; right: 0px; cursor: pointer; z-index: 11;">
-            <i class="fa fa-pencil" style="font-size: 50px; font-family: FontAwesome; color: #E8F1F2;" title="Mudar foto"></i>
+        <div id="edit-icon-banner" style="display: none; position: absolute; top: 20px; right: 30px; cursor: pointer; z-index: 11;">
+            <i class="fa fa-pencil" style="font-size: 30px; font-family: FontAwesome; color: #E8F1F2;" title="Mudar banner"></i>
         </div>
 
         <div id="pfp">
@@ -224,6 +223,7 @@
                     <i class="fa fa-pencil" style="font-size: 50px; font-family: FontAwesome; color: #E8F1F2;" title="Mudar foto"></i>
                 </div>
             </div>
+            
             <div id="nomebio">
                 <h1><?php echo "$nome"; ?></h1>
                 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
