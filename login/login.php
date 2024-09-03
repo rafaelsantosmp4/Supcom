@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "<script>alert('Senha incorreta.'); window.location.href='index.php'</script>";
         }
     } else {
-        echo "<script>alert('Senha ou usuário não encontrado'); window.location.href='index.php'</script>";
+        echo "<script>alert('Usuário não encontrado.'); window.location.href='index.php'</script>";
     }
 }
 
