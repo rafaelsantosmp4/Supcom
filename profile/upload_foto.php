@@ -30,8 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         } else {
             $uploadErrors = [
-                UPLOAD_ERR_INI_SIZE   => 'O arquivo excede o tamanho máximo permitido no php.ini.',
-                UPLOAD_ERR_FORM_SIZE  => 'O arquivo excede o tamanho máximo permitido pelo formulário.',
+                UPLOAD_ERR_INI_SIZE   => 'O arquivo excede o tamanho máximo permitido.',
+                UPLOAD_ERR_FORM_SIZE  => 'O arquivo excede o tamanho máximo permitido.',
                 UPLOAD_ERR_PARTIAL    => 'O arquivo foi parcialmente carregado.',
                 UPLOAD_ERR_NO_FILE    => 'Nenhum arquivo foi enviado.',
                 UPLOAD_ERR_NO_TMP_DIR => 'Falta a pasta temporária.',
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "<script>alert('$errorMessage'); window.location.href = 'index.php';</script>";
         }
     } else {
-        echo "<script>alert('Nenhum arquivo foi enviado.'); window.location.href = 'index.php';</script>";
+        echo "<script>alert('A resolução do arquivo deve ter no máximo 1000x1000 pixels.'); window.location.href = 'index.php';</script>";
     }
 
     $db->fechar();
