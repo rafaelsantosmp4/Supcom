@@ -148,28 +148,7 @@
             <p>Tamanho máximo: <i>2MB</i></p>
             <p>Resolução: <i>Mínimo: 100x100 pixels, Máximo: 1000x1000 pixels</i></p><br>
             <form id='fotoperfilForm' class="<?php echo $themeClass; ?>" action="upload_foto.php" method="POST" enctype="multipart/form-data">
-                <div style='display: flex; justify-content: center;'><label class="picture" for="picture__input" tabIndex="0">
-                    <span class="picture__image">
-                        <?php
-                        require_once('../conexao/conexao.php');
-                        $db = new BancodeDados();
-                        $db->conecta();
-                        $id = $_SESSION['id'];
-                        $query = "SELECT perfil_foto FROM usuarios WHERE id_usuario = '$id'";
-                        $result = mysqli_query($db->con, $query);
-                        $foto = mysqli_fetch_assoc($result)['perfil_foto'];
-                        if ($foto) {
-                            $fotoBase64 = base64_encode($foto);
-                            echo"<script>pictureImage.appendChild($fotoBase64);</script>";
-                            echo "<img src='data:image/jpeg;base64, $fotoBase64' alt='Foto de Perfil' class='picture__img'>";
-                        } else {
-                            echo "Escolha uma imagem";
-                        }
-                        $db->fechar();
-                        ?>
-                    </span>
-                </label></div>
-                <input type="file" name="picture__input" id="picture__input" required><br>
+                <input type="file" name="picture__input" id="picture__input" required><br><br>
                 <div style="display: flex; justify-content: center; flex-direction: row-reverse;"><li><input type="submit" class="submit-button bio" value="Enviar" style="margin-left: 10px;"></li>
             </form>
             <form id="excluirFotoForm" action="excluir_foto.php" method="POST">

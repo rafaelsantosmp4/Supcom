@@ -546,39 +546,3 @@
 .excluirbut:hover {
   background-color: #993030;
 }
-
-
-#picture__input {
-  display: none;
-  }
-  .picture {
-  width: 200px;
-  aspect-ratio: 1/1;
-  background: #c1d4fc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #aaa;
-  border: 2px dashed currentcolor;
-  cursor: pointer;
-  font-family: sans-serif;
-  outline: none;
-  overflow: hidden;
-  }
-  .picture:hover {
-  color: #777;
-  background: turquoise;
-  }
-  .picture:active {
-  border-color: rgb(113, 129, 221);
-  color: turquoise;
-  background: #eee;
-  }
-  .picture:focus {
-  color: #777;
-  background: #ccc;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  }
-  .picture__img {
-  max-width: 100%;
-  }
