@@ -148,7 +148,9 @@
             <p>Tamanho máximo: <i>2MB</i></p>
             <p>Resolução: <i>Mínimo: 100x100 pixels, Máximo: 1000x1000 pixels</i></p><br>
             <form id='fotoperfilForm' class="<?php echo $themeClass; ?>" action="upload_foto.php" method="POST" enctype="multipart/form-data">
-                <input type="file" name="picture__input" id="picture__input" required><br><br>
+                <center><label for="picture__input" class="input-preview"></label>
+                <input type="file" name="picture__input" class='input-preview__src' id="picture__input" required></center><br><br>
+
                 <div style="display: flex; justify-content: center; flex-direction: row-reverse;"><li><input type="submit" class="submit-button bio" value="Enviar" style="margin-left: 10px;"></li>
             </form>
             <form id="excluirFotoForm" action="excluir_foto.php" method="POST">
