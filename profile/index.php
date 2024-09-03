@@ -132,11 +132,30 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <div id="closebio"><i class="fa fa-times <?php echo $themeClass; ?>"></i></div>
         <ul>
-            <li>ATUALIZE SUA BIO:</li> 
+            <li style="font-size: 20pt; margin-bottom: 10px;">ATUALIZE SUA BIO:</li> 
             <form id="bioForm" method="POST" action="save_bio.php">
                 <textarea name="bio" id="bio" rows="4" cols="50" maxlength="200" placeholder="max. 200 caracteres"></textarea>
                 <li><input type="submit" class="submit-button bio" value="Salvar"></li>
             </form>
+        </ul>
+    </nav>
+
+    <nav id="mudarfoto" class="mudarfoto <?php echo $themeClass; ?>">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <div id="closebio"><i class="fa fa-times <?php echo $themeClass; ?>"></i></div>
+        <ul>
+            <li style="font-size: 20pt; margin-bottom: 10px;">ATUALIZE SUA FOTO:</li>
+            <p>Tipos suportados: <i>.jpg, .jpeg, .png</i></p>
+            <p>Tamanho: <i>2MB</i></p>
+            <p>Resolução: <i>Mínimo: 100x100 pixels, Máximo: 1000x1000 pixels</i></p><br>
+            <form id='fotoperfilForm' class="<?php echo $themeClass; ?>" action="upload_foto.php" method="POST" enctype="multipart/form-data">
+                <input type="file" name="perfil_foto" required><br><br>
+                <div style="display: flex; justify-content: center; flex-direction: row-reverse;"><li><input type="submit" class="submit-button bio" value="Enviar" style="margin-left: 10px;"></li>
+            </form>
+        
+            <form id="excluirFotoForm" action="excluir_foto.php" method="POST">
+                <input type="submit" class="submit-button bio" value="Excluir" style="background-color: #ec5353;">
+            </form></div>
         </ul>
     </nav>
 
@@ -173,9 +192,16 @@
     <div id="profile">
         <div class="banner-sobreposto"></div>
         <div id="pfp">
-            <img src='https://www.tailorbrands.com/wp-content/uploads/2020/07/amazon-logo.jpg'>
+            <div id="profile-photo-container" style="position: relative; display: inline-block;">
+                <img id="perfilfoto" src="exibir_foto.php" alt="Foto de Perfil" style="width: 150px; height: 150px; border-radius: 50%;">
+                
+                <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+                <div id="edit-icon" style="display: none; position: absolute; top: 0px; right: 40px; cursor: pointer;">
+                    <i class="fa fa-pencil" style="font-size: 50px; font-family: FontAwesome; color: #E8F1F2;" title="Mudar foto"></i>
+                </div>
+            </div>
             <div id="nomebio">
-                <h1><?php echo"$nome" ?></h1>
+                <h1><?php echo "$nome"; ?></h1>
                 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
                 <?php echo $bio; ?>
             </div>
@@ -197,51 +223,7 @@
     </div>
 </body>
 
-
-<script>
-    document.getElementById('bio').addEventListener('keypress', function(e) {
-        var key = e.which || e.keyCode;
-        if (key === 13) {
-            e.preventDefault();
-            document.getElementById("bioForm").submit();
-        }
-    });
-    function addbio() {
-        const addbio = document.getElementById('addbio');
-        const overlaybio = document.querySelector('.overlaybio');
-        if (addbio) {
-            addbio.classList.toggle('show');
-            overlaybio.classList.toggle('show');
-        }
-    }
-    overlaybio.addEventListener('click', () => {
-        const addbio = document.getElementById('addbio');
-        if (addbio) {
-            addbio.classList.remove('show');
-            overlaybio.classList.remove('show');
-        }
-    });
-    closebio = document.getElementById("closebio");
-    closebio.addEventListener('click', () => {
-    const addbio = document.getElementById('addbio');
-    if (addbio) {
-        addbio.classList.remove('show');
-        overlaybio.classList.remove('show');
-    }
-    });
-
-    const originalContent = document.querySelector('#attbio').innerHTML;
-    function updatebio() {
-        const bio = document.querySelector('#attbio');
-        const pencil = " <i class='fa fa-pencil' style='font-family: FontAwesome; cursor: pointer;' onclick='addbio()' title='Alterar bio'></i>";
-        bio.innerHTML = originalContent + pencil;
-    }
-
-    function resetbio() {
-        const bio = document.querySelector('#attbio');
-        bio.innerHTML = originalContent;
-    }
-</script>
+<script src="../js/profile.js"></script>
 
 <?php include '../universal/footer.php';?>
 

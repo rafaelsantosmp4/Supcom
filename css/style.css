@@ -395,7 +395,7 @@
   background-color: #E8F1F2;
 }
 #addbio.dark-mode {
-  background-color: #01324d;
+  background-color: #374e66;
 }
 #addbio.dark-mode ul li {
   color: #E8F1F2;
@@ -449,4 +449,82 @@
 .bio {
   width: 100px;
   padding-right: 20px;
+}
+
+
+
+#profile-photo-container {
+  position: relative;
+  display: inline-block;
+}
+#perfilfoto {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+#edit-icon {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+#profile-photo-container:hover #edit-icon {
+  display: block;
+}
+#mudarfoto {
+  opacity: 0;
+  transition: opacity 300ms, transform 300ms, background-color 1s ease;
+  position: fixed;
+  height: 300px;
+  width: 60%;
+  border-radius: 50px;
+  z-index: 99;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 500%);
+  box-shadow: 0px 10px 10px black;
+
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+#mudarfoto.light-mode {
+  background-color: #E8F1F2;
+}
+#mudarfoto.dark-mode {
+  background-color: #374e66;
+}
+#mudarfoto.dark-mode ul li {
+  color: #E8F1F2;
+}
+#mudarfoto.show {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+#mudarfoto p {
+  margin: 2px;
+  font-size: 12pt;
+}
+#mudarfoto.dark-mode p {
+  color: #E8F1F2;
+}
+#mudarfoto ul {
+  color: #13293D;
+  text-decoration: none;
+  padding-top: 40px;
+  padding-left: 0px;
+  width: 100%;
+}
+#mudarfoto ul li {
+  list-style: none;
+  font-weight: bold;
+  font-size: 15pt;
+}
+#fotoperfilForm.light-mode {
+  color: #01324d;
+}
+#fotoperfilForm.dark-mode {
+  color: #E8F1F2;
 }
