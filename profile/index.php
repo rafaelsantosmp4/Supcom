@@ -142,19 +142,39 @@
 
     <nav id="mudarfoto" class="mudarfoto <?php echo $themeClass; ?>">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <div id="closebio"><i class="fa fa-times <?php echo $themeClass; ?>"></i></div>
+        <div id="closepfp"><i class="fa fa-times <?php echo $themeClass; ?>"></i></div>
         <ul>
             <li style="font-size: 20pt; margin-bottom: 10px;">ATUALIZE SUA FOTO:</li>
             <p>Tipos suportados: <i>.jpg, .jpeg, .png</i></p>
-            <p>Tamanho: <i>2MB</i></p>
+            <p>Tamanho máximo: <i>2MB</i></p>
             <p>Resolução: <i>Mínimo: 100x100 pixels, Máximo: 1000x1000 pixels</i></p><br>
             <form id='fotoperfilForm' class="<?php echo $themeClass; ?>" action="upload_foto.php" method="POST" enctype="multipart/form-data">
-                <input type="file" name="perfil_foto" required><br><br>
+                <div style='display: flex; justify-content: center;'><label class="picture" for="picture__input" tabIndex="0">
+                    <span class="picture__image">
+                        <?php
+                        require_once('../conexao/conexao.php');
+                        $db = new BancodeDados();
+                        $db->conecta();
+                        $id = $_SESSION['id'];
+                        $query = "SELECT perfil_foto FROM usuarios WHERE id_usuario = '$id'";
+                        $result = mysqli_query($db->con, $query);
+                        $foto = mysqli_fetch_assoc($result)['perfil_foto'];
+                        if ($foto) {
+                            $fotoBase64 = base64_encode($foto);
+                            echo"<script>pictureImage.appendChild($fotoBase64);</script>";
+                            echo "<img src='data:image/jpeg;base64, $fotoBase64' alt='Foto de Perfil' class='picture__img'>";
+                        } else {
+                            echo "Escolha uma imagem";
+                        }
+                        $db->fechar();
+                        ?>
+                    </span>
+                </label></div>
+                <input type="file" name="picture__input" id="picture__input" required><br>
                 <div style="display: flex; justify-content: center; flex-direction: row-reverse;"><li><input type="submit" class="submit-button bio" value="Enviar" style="margin-left: 10px;"></li>
             </form>
-        
             <form id="excluirFotoForm" action="excluir_foto.php" method="POST">
-                <input type="submit" class="submit-button bio" value="Excluir" style="background-color: #ec5353;">
+                <input type="submit" class="submit-button bio excluirbut" value="Excluir">
             </form></div>
         </ul>
     </nav>
@@ -193,7 +213,7 @@
         <div class="banner-sobreposto"></div>
         <div id="pfp">
             <div id="profile-photo-container" style="position: relative; display: inline-block;">
-                <img id="perfilfoto" src="exibir_foto.php" alt="Foto de Perfil" style="width: 150px; height: 150px; border-radius: 50%;">
+                <a href="exibir_foto.php" title='Baixar imagem' download="perfil_foto.jpg"><img id="perfilfoto" src="exibir_foto.php" alt="Foto de Perfil" style="width: 150px; height: 150px; border-radius: 50%;"></a>
                 
                 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
                 <div id="edit-icon" style="display: none; position: absolute; top: 0px; right: 40px; cursor: pointer;">

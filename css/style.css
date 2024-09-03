@@ -430,6 +430,19 @@
 #closebio i.dark-mode {
   color: #E8F1F2;
 }
+#closepfp {
+  position: absolute;
+  right: 40px;
+  top: 20px;
+  font-size: 20pt;
+  cursor: pointer;
+}
+#closepfp i.light-mode {
+  color: #01324d;
+}
+#closepfp i.dark-mode {
+  color: #E8F1F2;
+}
 #addbio textarea {
   width: 80%;
   height: 100%;
@@ -448,7 +461,7 @@
 }
 .bio {
   width: 100px;
-  padding-right: 20px;
+  padding-right: 15px;
 }
 
 
@@ -477,7 +490,6 @@
   opacity: 0;
   transition: opacity 300ms, transform 300ms, background-color 1s ease;
   position: fixed;
-  height: 300px;
   width: 60%;
   border-radius: 50px;
   z-index: 99;
@@ -528,3 +540,45 @@
 #fotoperfilForm.dark-mode {
   color: #E8F1F2;
 }
+.excluirbut {
+  background-color: #ec5353;
+}
+.excluirbut:hover {
+  background-color: #993030;
+}
+
+
+#picture__input {
+  display: none;
+  }
+  .picture {
+  width: 400px;
+  aspect-ratio: 16/9;
+  background: #c1d4fc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  border: 2px dashed currentcolor;
+  cursor: pointer;
+  font-family: sans-serif;
+  outline: none;
+  overflow: hidden;
+  }
+  .picture:hover {
+  color: #777;
+  background: turquoise;
+  }
+  .picture:active {
+  border-color: rgb(113, 129, 221);
+  color: turquoise;
+  background: #eee;
+  }
+  .picture:focus {
+  color: #777;
+  background: #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  .picture__img {
+  max-width: 100%;
+  }

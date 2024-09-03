@@ -8,21 +8,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     $id = $_SESSION['id'];
 
-    if (isset($_FILES['perfil_foto'])) {
-        $foto = $_FILES['perfil_foto'];
+    if (isset($_FILES['picture__input'])) {
+        $foto = $_FILES['picture__input'];
         $fotoError = $foto['error'];
-
-        $defaultErrorMessage = 'Erro desconhecido ao carregar o arquivo.';
+        $fotoSize = $foto['size'];
+        $maxSize = 2 * 1024 * 1024; // 2MB em bytes
 
         if ($fotoError === UPLOAD_ERR_OK) {
-            $fotoTmpName = $foto['tmp_name'];
-            $fotoBlob = addslashes(file_get_contents($fotoTmpName));
-
-            $query = "UPDATE usuarios SET perfil_foto = '$fotoBlob' WHERE id_usuario = '$id'";
-            if (mysqli_query($db->con, $query)) {
-                echo "<script>window.location.href = 'index.php';</script>";
+            if ($fotoSize > $maxSize) {
+                $errorMessage = 'O arquivo é maior que 2MB.';
             } else {
-                $errorMessage = 'Erro ao atualizar foto de perfil: ' . mysqli_error($db->con);
+                $fotoTmpName = $foto['tmp_name'];
+                $fotoBlob = addslashes(file_get_contents($fotoTmpName));
+
+                $query = "UPDATE usuarios SET perfil_foto = '$fotoBlob' WHERE id_usuario = '$id'";
+                if (mysqli_query($db->con, $query)) {
+                    echo "<script>window.location.href = 'index.php';</script>";
+                } else {
+                    $errorMessage = 'Erro ao atualizar foto de perfil: ' . mysqli_error($db->con);
+                }
             }
         } else {
             $uploadErrors = [
@@ -35,14 +39,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 UPLOAD_ERR_EXTENSION  => 'Uma extensão do PHP interrompeu o carregamento do arquivo.',
             ];
             
-            $errorMessage = isset($uploadErrors[$fotoError]) ? $uploadErrors[$fotoError] : $defaultErrorMessage;
+            $errorMessage = isset($uploadErrors[$fotoError]) ? $uploadErrors[$fotoError] : 'Erro desconhecido ao carregar o arquivo.';
         }
 
         if (isset($errorMessage)) {
             echo "<script>alert('$errorMessage'); window.location.href = 'index.php';</script>";
         }
     } else {
-        echo "<script>alert('O arquivo é maior que 2MB.'); window.location.href = 'index.php';</script>";
+        echo "<script>alert('Nenhum arquivo foi enviado.'); window.location.href = 'index.php';</script>";
     }
 
     $db->fechar();
