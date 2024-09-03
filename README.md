@@ -1,7 +1,8 @@
 ![Status](https://img.shields.io/badge/status-em%20constru%C3%A7%C3%A3o-yellow)
 
 # SUPCOM 🧭
-![homewhite](https://github.com/user-attachments/assets/5db7a5a6-41d3-4087-a4ed-457a090c423a)
+![home](https://github.com/user-attachments/assets/78fc2c54-9ffb-4549-b3bd-288827a532ce)
+![dark-home](https://github.com/user-attachments/assets/7a64bf6b-0d57-4e5e-b5f3-f7ee5f5de945)
 
 # Problem ⛔
 SUPCOM is a capstone project developed for my TCC in Information Technology, designed to address a significant challenge in B2B communication. Many small retailers struggle to find reliable suppliers, leading to inefficiencies and delays in maintaining their supply chains. The lack of a centralized platform for connecting retailers with potential suppliers often results in missed opportunities and hampers business growth.
