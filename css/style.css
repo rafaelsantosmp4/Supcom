@@ -552,8 +552,8 @@
   display: none;
   }
   .picture {
-  width: 400px;
-  aspect-ratio: 16/9;
+  width: 200px;
+  aspect-ratio: 1/1;
   background: #c1d4fc;
   display: flex;
   align-items: center;
