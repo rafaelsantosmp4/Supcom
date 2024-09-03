@@ -1,4 +1,4 @@
-> 🚧 under construction
+![Status](https://img.shields.io/badge/status-em%20constru%C3%A7%C3%A3o-yellow)
 
 # SUPCOM 🧭
 ![homewhite](https://github.com/user-attachments/assets/5db7a5a6-41d3-4087-a4ed-457a090c423a)
@@ -14,5 +14,3 @@ To solve this problem, SUPCOM offers a comprehensive communication platform that
 - Leonardo Moreira Nakashima Monteiro
 - Rafael Santos Rodrigues
 - Raul Ribeiro Fialho
-
-![Status](https://img.shields.io/badge/status-em%20constru%C3%A7%C3%A3o-yellow)
