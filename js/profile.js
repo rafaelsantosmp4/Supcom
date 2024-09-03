@@ -55,14 +55,20 @@ function mudarfoto() {
 
 overlaybio.addEventListener('click', () => {
     const mudarfoto = document.getElementById('mudarfoto');
+    const addbanner = document.getElementById('addbanner');
     if (mudarfoto) {
         mudarfoto.classList.remove('show');
+        overlaybio.classList.remove('show');
+    }
+    if(addbanner) {
+        addbanner.classList.remove('show');
         overlaybio.classList.remove('show');
     }
 });
 closepfp = document.getElementById("closepfp");
 closepfp.addEventListener('click', () => {
     const mudarfoto = document.getElementById('mudarfoto');
+    const addbanner = document.getElementById('addbanner');
     if (mudarfoto) {
         mudarfoto.classList.remove('show');
         overlaybio.classList.remove('show');
@@ -92,3 +98,40 @@ fileImage.onchange = function () {
     };
     reader.readAsDataURL(this.files[0]);
 };
+
+
+const fileImageBanner = document.querySelector('.input-banner-preview__src');
+const filePreviewBanner = document.querySelector('.input-preview-banner');
+fileImageBanner.onchange = function () {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        filePreviewBanner.style.backgroundImage  = "url("+e.target.result+")";
+        filePreviewBanner.classList.add("has-image");
+    };
+    reader.readAsDataURL(this.files[0]);
+};
+
+
+
+const perfilbanner = document.getElementById('profile');
+const editIconBanner = document.getElementById('edit-icon-banner');
+perfilbanner.addEventListener('mouseenter', function() {
+    editIconBanner.style.display = 'block';
+});
+perfilbanner.addEventListener('mouseleave', function() {
+    editIconBanner.style.display = 'none';
+});
+editIconBanner.addEventListener('click', function() {
+    if (addbanner) {
+        addbanner.classList.toggle('show');
+        overlaybio.classList.toggle('show');
+    }
+});
+closebanner = document.getElementById("closebanner");
+closebanner.addEventListener('click', () => {
+    const addbanner = document.getElementById('addbanner');
+    if (addbanner) {
+        addbanner.classList.remove('show');
+        overlaybio.classList.remove('show');
+    }
+});

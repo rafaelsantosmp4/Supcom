@@ -274,7 +274,7 @@
 #accountfat {
   width: 250px;
   position: relative;
-  z-index: 11; 
+  z-index: 11;
 }
 
 #account-button {
@@ -333,7 +333,8 @@
   left: -15px;
   right: 0px;
   height: 100%;
-  background-image: url('../medias/frutas.jpg');
+  background-color: black;
+  /* background-image: url('../medias/frutas.jpg'); */
   background-position: center;
   background-size: cover;
   filter: brightness(0.5) contrast(0.7);
@@ -486,7 +487,7 @@
 #profile-photo-container:hover #edit-icon {
   display: block;
 }
-#mudarfoto {
+.navconfigs {
   opacity: 0;
   transition: opacity 300ms, transform 300ms, background-color 1s ease;
   position: fixed;
@@ -502,34 +503,34 @@
   justify-content: center;
   text-align: center;
 }
-#mudarfoto.light-mode {
+.navconfigs.light-mode {
   background-color: #E8F1F2;
 }
-#mudarfoto.dark-mode {
+.navconfigs.dark-mode {
   background-color: #374e66;
 }
-#mudarfoto.dark-mode ul li {
+.navconfigs.dark-mode ul li {
   color: #E8F1F2;
 }
-#mudarfoto.show {
+.navconfigs.show {
   opacity: 1;
   transform: translate(-50%, -50%);
 }
-#mudarfoto p {
+.navconfigs p {
   margin: 2px;
   font-size: 12pt;
 }
-#mudarfoto.dark-mode p {
+.navconfigs.dark-mode p {
   color: #E8F1F2;
 }
-#mudarfoto ul {
+.navconfigs ul {
   color: #13293D;
   text-decoration: none;
   padding-top: 40px;
   padding-left: 0px;
   width: 100%;
 }
-#mudarfoto ul li {
+.navconfigs ul li {
   list-style: none;
   font-weight: bold;
   font-size: 15pt;
@@ -545,6 +546,20 @@
 }
 .excluirbut:hover {
   background-color: #993030;
+}
+
+#closebanner {
+  position: absolute;
+  right: 40px;
+  top: 20px;
+  font-size: 20pt;
+  cursor: pointer;
+}
+#closebanner i.light-mode {
+  color: #01324d;
+}
+#closebanner i.dark-mode {
+  color: #E8F1F2;
 }
 
 
@@ -566,6 +581,49 @@
   border: 2px dashed white;
 }
 .input-preview::after {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	transform: translateY(50%);
+	content: "Carregue um arquivo...";  
+	font-style: italic;
+	font-size: 1em;
+}
+.has-image::before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(50, 50, 50, 0.5);
+	content: " ";
+	transition: ease-in-out 750ms;
+}
+.has-image::after {
+	content: "Carregue um arquivo...";
+	color: white;
+}
+
+.input-banner-preview__src {
+	display: none;
+}
+.input-preview-banner {
+	border-radius: 4px;
+	width: 200px;
+	height: 200px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	position: relative;
+	transition: ease-in-out 750ms;
+  border: 2px dashed white;
+}
+.input-preview-banner::after {
 	position: absolute;
 	top: 50%;
 	left: 0;

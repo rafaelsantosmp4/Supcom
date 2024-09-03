@@ -140,7 +140,7 @@
         </ul>
     </nav>
 
-    <nav id="mudarfoto" class="mudarfoto <?php echo $themeClass; ?>">
+    <nav id="mudarfoto" class="mudarfoto <?php echo $themeClass; ?> navconfigs">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <div id="closepfp"><i class="fa fa-times <?php echo $themeClass; ?>"></i></div>
         <ul>
@@ -154,6 +154,24 @@
                 <div style="display: flex; justify-content: center; flex-direction: row-reverse;"><li><input type="submit" class="submit-button bio" value="Enviar" style="margin-left: 10px;"></li>
             </form>
             <form id="excluirFotoForm" action="excluir_foto.php" method="POST">
+                <input type="submit" class="submit-button bio excluirbut" value="Excluir">
+            </form></div>
+        </ul>
+    </nav>
+
+    <nav id="addbanner" class="mudarfoto <?php echo $themeClass; ?> navconfigs">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <div id="closebanner"><i class="fa fa-times <?php echo $themeClass; ?>"></i></div>
+        <ul>
+            <li style="font-size: 20pt; margin-bottom: 10px;">ATUALIZE SEU BANNER:</li>
+            <p>Tamanho máximo: <i>2MB</i></p>
+            <p>Resolução: <i>Mínimo: 100x100 pixels, Máximo: 1000x1000 pixels</i></p><br>
+            <form id='fotobannerForm' class="<?php echo $themeClass; ?>" action="upload_banner.php" method="POST" enctype="multipart/form-data">
+                <center><label for="banner__input" class="input-preview-banner"></label>
+                <input type="file" name="banner__input" class='input-banner-preview__src' id="banner__input" required></center><br><br>
+                <div style="display: flex; justify-content: center; flex-direction: row-reverse;"><li><input type="submit" class="submit-button bio" value="Enviar" style="margin-left: 10px;"></li>
+            </form>
+            <form id="excluirBannerForm" action="excluir_banner.php" method="POST">
                 <input type="submit" class="submit-button bio excluirbut" value="Excluir">
             </form></div>
         </ul>
@@ -190,11 +208,17 @@
         $bio = $_SESSION['bio'];
     ?>
     <div id="profile">
+        <!-- MUDAR URL SE EXISTIR -->
         <div class="banner-sobreposto"></div>
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+        <div id="edit-icon-banner" style="display: none; position: absolute; top: 0px; right: 0px; cursor: pointer; z-index: 11;">
+            <i class="fa fa-pencil" style="font-size: 50px; font-family: FontAwesome; color: #E8F1F2;" title="Mudar foto"></i>
+        </div>
+
         <div id="pfp">
             <div id="profile-photo-container" style="position: relative; display: inline-block;">
                 <a href="exibir_foto.php" title='Baixar imagem' download="perfil_foto.jpg"><img id="perfilfoto" src="exibir_foto.php" alt="Foto de Perfil" style="width: 150px; height: 150px; border-radius: 50%;"></a>
-                
+
                 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
                 <div id="edit-icon" style="display: none; position: absolute; top: 0px; right: 40px; cursor: pointer;">
                     <i class="fa fa-pencil" style="font-size: 50px; font-family: FontAwesome; color: #E8F1F2;" title="Mudar foto"></i>
