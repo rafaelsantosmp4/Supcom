@@ -587,6 +587,6 @@
 	transition: ease-in-out 750ms;
 }
 .has-image::after {
-	content: "Escolha outro arquivo...";
+	content: "Carregue um arquivo...";
 	color: white;
 }
