@@ -12,13 +12,16 @@
 
 <?php
     session_start();
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $_SESSION['dark_mode'] = isset($_POST['dark_mode']);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $darkMode = isset($_POST['dark_mode']);
+        setcookie('dark_mode', $darkMode ? '1' : '0', time() + (86400 * 30), "/");
+        $_COOKIE['dark_mode'] = $darkMode ? '1' : '0';
     }
-    $themeClass = isset($_SESSION['dark_mode']) && $_SESSION['dark_mode'] ? 'dark-mode' : 'light-mode';
+    $themeClass = isset($_COOKIE['dark_mode']) && $_COOKIE['dark_mode'] === '1' ? 'dark-mode' : 'light-mode';
 
     $logoSrc = $themeClass === 'dark-mode' ? 'medias/logo/Black-logo.png' : 'medias/logo/Logo-white.png';
 ?>
+
 
 <header class="<?php echo $themeClass; ?>">
     <a href="#" id="button-logo-index">
@@ -31,7 +34,6 @@
     </div>
 </header>
 
-
 <nav id="configpcnav" class="configpcnav <?php echo $themeClass; ?>">        
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div id="closenav"><i class="fa fa-times <?php echo $themeClass; ?>"></i></div>
@@ -40,13 +42,14 @@
         <div class="theme-switcher">
             <form id="theme-form" method="POST" action="">
                 <label class="switch">
-                    <input type="checkbox" id="dark_mode" name="dark_mode" <?php if (isset($_SESSION['dark_mode']) && $_SESSION['dark_mode']) echo 'checked'; ?>>
+                    <input type="checkbox" id="dark_mode" name="dark_mode" <?php if (isset($_COOKIE['dark_mode']) && $_COOKIE['dark_mode'] === '1') echo 'checked'; ?>>
                     <span class="toggle-slider round"></span>
                 </label>
             </form>
         </div>
     </ul>
 </nav>
+
 <script>
     document.getElementById('dark_mode').addEventListener('change', function() {
         localStorage.setItem('showConfigNav', 'true');

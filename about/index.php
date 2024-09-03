@@ -11,13 +11,14 @@
 
 <?php
     session_start();
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $_SESSION['dark_mode'] = isset($_POST['dark_mode']);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $darkMode = isset($_POST['dark_mode']);
+        setcookie('dark_mode', $darkMode ? '1' : '0', time() + (86400 * 30), "/");
+        $_COOKIE['dark_mode'] = $darkMode ? '1' : '0';
     }
-    $themeClass = isset($_SESSION['dark_mode']) && $_SESSION['dark_mode'] ? 'dark-mode' : 'light-mode';
+    $themeClass = isset($_COOKIE['dark_mode']) && $_COOKIE['dark_mode'] === '1' ? 'dark-mode' : 'light-mode';
 
     $logoSrc = $themeClass === 'dark-mode' ? '../medias/logo/Black-logo.png' : '../medias/logo/Logo-white.png';
-
 
     if($_SESSION['log'] != "ativo") {
         echo"<script>alert('Você precisa entrar na sua conta para continuar.'); window.location.href = '../login/index.php';</script>";
@@ -32,7 +33,7 @@
         <div class="theme-switcher">
             <form id="theme-form" method="POST" action="">
                 <label class="switch">
-                    <input type="checkbox" id="dark_mode" name="dark_mode" <?php if (isset($_SESSION['dark_mode']) && $_SESSION['dark_mode']) echo 'checked'; ?>>
+                    <input type="checkbox" id="dark_mode" name="dark_mode" <?php if (isset($_COOKIE['dark_mode']) && $_COOKIE['dark_mode'] === '1') echo 'checked'; ?>>
                     <span class="toggle-slider round"></span>
                 </label>
             </form>

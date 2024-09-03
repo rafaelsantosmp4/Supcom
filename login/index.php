@@ -10,10 +10,12 @@
 </head>
 <?php
     session_start();
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $_SESSION['dark_mode'] = isset($_POST['dark_mode']);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $darkMode = isset($_POST['dark_mode']);
+        setcookie('dark_mode', $darkMode ? '1' : '0', time() + (86400 * 30), "/");
+        $_COOKIE['dark_mode'] = $darkMode ? '1' : '0';
     }
-    $themeClass = isset($_SESSION['dark_mode']) && $_SESSION['dark_mode'] ? 'dark-mode' : 'light-mode';
+    $themeClass = isset($_COOKIE['dark_mode']) && $_COOKIE['dark_mode'] === '1' ? 'dark-mode' : 'light-mode';
 
     $logoSrc = $themeClass === 'dark-mode' ? '../medias/logo/Black-logo.png' : '../medias/logo/Logo-white.png';
 ?>
