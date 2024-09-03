@@ -114,13 +114,13 @@
                 <div class="divslide" style="width: 100%; height: 100%; background-image: url('medias/bannerdrone.png');"></div>
             </div>
             <div class="slide">
-                <div class="divslide" style="width: 100%; height: 100%; background-image: url('medias/banestoque.png');"></div>
+                <div class="divslide" style="width: 100%; height: 100%; background-image: url('medias/bannerabast.png');"></div>
             </div>
             <div class="slide">
-                <div class="divslide" style="width: 100%; height: 100%; background-image: url('medias/banconfiavel.png');"></div>
+                <div class="divslide" style="width: 100%; height: 100%; background-image: url('medias/bannerforn.png');"></div>
             </div>
             <div class="slide">
-                <div class="divslide" style="width: 100%; height: 100%; background-image: url('medias/banestoque.png');"></div>
+                <div class="divslide" style="width: 100%; height: 100%; background-image: url('medias/bannermundo.png');"></div>
             </div>
 
             <div class="navigation-auto">
