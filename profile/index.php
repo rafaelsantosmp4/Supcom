@@ -216,7 +216,7 @@
             }
         ?>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-        <div id="edit-icon-banner" style="display: none; position: absolute; top: 20px; right: 30px; cursor: pointer; z-index: 11;">
+        <div id="edit-icon-banner" style="display: none; position: absolute; top: 20px; right: 30px; cursor: pointer; z-index: 9;">
             <i class="fa fa-pencil" style="font-size: 30px; font-family: FontAwesome; color: #E8F1F2;" title="Mudar banner"></i>
         </div>
 
