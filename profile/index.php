@@ -149,7 +149,7 @@
             <p>Resolução: <i>Mínimo: 100x100 pixels, Máximo: 1000x1000 pixels</i></p><br>
             <form id='fotoperfilForm' class="<?php echo $themeClass; ?>" action="upload_foto.php" method="POST" enctype="multipart/form-data">
                 <center><label for="picture__input" class="input-preview"></label>
-                <input type="file" name="picture__input" class='input-preview__src' id="picture__input" required></center><br><br>
+                <input type="file" name="picture__input" class='input-preview__src' id="picture__input" required></center><br>
 
                 <div style="display: flex; justify-content: center; flex-direction: row-reverse;"><li><input type="submit" class="submit-button bio" value="Enviar" style="margin-left: 10px;"></li>
             </form>
@@ -168,7 +168,7 @@
             <p>Resolução: <i>Mínimo: 100x100 pixels, Máximo: 1000x1000 pixels</i></p><br>
             <form id='fotobannerForm' class="<?php echo $themeClass; ?>" action="upload_banner.php" method="POST" enctype="multipart/form-data">
                 <center><label for="banner__input" class="input-preview-banner"></label>
-                <input type="file" name="banner__input" class='input-banner-preview__src' id="banner__input" required></center><br><br>
+                <input type="file" name="banner__input" class='input-banner-preview__src' id="banner__input" required></center><br>
                 <div style="display: flex; justify-content: center; flex-direction: row-reverse;"><li><input type="submit" class="submit-button bio" value="Enviar" style="margin-left: 10px;"></li>
             </form>
             <form id="excluirBannerForm" action="excluir_banner.php" method="POST">
@@ -208,7 +208,13 @@
         $bio = $_SESSION['bio'];
     ?>
     <div id="profile">
-        <div class="banner-sobreposto" style="background-image: url('exibir_banner.php');"></div>
+        <?php
+            if($usuario['banner_perfil'] != null) {
+                echo "<div class='banner-sobreposto' style='background-image: url(\"exibir_banner.php\");'></div>";
+            } else {
+                echo"<div class='banner-sobreposto'></div>";
+            }
+        ?>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
         <div id="edit-icon-banner" style="display: none; position: absolute; top: 20px; right: 30px; cursor: pointer; z-index: 11;">
             <i class="fa fa-pencil" style="font-size: 30px; font-family: FontAwesome; color: #E8F1F2;" title="Mudar banner"></i>
@@ -223,7 +229,7 @@
                     <i class="fa fa-pencil" style="font-size: 50px; font-family: FontAwesome; color: #E8F1F2;" title="Mudar foto"></i>
                 </div>
             </div>
-            
+
             <div id="nomebio">
                 <h1><?php echo "$nome"; ?></h1>
                 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>

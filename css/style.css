@@ -334,7 +334,6 @@
   right: 0px;
   height: 100%;
   background-color: black;
-  /* background-image: url('../medias/frutas.jpg'); */
   background-position: center;
   background-size: cover;
   filter: brightness(0.5) contrast(0.7);
@@ -578,7 +577,7 @@
 	background-position: center;
 	position: relative;
 	transition: ease-in-out 750ms;
-  border: 2px dashed white;
+  border: 2px dashed #3f86c9;
   cursor: pointer;
 }
 .input-preview::after {
@@ -622,7 +621,7 @@
 	background-position: center;
 	position: relative;
 	transition: ease-in-out 750ms;
-  border: 2px dashed white;
+  border: 2px dashed #8ebce7;
   cursor: pointer;
 }
 .input-preview-banner::after {
@@ -647,6 +646,9 @@
 	transition: ease-in-out 750ms;
 }
 .has-image::after {
-	content: "Carregue um arquivo...";
+	content: "Alterar arquivo...";
 	color: white;
+}
+#fotobannerForm.dark-mode {
+  color: #E8F1F2;
 }

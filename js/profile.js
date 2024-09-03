@@ -75,7 +75,8 @@ closepfp.addEventListener('click', () => {
     }
 });
 
-const originalContent = document.querySelector('#attbio').innerHTML;
+const element = document.querySelector('#attbio');
+const originalContent = element ? element.innerHTML : '';
 function updatebio() {
     const bio = document.querySelector('#attbio');
     const pencil = " <i class='fa fa-pencil' style='font-family: FontAwesome; cursor: pointer;' onclick='addbio()' title='Alterar bio'></i>";
