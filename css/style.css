@@ -652,3 +652,17 @@
 #fotobannerForm.dark-mode {
   color: #E8F1F2;
 }
+
+.light-mode #alertPassword {
+  color: #008000;
+}
+.light-mode #alertPassword.error {
+  color: #EE2B39;
+}
+
+.dark-mode #alertPassword {
+  color: #00FF00;
+}
+.dark-mode #alertPassword.error {
+  color: #ff4d2e;
+}

@@ -40,9 +40,28 @@
     </div>
     <div class="imgright signupimg"></div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#cnpj').mask('00.000.000/0000-00');
+            $('#tel').mask('(00) 0000-0000');
+
+            var check = function() {
+                var modeClass = $('#left').hasClass('dark-mode') ? 'error' : '';
+                if ($('#password').val() === $('#checkpassword').val()) {
+                    $('#alertPassword').removeClass('error').html('<span><i class="fa fa-check-circle"></i> Senhas correspondem!</span>');
+                } else {
+                    $('#alertPassword').addClass('error').html('<span><i class="fa fa-exclamation-circle"></i> Senhas não correspondem</span>');
+                }
+            };
+            $('#password, #checkpassword').on('input', check);
+        });
+    </script>
+
     <div id="left" class="signup <?php echo $themeClass; ?>">
         <form action="signup.php" method="post">
-            <center><img id="default-logo" src="<?php echo $logoSrc; ?>"></center>
+            <center><img id="default-logo" src="<?php echo $logoSrc; ?>" alt="Logo"></center>
             <h1>Cadastre sua empresa na SUPCOM!</h1>
             <p>Já tem uma conta? <a href="../login/index.php"><i>entrar</i></a></p>
 
@@ -63,10 +82,14 @@
                 <input type="text" name="cnpj" id="cnpj" placeholder="00.000.000/0000-00" maxlength="18" required/>
                 
                 <label for="tel">Telefone</label>
-                <input type="text" name="tel" id="tel" placeholder="(99)9999-9999" maxlength="14" required/>
+                <input type="text" name="tel" id="tel" placeholder="(99) 9999-9999" maxlength="14" required/>
                 
                 <label for="password">Senha</label>
                 <input type="password" name="password" id="password" required/>
+                
+                <label for="checkpassword">Confirmar senha</label>
+                <input type="password" name="checkpassword" id="checkpassword" required/>
+                <p id="alertPassword"></p>
             </div>
             
             <button type="submit" class="submit-button">Cadastrar</button>
