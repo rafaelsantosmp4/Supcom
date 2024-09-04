@@ -156,6 +156,7 @@
             </form>
             <form id="excluirFotoForm" action="excluir_foto.php" method="POST">
                 <input type="submit" class="submit-button bio excluirbut" value="Excluir">
+                <a href="exibir_foto.php" title='Baixar imagem' download="perfil_foto.jpg"><input type="button" class="submit-button bio" value="Baixar"></a>
             </form></div>
         </ul>
     </nav>
@@ -174,6 +175,7 @@
             </form>
             <form id="excluirBannerForm" action="excluir_banner.php" method="POST">
                 <input type="submit" class="submit-button bio excluirbut" value="Excluir">
+                <a href="exibir_banner.php" title='Baixar imagem' download="perfil_banner.jpg"><input type="button" class="submit-button bio" value="Baixar"></a>
             </form></div>
         </ul>
     </nav>
@@ -223,7 +225,7 @@
 
         <div id="pfp">
             <div id="profile-photo-container" style="position: relative; display: inline-block;">
-                <a href="exibir_foto.php" title='Baixar imagem' download="perfil_foto.jpg"><img id="perfilfoto" src="exibir_foto.php" alt="Foto de Perfil" style="width: 150px; height: 150px; border-radius: 50%;"></a>
+                <img id="perfilfoto" src="exibir_foto.php" alt="Foto de Perfil" style="width: 150px; height: 150px; border-radius: 50%;">
 
                 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
                 <div id="edit-icon" style="display: none; position: absolute; top: 0px; right: 40px; cursor: pointer;">
