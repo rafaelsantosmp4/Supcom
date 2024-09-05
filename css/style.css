@@ -602,7 +602,7 @@
 	transition: ease-in-out 750ms;
 }
 .has-image::after {
-	content: "Carregue um arquivo...";
+	content: "Clique para carregar um arquivo...";
 	color: white;
 }
 
@@ -631,7 +631,7 @@
 	width: 100%;
 	text-align: center;
 	transform: translateY(50%);
-	content: "Carregue um arquivo...";  
+	content: "Clique para carregar um arquivo...";  
 	font-style: italic;
 	font-size: 1em;
 }
