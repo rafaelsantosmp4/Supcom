@@ -23,6 +23,14 @@
     if($_SESSION['log'] != "ativo") {
         echo"<script>alert('Você precisa entrar na sua conta para continuar.'); window.location.href = '../login/index.php';</script>";
     }
+
+    include('../conexao/conexao.php');
+    $db = new BancodeDados();
+    $db->conecta();
+    $iduser = $_SESSION['id'];
+    $query = "SELECT * FROM usuarios WHERE id_usuario = '$iduser'";
+    $result = mysqli_query($db->con, $query);
+    $usuario = mysqli_fetch_assoc($result);
 ?>
 
 <nav id="configpcnav" class="configpcnav <?php echo $themeClass; ?>">        
@@ -85,16 +93,8 @@
         <button class="config-toggle <?php echo $themeClass; ?>" id="config_toggle" onclick="config_toggle()"><i class="fa fa-gear"></i></button>
         <div id='account-button' onclick='toggleAccountMenu()' style="position: relative;">
             <?php
-                include('../conexao/conexao.php');
-                $db = new BancodeDados();
-                $db->conecta();
-                $iduser = $_SESSION['id'];
-                $query = "SELECT * FROM usuarios WHERE id_usuario = '$iduser'";
-                $result = mysqli_query($db->con, $query);
-                $usuario = mysqli_fetch_assoc($result);
                 $nome = $usuario['nome'];
                 echo "Bem-vindo, $nome";
-                $db->fechar();
             ?>
             <i class='fa fa-caret-down'></i>
         </div>
@@ -143,48 +143,81 @@
 
     <nav id="mudarfoto" class="mudarfoto <?php echo $themeClass; ?> navconfigs">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <div id="closepfp"><i class="fa fa-times <?php echo $themeClass; ?>"></i></div>
+        <div id="closepfp">
+            <i class="fa fa-times <?php echo $themeClass; ?>"></i>
+        </div>
         <ul>
             <li style="font-size: 20pt; margin-bottom: 10px;">ATUALIZE SUA FOTO:</li>
-            <p>Tamanho máximo: <i>2MB</i></p>
-            <p>Resolução: <i>Mínimo: 100x100 pixels, Máximo: 1000x1000 pixels</i></p><br>
-            <form id='fotoperfilForm' class="<?php echo $themeClass; ?>" action="upload_foto.php" method="POST" enctype="multipart/form-data">
-                <center><label for="picture__input" class="input-preview"></label>
-                <input type="file" name="picture__input" class='input-preview__src' id="picture__input" required></center><br>
-
-                <div style="display: flex; justify-content: center; flex-direction: row-reverse;"><li><input type="submit" class="submit-button bio" value="Enviar" style="margin-left: 10px;"></li>
+            <p>Tamanho máximo: <i>15MB</i></p><br>
+            <form id="fotoperfilForm" class="<?php echo $themeClass; ?>" action="upload_foto.php" method="POST" enctype="multipart/form-data">
+                <center>
+                    <label for="picture__input" class="input-preview"></label>
+                    <input type="file" name="picture__input" class="input-preview__src" id="picture__input" required>
+                </center><br>
+                <div style="display: flex; justify-content: center; flex-direction: row-reverse;"><input type="submit" class="submit-button bio" value="Enviar" style="margin-left: 10px;">
             </form>
             <form id="excluirFotoForm" action="excluir_foto.php" method="POST">
                 <input type="submit" class="submit-button bio excluirbut" value="Excluir">
-                <a href="exibir_foto.php" title='Baixar imagem' download="perfil_foto.jpg"><input type="button" class="submit-button bio" value="Baixar"></a>
-            </form></div>
+                <a href="exibir_foto.php" title="Baixar imagem" download="perfil_foto.jpg"><input type="button" class="submit-button bio" value="Baixar"></a>
+                </div>
+            </form>
         </ul>
+        <?php
+            if ($result && mysqli_num_rows($result) > 0) {
+                $fotoPerfil = $usuario['perfil_foto'];
+                if ($fotoPerfil) {
+                    $base64Image = base64_encode($fotoPerfil);
+                    echo "<script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const filePreview = document.querySelector('.input-preview');
+                                filePreview.style.backgroundImage = 'url(data:image/jpeg;base64,$base64Image)';
+                                filePreview.classList.add('has-image');
+                            });
+                        </script>";
+                }
+            }
+        ?>
     </nav>
 
     <nav id="addbanner" class="mudarfoto <?php echo $themeClass; ?> navconfigs">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <div id="closebanner"><i class="fa fa-times <?php echo $themeClass; ?>"></i></div>
+        <div id="closebanner">
+            <i class="fa fa-times <?php echo $themeClass; ?>"></i>
+        </div>
         <ul>
             <li style="font-size: 20pt; margin-bottom: 10px;">ATUALIZE SEU BANNER:</li>
-            <p>Tamanho máximo: <i>2MB</i></p>
-            <p>Resolução: <i>Mínimo: 100x100 pixels, Máximo: 1000x1000 pixels</i></p><br>
-            <form id='fotobannerForm' class="<?php echo $themeClass; ?>" action="upload_banner.php" method="POST" enctype="multipart/form-data">
-                <center><label for="banner__input" class="input-preview-banner"></label>
-                <input type="file" name="banner__input" class='input-banner-preview__src' id="banner__input" required></center><br>
-                <div style="display: flex; justify-content: center; flex-direction: row-reverse;"><li><input type="submit" class="submit-button bio" value="Enviar" style="margin-left: 10px;"></li>
+            <p>Tamanho máximo: <i>15MB</i></p><br>
+            <form id="fotobannerForm" class="<?php echo $themeClass; ?>" action="upload_banner.php" method="POST" enctype="multipart/form-data">
+                <center>
+                    <label for="banner__input" class="input-preview-banner"></label>
+                    <input type="file" name="banner__input" class="input-banner-preview__src" id="banner__input" required>
+                </center><br>
+                <div style="display: flex; justify-content: center; flex-direction: row-reverse;"><input type="submit" class="submit-button bio" value="Enviar" style="margin-left: 10px;">
             </form>
             <form id="excluirBannerForm" action="excluir_banner.php" method="POST">
                 <input type="submit" class="submit-button bio excluirbut" value="Excluir">
-                <a href="exibir_banner.php" title='Baixar imagem' download="perfil_banner.jpg"><input type="button" class="submit-button bio" value="Baixar"></a>
-            </form></div>
+                <a href="exibir_banner.php" title="Baixar imagem" download="perfil_banner.jpg"><input type="button" class="submit-button bio" value="Baixar"></a></div>
+            </form>
         </ul>
+        <?php
+            if ($result && mysqli_num_rows($result) > 0) {
+                $bannerPerfil = $usuario['banner_perfil'];
+                if ($bannerPerfil) {
+                    $base64ImageBanner = base64_encode($bannerPerfil);
+                    echo "<script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const filePreviewBanner = document.querySelector('.input-preview-banner');
+                                filePreviewBanner.style.backgroundImage = 'url(data:image/jpeg;base64,$base64ImageBanner)';
+                                filePreviewBanner.classList.add('has-image');
+                            });
+                        </script>";
+                }
+            }
+        ?>
     </nav>
 
-    <?php
-        require_once('../conexao/conexao.php');
-        $db = new BancodeDados();
-        $db->conecta();
 
+    <?php
         $id = $_SESSION['id'];
         $nome = $_SESSION['nome'];
         $email = $_SESSION['email'];
@@ -196,11 +229,7 @@
         $formatted_date = $datacerta->format('d/m/Y');
         $formatted_time = $datacerta->format('H:i:s');
 
-        $query = "SELECT * FROM usuarios WHERE id_usuario = '$id'";
-        $result = mysqli_query($db->con, $query);
-
         if ($result && mysqli_num_rows($result) > 0) {
-            $usuario = mysqli_fetch_assoc($result);
             if($usuario['bio'] != null) {
                 $_SESSION['bio'] = "<p onmouseenter='updatebio()' onmouseleave='resetbio()' id='attbio'>" . $usuario['bio'] . "</p>";
                 echo"<script>textarea = document.getElementById('bio'); textarea.innerHTML = '" . $usuario['bio'] . "'; </script>";
