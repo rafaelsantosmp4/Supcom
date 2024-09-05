@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "<script>alert('Imagem cortada está vazia.'); window.location.href = 'index.php';</script>";
         }
     } else {
-        echo "<script>alert('Nenhum dado de imagem recebido.'); window.location.href = 'index.php';</script>";
+        echo "<script>alert('Erro - imagem maior que 8MB!'); window.location.href = 'index.php';</script>";
     }
 
     $db->fechar();
