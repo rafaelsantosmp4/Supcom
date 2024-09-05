@@ -143,6 +143,9 @@
 
     <nav id="mudarfoto" class="mudarfoto <?php echo $themeClass; ?> navconfigs">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+
         <div id="closepfp">
             <i class="fa fa-times <?php echo $themeClass; ?>"></i>
         </div>
@@ -150,17 +153,24 @@
             <li style="font-size: 20pt; margin-bottom: 10px;">ATUALIZE SUA FOTO:</li>
             <p>Tamanho máximo: <i>15MB</i></p><br>
             <form id="fotoperfilForm" class="<?php echo $themeClass; ?>" action="upload_foto.php" method="POST" enctype="multipart/form-data">
-                <center>
-                    <label for="picture__input" class="input-preview"></label>
-                    <input type="file" name="picture__input" class="input-preview__src" id="picture__input" required>
-                </center><br>
-                <div style="display: flex; justify-content: center; flex-direction: row-reverse;"><input type="submit" class="submit-button bio" value="Enviar" style="margin-left: 10px;">
+                <center><div style="display: flex; align-items: center; justify-content: center;">
+                    <label for="picture__input" class="input-preview" id="labelPreview"></label>
+                    <input type="file" name="picture__input" class="input-preview__src" id="picture__input" required style="display: none;">
+                    <div id="imageContainer" style="display: none; margin-left: 10px;">
+                        <img id="image" style="max-width: 100%; display: block;">
+                    </div>
+                    <input type="hidden" name="croppedImage" id="croppedImage"></div>
+                    <button type="button" class="submit-button bio" id="cropButton" style="display: none; margin-top: 10px;">Cortar</button>
+                    <button type="button" id="showPreviewButton" style="display: none;">Mostrar Imagem Cortada</button><br>
+                </center>
+                <div style="display: flex; justify-content: center; flex-direction: row-reverse;"><input type="submit" class="submit-button bio" value="Enviar" style="margin-left: 10px;" id="submitButton" disabled>
             </form>
             <form id="excluirFotoForm" action="excluir_foto.php" method="POST">
                 <input type="submit" class="submit-button bio excluirbut" value="Excluir">
-                <a href="exibir_foto.php" title="Baixar imagem" download="perfil_foto.jpg"><input type="button" class="submit-button bio" value="Baixar"></a>
-                </div>
-            </form>
+                <a href="exibir_foto.php" title="Baixar imagem" download="perfil_foto.jpg">
+                    <input type="button" class="submit-button bio" value="Baixar">
+                </a>
+            </form></div>
         </ul>
         <?php
             if ($result && mysqli_num_rows($result) > 0) {
@@ -177,6 +187,71 @@
                 }
             }
         ?>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                let cropper;
+                const image = document.getElementById('image');
+                const inputImage = document.getElementById('picture__input');
+                const imageContainer = document.getElementById('imageContainer');
+                const cropButton = document.getElementById('cropButton');
+                const showPreviewButton = document.getElementById('showPreviewButton');
+                const labelPreview = document.getElementById('labelPreview');
+                const croppedImageInput = document.getElementById('croppedImage');
+                const form = document.getElementById('fotoperfilForm');
+                const submitButton = document.getElementById('submitButton');
+                const excluirFotoForm = document.getElementById('excluirFotoForm');
+                inputImage.addEventListener('change', function(event) {
+                    const files = event.target.files;
+                    if (files && files.length > 0) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            image.src = e.target.result;
+                            imageContainer.style.display = 'block';
+                            cropButton.style.display = 'inline';
+                            showPreviewButton.style.display = 'none';
+                            if (cropper) {
+                                cropper.destroy();
+                            }
+                            cropper = new Cropper(image, {
+                                aspectRatio: 1,
+                                viewMode: 1,
+                                autoCropArea: 1,
+                            });
+                        };
+                        excluirFotoForm.style.display = 'none';
+                        submitButton.style.display = 'none';
+                        reader.readAsDataURL(files[0]);
+                    }
+                });
+                cropButton.addEventListener('click', function() {
+                    if (cropper) {
+                        const canvas = cropper.getCroppedCanvas({
+                            width: 300,
+                            height: 300
+                        });
+                        canvas.toBlob(function(blob) {
+                            const reader = new FileReader();
+                            reader.onloadend = function() {
+                                const croppedImageDataURL = reader.result;
+                                croppedImageInput.value = croppedImageDataURL;
+                                labelPreview.style.backgroundImage = `url(${croppedImageDataURL})`;
+                                labelPreview.style.backgroundSize = 'cover';
+                                imageContainer.style.display = 'none';
+                                cropButton.style.display = 'none';
+                                showPreviewButton.style.display = 'none';
+                                submitButton.disabled = false;
+                                excluirFotoForm.style.display = 'block';
+                                submitButton.style.display = 'block';
+                            };
+                            reader.readAsDataURL(blob);
+                        }, 'image/jpeg');
+                    }
+                });
+                showPreviewButton.addEventListener('click', function() {
+                    form.submit();
+                });
+            });
+        </script>
     </nav>
 
     <nav id="addbanner" class="mudarfoto <?php echo $themeClass; ?> navconfigs">

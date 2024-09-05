@@ -8,18 +8,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     $id = $_SESSION['id'];
 
-    if (isset($_FILES['picture__input'])) {
-        $foto = $_FILES['picture__input'];
-        $fotoError = $foto['error'];
-        $fotoSize = $foto['size'];
+    // Verifica se o Data URL foi enviado
+    if (isset($_POST['croppedImage'])) {
+        $croppedImageDataURL = $_POST['croppedImage'];
 
-        if ($fotoError === UPLOAD_ERR_OK) {
-            if ($fotoSize > 15 * 1024 * 1024) {
-                $errorMessage = 'O arquivo é maior que 15MB.';
+        // Remove o prefixo do Data URL
+        if (preg_match('/^data:image\/(jpg|jpeg|png);base64,/', $croppedImageDataURL, $matches)) {
+            $imageType = $matches[1];
+            $imageData = str_replace('data:image/' . $imageType . ';base64,', '', $croppedImageDataURL);
+            $imageData = base64_decode($imageData);
+
+            if ($imageData === false) {
+                $errorMessage = 'Falha ao decodificar a imagem.';
             } else {
-                $fotoTmpName = $foto['tmp_name'];
-                $fotoBlob = addslashes(file_get_contents($fotoTmpName));
+                $fotoBlob = addslashes($imageData);
 
+                // Atualiza a imagem no banco de dados
                 $query = "UPDATE usuarios SET perfil_foto = '$fotoBlob' WHERE id_usuario = '$id'";
                 if (mysqli_query($db->con, $query)) {
                     echo "<script>window.location.href = 'index.php';</script>";
@@ -28,24 +32,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }
             }
         } else {
-            $uploadErrors = [
-                UPLOAD_ERR_INI_SIZE   => 'O arquivo excede o tamanho máximo permitido no servidor.',
-                UPLOAD_ERR_FORM_SIZE  => 'O arquivo excede o tamanho máximo permitido pelo formulário.',
-                UPLOAD_ERR_PARTIAL    => 'O arquivo foi parcialmente carregado.',
-                UPLOAD_ERR_NO_FILE    => 'Nenhum arquivo foi enviado.',
-                UPLOAD_ERR_NO_TMP_DIR => 'Falta a pasta temporária.',
-                UPLOAD_ERR_CANT_WRITE => 'Falha ao gravar o arquivo no disco.',
-                UPLOAD_ERR_EXTENSION  => 'Uma extensão do PHP interrompeu o carregamento do arquivo.',
-            ];
-            
-            $errorMessage = isset($uploadErrors[$fotoError]) ? $uploadErrors[$fotoError] : 'Erro desconhecido ao carregar o arquivo.';
+            $errorMessage = 'Formato de imagem inválido.';
         }
 
         if (isset($errorMessage)) {
             echo "<script>alert('$errorMessage'); window.location.href = 'index.php';</script>";
         }
     } else {
-        echo "<script>alert('Nenhum arquivo enviado.'); window.location.href = 'index.php';</script>";
+        echo "<script>alert('Nenhuma imagem cortada recebida.'); window.location.href = 'index.php';</script>";
     }
 
     $db->fechar();
