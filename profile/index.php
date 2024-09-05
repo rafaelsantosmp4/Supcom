@@ -151,7 +151,6 @@
         </div>
         <ul>
             <li style="font-size: 20pt; margin-bottom: 10px;">ATUALIZE SUA FOTO:</li>
-            <p>Tamanho máximo: <i>2MB</i></p><br>
             <form id="fotoperfilForm" class="<?php echo $themeClass; ?>" action="upload_foto.php" method="POST" enctype="multipart/form-data">
                 <center><div style="display: flex; align-items: center; justify-content: center;">
                     <label for="picture__input" class="input-preview" id="labelPreview"></label>
@@ -264,7 +263,6 @@
         </div>
         <ul>
             <li style="font-size: 20pt; margin-bottom: 10px;">ATUALIZE SEU BANNER:</li>
-            <p>Tamanho máximo: <i>2MB</i></p><br>
             <form id="fotobannerForm" class="<?php echo $themeClass; ?>" action="upload_banner.php" method="POST" enctype="multipart/form-data">
                 <center>
                     <div style="display: flex; align-items: center; justify-content: center;">
