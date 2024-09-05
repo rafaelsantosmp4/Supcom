@@ -151,7 +151,7 @@
         </div>
         <ul>
             <li style="font-size: 20pt; margin-bottom: 10px;">ATUALIZE SUA FOTO:</li>
-            <p>Tamanho máximo: <i>15MB</i></p><br>
+            <p>Tamanho máximo: <i>2MB</i></p><br>
             <form id="fotoperfilForm" class="<?php echo $themeClass; ?>" action="upload_foto.php" method="POST" enctype="multipart/form-data">
                 <center><div style="display: flex; align-items: center; justify-content: center;">
                     <label for="picture__input" class="input-preview" id="labelPreview"></label>
@@ -226,8 +226,8 @@
                 cropButton.addEventListener('click', function() {
                     if (cropper) {
                         const canvas = cropper.getCroppedCanvas({
-                            width: 300,
-                            height: 300
+                            width: 500,
+                            height: 500
                         });
                         canvas.toBlob(function(blob) {
                             const reader = new FileReader();
@@ -256,23 +256,38 @@
 
     <nav id="addbanner" class="mudarfoto <?php echo $themeClass; ?> navconfigs">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+
         <div id="closebanner">
             <i class="fa fa-times <?php echo $themeClass; ?>"></i>
         </div>
         <ul>
             <li style="font-size: 20pt; margin-bottom: 10px;">ATUALIZE SEU BANNER:</li>
-            <p>Tamanho máximo: <i>15MB</i></p><br>
+            <p>Tamanho máximo: <i>2MB</i></p><br>
             <form id="fotobannerForm" class="<?php echo $themeClass; ?>" action="upload_banner.php" method="POST" enctype="multipart/form-data">
                 <center>
-                    <label for="banner__input" class="input-preview-banner"></label>
-                    <input type="file" name="banner__input" class="input-banner-preview__src" id="banner__input" required>
-                </center><br>
-                <div style="display: flex; justify-content: center; flex-direction: row-reverse;"><input type="submit" class="submit-button bio" value="Enviar" style="margin-left: 10px;">
+                    <div style="display: flex; align-items: center; justify-content: center;">
+                        <label for="banner__input" class="input-preview-banner" id="labelPreviewBanner"></label>
+                        <input type="file" name="banner__input" class="input-banner-preview__src" id="banner__input" style="display: none;">
+                        <div id="bannerImageContainer" style="display: none; margin-left: 10px;">
+                            <img id="bannerImage" style="max-width: 100%; display: block;">
+                        </div>
+                        <input type="hidden" name="croppedBannerImage" id="croppedBannerImage">
+                    </div>
+                    <button type="button" class="submit-button bio" id="cropBannerButton" style="display: none; margin-top: 10px;">Cortar</button>
+                    <button type="button" id="showBannerPreviewButton" style="display: none;">Mostrar Imagem Cortada</button><br>
+                </center>
+                <div style="display: flex; justify-content: center; flex-direction: row-reverse;">
+                    <input type="submit" class="submit-button bio" value="Enviar" style="margin-left: 10px;" id="bannerSubmitButton" disabled>
             </form>
+
             <form id="excluirBannerForm" action="excluir_banner.php" method="POST">
                 <input type="submit" class="submit-button bio excluirbut" value="Excluir">
-                <a href="exibir_banner.php" title="Baixar imagem" download="perfil_banner.jpg"><input type="button" class="submit-button bio" value="Baixar"></a></div>
-            </form>
+                <a href="exibir_banner.php" title="Baixar imagem" download="perfil_banner.jpg">
+                    <input type="button" class="submit-button bio" value="Baixar">
+                </a>
+            </form></div>
         </ul>
         <?php
             if ($result && mysqli_num_rows($result) > 0) {
@@ -281,7 +296,7 @@
                     $base64ImageBanner = base64_encode($bannerPerfil);
                     echo "<script>
                             document.addEventListener('DOMContentLoaded', function() {
-                                const filePreviewBanner = document.querySelector('.input-preview-banner');
+                                const filePreviewBanner = document.querySelector('#labelPreviewBanner');
                                 filePreviewBanner.style.backgroundImage = 'url(data:image/jpeg;base64,$base64ImageBanner)';
                                 filePreviewBanner.classList.add('has-image');
                             });
@@ -289,8 +304,72 @@
                 }
             }
         ?>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                let cropper;
+                const bannerImage = document.getElementById('bannerImage');
+                const inputBanner = document.getElementById('banner__input');
+                const bannerImageContainer = document.getElementById('bannerImageContainer');
+                const cropBannerButton = document.getElementById('cropBannerButton');
+                const showBannerPreviewButton = document.getElementById('showBannerPreviewButton');
+                const labelPreviewBanner = document.getElementById('labelPreviewBanner');
+                const croppedBannerImageInput = document.getElementById('croppedBannerImage');
+                const bannerForm = document.getElementById('fotobannerForm');
+                const bannerSubmitButton = document.getElementById('bannerSubmitButton');
+                const excluirBannerForm = document.getElementById('excluirBannerForm');
+                inputBanner.addEventListener('change', function(event) {
+                    const files = event.target.files;
+                    if (files && files.length > 0) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            bannerImage.src = e.target.result;
+                            bannerImageContainer.style.display = 'block';
+                            cropBannerButton.style.display = 'inline';
+                            showBannerPreviewButton.style.display = 'none';
+                            if (cropper) {
+                                cropper.destroy();
+                            }
+                            cropper = new Cropper(bannerImage, {
+                                aspectRatio: 4 / 1,
+                                viewMode: 1,
+                                autoCropArea: 1,
+                            });
+                        };
+                        excluirBannerForm.style.display = 'none';
+                        bannerSubmitButton.style.display = 'none';
+                        reader.readAsDataURL(files[0]);
+                    }
+                });
+                cropBannerButton.addEventListener('click', function() {
+                    if (cropper) {
+                        const canvas = cropper.getCroppedCanvas({
+                            width: 1200,
+                            height: 300
+                        });
+                        canvas.toBlob(function(blob) {
+                            const reader = new FileReader();
+                            reader.onloadend = function() {
+                                const croppedImageBannerDataURL = reader.result;
+                                croppedBannerImageInput.value = croppedImageBannerDataURL.split(',')[1];
+                                labelPreviewBanner.style.backgroundImage = `url(${croppedImageBannerDataURL})`;
+                                labelPreviewBanner.style.backgroundSize = 'cover';
+                                bannerImageContainer.style.display = 'none';
+                                cropBannerButton.style.display = 'none';
+                                showBannerPreviewButton.style.display = 'none';
+                                bannerSubmitButton.disabled = false;
+                                excluirBannerForm.style.display = 'block';
+                                bannerSubmitButton.style.display = 'block';
+                            };
+                            reader.readAsDataURL(blob);
+                        }, 'image/jpeg');
+                    }
+                });
+                showBannerPreviewButton.addEventListener('click', function() {
+                    bannerForm.submit();
+                });
+            });
+        </script>
     </nav>
-
 
     <?php
         $id = $_SESSION['id'];

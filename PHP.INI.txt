@@ -1,9 +1,0 @@
-adicionar no php.ini e refrescar o servidor:
-
-
-
-upload_max_filesize = 15M
-post_max_size = 15M
-memory_limit = 512M
-max_execution_time = 30
-max_input_time = 30
