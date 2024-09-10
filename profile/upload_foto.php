@@ -8,11 +8,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     $id = $_SESSION['id'];
 
-    // Verifica se o Data URL foi enviado
     if (isset($_POST['croppedImage'])) {
         $croppedImageDataURL = $_POST['croppedImage'];
 
-        // Remove o prefixo do Data URL
         if (preg_match('/^data:image\/(jpg|jpeg|png);base64,/', $croppedImageDataURL, $matches)) {
             $imageType = $matches[1];
             $imageData = str_replace('data:image/' . $imageType . ';base64,', '', $croppedImageDataURL);
@@ -23,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             } else {
                 $fotoBlob = addslashes($imageData);
 
-                // Atualiza a imagem no banco de dados
                 $query = "UPDATE usuarios SET perfil_foto = '$fotoBlob' WHERE id_usuario = '$id'";
                 if (mysqli_query($db->con, $query)) {
                     echo "<script>window.location.href = 'index.php';</script>";

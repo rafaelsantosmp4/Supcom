@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 05-Set-2024 às 18:23
+-- Tempo de geração: 10-Set-2024 às 21:02
 -- Versão do servidor: 8.0.27
 -- versão do PHP: 8.0.26
 
@@ -26,63 +26,18 @@ USE `supcom`;
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `catalogo`
+-- Estrutura da tabela `produto`
 --
 
-DROP TABLE IF EXISTS `catalogo`;
-CREATE TABLE IF NOT EXISTS `catalogo` (
-  `id_catalogo` int NOT NULL AUTO_INCREMENT,
-  `id_fornecedor` int NOT NULL,
-  `nome_catalogo` varchar(100) NOT NULL,
-  `data_catalogo` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id_catalogo`),
-  KEY `id_fornecedor` (`id_fornecedor`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `fornecedores`
---
-
-DROP TABLE IF EXISTS `fornecedores`;
-CREATE TABLE IF NOT EXISTS `fornecedores` (
-  `id_fornecedor` int NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `produto`;
+CREATE TABLE IF NOT EXISTS `produto` (
+  `id_produto` int NOT NULL AUTO_INCREMENT,
   `id_usuario` int NOT NULL,
-  PRIMARY KEY (`id_fornecedor`),
-  KEY `id_usuario` (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `lojistas`
---
-
-DROP TABLE IF EXISTS `lojistas`;
-CREATE TABLE IF NOT EXISTS `lojistas` (
-  `id_lojista` int NOT NULL AUTO_INCREMENT,
-  `id_usuario` int NOT NULL,
-  PRIMARY KEY (`id_lojista`),
-  KEY `id_usuario` (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `produtos`
---
-
-DROP TABLE IF EXISTS `produtos`;
-CREATE TABLE IF NOT EXISTS `produtos` (
-  `id_produtos` int NOT NULL AUTO_INCREMENT,
-  `id_catalogo` int NOT NULL,
-  `nome_produto` varchar(100) NOT NULL,
-  `preco_produto` decimal(8,2) NOT NULL,
+  `nome_produto` varchar(200) NOT NULL,
+  `descricao_produto` text NOT NULL,
   `qtd_produto` int NOT NULL,
-  `descricao_produto` text,
-  PRIMARY KEY (`id_produtos`),
-  KEY `id_catalogo` (`id_catalogo`)
+  `preco_produto` varchar(200) NOT NULL,
+  PRIMARY KEY (`id_produto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -120,34 +75,6 @@ INSERT INTO `usuarios` (`id_usuario`, `nome`, `bio`, `email`, `senha`, `cnpj`, `
 (4, 'teste2', '', 'teste2@gmail.com', '$2y$10$BmhnNh28t8A.ArUYxFdu.Ox.pNy8XOSMAizdmRotKiTQvnz/W.ax.', '32.321.123/0001-16', '(11) 5435-7690', 'fornecedor', '2024-08-29 21:15:51', NULL, NULL),
 (6, 'Caio INC.', '', 'caio@gmail.com', '$2y$10$X324dtnwcmjvzyyyajrvlulc.WhYefrOXe6RSoNQRy.MLnfUFIGrK', '87.876.876/8766-18', '(11) 0486-6485', 'lojista', '2024-09-03 15:07:21', NULL, NULL),
 (11, 'kwai', 'Kwai, seu app de vídeos curtos!', 'kwai@gmail.com', '$2y$10$Lp/R..g.kDSqARltGhjLlOOfbXmy8h4vx7en/xplTD6gyp41/Rlfy', '54.738.954/7389-53', '(54) 3789-5347', 'lojista', '2024-09-03 21:40:03', NULL, NULL);
-
---
--- Restrições para despejos de tabelas
---
-
---
--- Limitadores para a tabela `catalogo`
---
-ALTER TABLE `catalogo`
-  ADD CONSTRAINT `catalogo_ibfk_1` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedores` (`id_fornecedor`);
-
---
--- Limitadores para a tabela `fornecedores`
---
-ALTER TABLE `fornecedores`
-  ADD CONSTRAINT `fornecedores_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`);
-
---
--- Limitadores para a tabela `lojistas`
---
-ALTER TABLE `lojistas`
-  ADD CONSTRAINT `lojistas_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`);
-
---
--- Limitadores para a tabela `produtos`
---
-ALTER TABLE `produtos`
-  ADD CONSTRAINT `produtos_ibfk_1` FOREIGN KEY (`id_catalogo`) REFERENCES `catalogo` (`id_catalogo`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
