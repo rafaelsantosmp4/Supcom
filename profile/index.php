@@ -90,11 +90,17 @@
         </ul>
     </nav>
     <div style="justify-content: center; align-items: center; display: flex;">
+        <?php
+            $nome = $usuario['nome'];
+            if ($usuario["tipo_usuario"] == "fornecedor") {
+                echo '<a href="../upload/" id="linkupload" class="'. $themeClass .'"><button class="uploadbutton '. $themeClass .' id="uploadbutton" onclick="../upload/"><i class="fa fa-upload"></i></a>';
+            }
+        ?>
         <button class="config-toggle <?php echo $themeClass; ?>" id="config_toggle" onclick="config_toggle()"><i class="fa fa-gear"></i></button>
         <div id='account-button' onclick='toggleAccountMenu()' style="position: relative;">
             <?php
-                $nome = $usuario['nome'];
                 echo "Bem-vindo, $nome";
+                $db->fechar();
             ?>
             <i class='fa fa-caret-down'></i>
         </div>

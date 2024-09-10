@@ -82,17 +82,24 @@
         </ul>
     </nav>
     <div style="justify-content: center; align-items: center; display: flex;">
+        <?php
+
+            include('../conexao/conexao.php');
+            $db = new BancodeDados();
+            $db->conecta();
+            $iduser = $_SESSION['id'];
+            $query = "SELECT * FROM usuarios WHERE id_usuario = '$iduser'";
+            $result = mysqli_query($db->con, $query);
+            $usuario = mysqli_fetch_assoc($result);
+            $nome = $usuario['nome'];
+            
+            if ($usuario["tipo_usuario"] == "fornecedor") {
+                echo '<a href="../upload/" id="linkupload" class="'. $themeClass .'"><button class="uploadbutton '. $themeClass .' id="uploadbutton" onclick="../upload/"><i class="fa fa-upload"></i></a>';
+            }
+        ?>
         <button class="config-toggle <?php echo $themeClass; ?>" id="config_toggle" onclick="config_toggle()"><i class="fa fa-gear"></i></button>
         <div id='account-button' onclick='toggleAccountMenu()' style="position: relative;">
             <?php
-                include('../conexao/conexao.php');
-                $db = new BancodeDados();
-                $db->conecta();
-                $iduser = $_SESSION['id'];
-                $query = "SELECT * FROM usuarios WHERE id_usuario = '$iduser'";
-                $result = mysqli_query($db->con, $query);
-                $usuario = mysqli_fetch_assoc($result);
-                $nome = $usuario['nome'];
                 echo "Bem-vindo, $nome";
                 $db->fechar();
             ?>

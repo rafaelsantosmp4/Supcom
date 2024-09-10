@@ -60,24 +60,24 @@ header.light-mode {
 header.dark-mode {
   background-color: #13293D;
 }
-header a {
+header #mobile-nav a, header #account-options a {
   text-decoration: none;
   position: relative;
   text-align: center;
   padding: 5px 20px;
   margin-right: 10px;
 }
-header.light-mode a {
+header.light-mode #mobile-nav a, header.light-mode #account-options a, #linkupload.light-mode {
   color: #13293D;
 }
-header.dark-mode a {
+header.dark-mode #mobile-nav a, header.dark-mode #account-options a, #linkupload.dark-mode {
   color: #E8F1F2;
 }
-header a.active:after {
+header #mobile-nav a.active:after, header #account-options a.active:after {
   width: 100%;
   left: 0;
 }
-header a:after {
+header #mobile-nav a:after, header #account-options a:after {
   background: none repeat scroll 0 0 transparent;
   bottom: 0;
   content: "";
@@ -89,7 +89,7 @@ header a:after {
   width: 0;
   background: currentColor;
 }
-header a:hover:after {
+header #mobile-nav a:hover:after, #account-options a:hover:after {
   width: 100%;
   left: 0;
 }
@@ -352,4 +352,17 @@ input:checked + .toggle-slider:before {
 }
 .toggle-slider.round:before {
   border-radius: 50%;
+}
+.uploadbutton {
+  font-size: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+.uploadbutton.light-mode {
+  color: #13293D;
+}
+.uploadbutton.dark-mode {
+  color: #E8F1F2;
 }
