@@ -207,7 +207,7 @@
 }
 .produtos {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 .produto h3 {
   font-size: 20px;
