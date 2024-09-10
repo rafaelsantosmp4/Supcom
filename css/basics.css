@@ -60,24 +60,24 @@ header.light-mode {
 header.dark-mode {
   background-color: #13293D;
 }
-header #mobile-nav a, header #account-options a {
+header #mobile-nav a, header #account-options a, #entrarlink {
   text-decoration: none;
   position: relative;
   text-align: center;
   padding: 5px 20px;
   margin-right: 10px;
 }
-header.light-mode #mobile-nav a, header.light-mode #account-options a, #linkupload.light-mode {
+header.light-mode #mobile-nav a, header.light-mode #account-options a, #linkupload.light-mode, #entrarlink.light-mode {
   color: #13293D;
 }
-header.dark-mode #mobile-nav a, header.dark-mode #account-options a, #linkupload.dark-mode {
+header.dark-mode #mobile-nav a, header.dark-mode #account-options a, #linkupload.dark-mode, #entrarlink.dark-mode {
   color: #E8F1F2;
 }
-header #mobile-nav a.active:after, header #account-options a.active:after {
+header #mobile-nav a.active:after, header #account-options a.active:after, #entrarlink.active:after {
   width: 100%;
   left: 0;
 }
-header #mobile-nav a:after, header #account-options a:after {
+header #mobile-nav a:after, header #account-options a:after, #entrarlink:after {
   background: none repeat scroll 0 0 transparent;
   bottom: 0;
   content: "";
@@ -89,7 +89,7 @@ header #mobile-nav a:after, header #account-options a:after {
   width: 0;
   background: currentColor;
 }
-header #mobile-nav a:hover:after, #account-options a:hover:after {
+header #mobile-nav a:hover:after, #account-options a:hover:after, #entrarlink:hover:after {
   width: 100%;
   left: 0;
 }

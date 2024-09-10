@@ -28,7 +28,7 @@
         <img width="120px" id="default-logo" src="<?php echo $logoSrc; ?>" alt="Logo">
     </a>
     <div id="direita" style="justify-content: center; align-items: center; display: flex;">
-        <a href="login/" class="<?php echo $themeClass; ?>">Entrar</a>
+        <a href="login/" class="<?php echo $themeClass; ?>" id='entrarlink'>Entrar</a>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <button class="config-toggle <?php echo $themeClass; ?>" id="config_toggle" onclick="config_toggle()"><i class="fa fa-gear"></i></button>
     </div>
