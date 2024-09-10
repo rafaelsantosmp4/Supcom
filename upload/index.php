@@ -145,8 +145,7 @@
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
             <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
-            <h1 style="font-size: 20pt; margin-bottom: 0px;">ATUALIZE SUA FOTO:</h1>
-            <p align='center' style="margin-top: 0px;">Tamanho máximo: <i>8MB</i></p>
+            <h1 style="font-size: 20pt; margin-bottom: 10px;">ADICIONAR UM PRODUTO:</h1>
             <form id="fotoperfilForm" class="<?php echo $themeClass; ?>" action="upload_produto.php" method="POST" enctype="multipart/form-data">
                 <center><div style="display: flex; align-items: center; justify-content: center;">
                     <label for="picture__input" class="input-produto-preview" id="labelPreview"></label>

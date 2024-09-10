@@ -83,7 +83,6 @@
     </nav>
     <div style="justify-content: center; align-items: center; display: flex;">
         <?php
-
             include('../conexao/conexao.php');
             $db = new BancodeDados();
             $db->conecta();
@@ -92,6 +91,11 @@
             $result = mysqli_query($db->con, $query);
             $usuario = mysqli_fetch_assoc($result);
             $nome = $usuario['nome'];
+
+            
+            $queryprods = "SELECT * FROM produto";
+            $resultprods = mysqli_query($db->con, $queryprods);
+
             
             if ($usuario["tipo_usuario"] == "fornecedor") {
                 echo '<a href="../upload/" id="linkupload" class="'. $themeClass .'"><button class="uploadbutton '. $themeClass .' id="uploadbutton" onclick="../upload/"><i class="fa fa-upload"></i></a>';
@@ -101,7 +105,6 @@
         <div id='account-button' onclick='toggleAccountMenu()' style="position: relative;">
             <?php
                 echo "Bem-vindo, $nome";
-                $db->fechar();
             ?>
             <i class='fa fa-caret-down'></i>
         </div>
@@ -137,59 +140,40 @@
 
     <div id="container">
         <div id="conteudo">
-            <div id="rightfilters">
-                <h1>Todos os produtos</h1>
-                <div>
-                    <select id="ordenar">
-                        <option selected disabled>Ordenar por:&nbsp&nbsp&nbsp&nbsp</option>
-                        <option value="dest">Destaques</option>
-                        <option value="data">Data</option>
-                        <option value="preco">Preço</option>
-                    </select>
-                    <select id="filter">
-                        <option selected disabled>Filtro</option>
-                        <option value="loj">Data</option>
-                        <option value="forn">Preço</option>
-                    </select>
-                </div>
-            </div>
+            <h1 align='center'>Todos os produtos</h1>
+            <h2>Adicionados recentemente</h2>
             
+            <?php
+                $prod_count = 0;
+                $prod_per_category = 4;
+                $first_category = true;
 
-            <div class="categoria">
-                <h2>Categoria 1</h2>
-                <div class="produtos">
-                    <div class="produto <?php echo $themeClass; ?>">
-                        <img src="../medias/paes.webp" alt="Produto 1">
-                        <h3>Nome do produto</h3>
-                        <p>Breve descrição do produto</p>
-                        <div class="avaliacao">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrela_vazia.png" alt="Estrela vazia">
-                            <span>(4.1 / 5)</span>
-                        </div>
-                    </div>
-                    
-                    <div class="produto <?php echo $themeClass; ?>">
-                        <img src="../medias/paes.webp" alt="Produto 1">
-                        <h3>Nome do produto</h3>
-                        <p>Breve descrição do produto</p>
-                        <div class="avaliacao">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrela_vazia.png" alt="Estrela vazia">
-                            <span>(4.1 / 5)</span>
-                        </div>
-                    </div>
+                while ($produto = mysqli_fetch_assoc($resultprods)) {
+                    // Inicia uma nova categoria se necessário
+                    if ($prod_count % $prod_per_category == 0) {
+                        if (!$first_category) {
+                            echo '</div>';
+                            echo '</div>';
+                        }
+                        echo '<div class="categoria">';
+                        echo '<div class="produtos">';
+                        $first_category = false;
+                    }
+                    $nome_produto = $produto['nome_produto'];
+                    $descricao_produto = $produto['descricao_produto'];
+                    $preco_produto = $produto['preco_produto'];
+                    $foto_produto = base64_encode($produto['foto_prod']);
 
+                    $id_forn = $produto['id_forn'];
+                    $tempquery = "SELECT nome FROM usuarios WHERE id_usuario = '$id_forn'";
+                    $tempresult = mysqli_query($db->con, $tempquery);
+                    $tempusuario = mysqli_fetch_assoc($tempresult);
+                    $nome_forn = $tempusuario['nome'];
+            ?>
                     <div class="produto <?php echo $themeClass; ?>">
-                        <img src="../medias/paes.webp" alt="Produto 1">
-                        <h3>Nome do produto</h3>
-                        <p>Breve descrição do produto</p>
+                        <img src="data:image/jpeg;base64,<?php echo $foto_produto; ?>" alt="<?php echo $nome_produto; ?>">
+                        <h3><?php echo $nome_produto; ?></h3>
+                        <p><?php echo $descricao_produto; ?></p>
                         <div class="avaliacao">
                             <img src="../medias/estrelacheia.png" alt="Estrela cheia">
                             <img src="../medias/estrelacheia.png" alt="Estrela cheia">
@@ -198,88 +182,21 @@
                             <img src="../medias/estrela_vazia.png" alt="Estrela vazia">
                             <span>(4.1 / 5)</span>
                         </div>
+                        <h4 style="margin-top: 5px; margin-bottom: 0px;"><?php echo $nome_forn; ?></h4>
+                        <h3>R$ <?php echo $preco_produto; ?></h3>
                     </div>
-
-                    <div class="produto <?php echo $themeClass; ?>">
-                        <img src="../medias/paes.webp" alt="Produto 1">
-                        <h3>Nome do produto</h3>
-                        <p>Breve descrição do produto</p>
-                        <div class="avaliacao">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrela_vazia.png" alt="Estrela vazia">
-                            <span>(4.1 / 5)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="categoria">
-                <h2>Categoria 2</h2>
-                <div class="produtos">
-                    <div class="produto <?php echo $themeClass; ?>">
-                        <img src="../medias/frutas.jpg" alt="Produto 2">
-                        <h3>Nome do produto</h3>
-                        <p>Breve descrição do produto</p>
-                        <div class="avaliacao">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrela_vazia.png" alt="Estrela vazia">
-                            <span>(4.1 / 5)</span>
-                        </div>
-                    </div>
-
-                    <div class="produto <?php echo $themeClass; ?>">
-                        <img src="../medias/frutas.jpg" alt="Produto 2">
-                        <h3>Nome do produto</h3>
-                        <p>Breve descrição do produto</p>
-                        <div class="avaliacao">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrela_vazia.png" alt="Estrela vazia">
-                            <span>(4.1 / 5)</span>
-                        </div>
-                    </div>
-
-                    <div class="produto <?php echo $themeClass; ?>">
-                        <img src="../medias/frutas.jpg" alt="Produto 2">
-                        <h3>Nome do produto</h3>
-                        <p>Breve descrição do produto</p>
-                        <div class="avaliacao">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrela_vazia.png" alt="Estrela vazia">
-                            <span>(4.1 / 5)</span>
-                        </div>
-                    </div>
-              
-                    <div class="produto <?php echo $themeClass; ?>">
-                        <img src="../medias/frutas.jpg" alt="Produto 2">
-                        <h3>Nome do produto</h3>
-                        <p>Breve descrição do produto</p>
-                        <div class="avaliacao">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrela_vazia.png" alt="Estrela vazia">
-                            <span>(4.1 / 5)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php
+                    $prod_count++;
+                }
+                if ($prod_count > 0) {
+                    echo '</div>'; // Fecha div produtos
+                    echo '</div>'; // Fecha div categoria
+                }
+            ?>
         </div>
     </div>
-
 </body>
+
 
 <?php include '../universal/footer.php'; ?>
 
