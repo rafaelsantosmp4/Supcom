@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Upload</title>
+    <title>Adicionar produto</title>
     <link rel="shortcut icon" href="../medias/logo/Supcom-white.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/basics.css">
     <link rel="stylesheet" href="../css/style.css">
@@ -164,7 +164,7 @@
                         <input type="text" name="nome" id="nome" required/><br>
 
                         <label for="desc">Descrição</label><br>
-                        <input type="text" name="desc" id="desc" required/><br>
+                        <input type="text" name="desc" id="desc" maxlength="500" placeholder="max. 500 caracteres" required/><br>
 
                         <label for="qtd">Quantidade disponível</label><br>
                         <input type="number" name="qtd" id="qtd" required/><br>

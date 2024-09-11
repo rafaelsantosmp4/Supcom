@@ -189,7 +189,6 @@
   padding: 10px;
   border-radius: 8px;
   text-align: center;
-  width: 20%;
   box-shadow: 0 1px 10px black;
   cursor: pointer;
   transition: 300ms;
@@ -199,7 +198,7 @@
 }
 .produto:hover {
   transition: 300ms;
-  transform: scale(1.1);
+  transform: scale(1.03);
 }
 .produto img {
   max-width: 100%;
@@ -709,4 +708,18 @@
   color: #333; 
   margin-bottom: 20px;
   background-color: light-dark(rgb(232, 240, 254), rgba(70, 90, 126, 0.4));
+}
+
+.produto-link {
+  max-width: 20%;
+  color: inherit;
+  text-decoration: none;
+  font-size: inherit;
+  font-weight: inherit; 
+}
+.descricao-produto {
+  max-width: 100%; /* Ajuste conforme necessário */
+  white-space: nowrap; /* Evita a quebra de linha */
+  overflow: hidden; /* Esconde o texto que ultrapassa o limite */
+  text-overflow: ellipsis; /* Adiciona reticências no final do texto */
 }

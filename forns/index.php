@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Bem vindo(a)</title>
+    <title>Produtos</title>
     <link rel="shortcut icon" href="../medias/logo/Supcom-white.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/basics.css">
     <link rel="stylesheet" href="../css/style.css">
@@ -159,32 +159,37 @@
                         echo '<div class="produtos">';
                         $first_category = false;
                     }
+
                     $nome_produto = $produto['nome_produto'];
                     $descricao_produto = $produto['descricao_produto'];
                     $preco_produto = $produto['preco_produto'];
                     $foto_produto = base64_encode($produto['foto_prod']);
+                    $id_produto = $produto['id_produto'];
 
                     $id_forn = $produto['id_forn'];
                     $tempquery = "SELECT nome FROM usuarios WHERE id_usuario = '$id_forn'";
                     $tempresult = mysqli_query($db->con, $tempquery);
                     $tempusuario = mysqli_fetch_assoc($tempresult);
                     $nome_forn = $tempusuario['nome'];
+                    $nome_produto_encoded = urlencode($nome_produto);
             ?>
-                    <div class="produto <?php echo $themeClass; ?>">
-                        <img src="data:image/jpeg;base64,<?php echo $foto_produto; ?>" alt="<?php echo $nome_produto; ?>">
-                        <h3><?php echo $nome_produto; ?></h3>
-                        <p><?php echo $descricao_produto; ?></p>
-                        <div class="avaliacao">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                            <img src="../medias/estrela_vazia.png" alt="Estrela vazia">
-                            <span>(4.1 / 5)</span>
+                    <a href="../product/index.php?id=<?php echo $id_produto; ?>&<?php echo $nome_produto_encoded; ?>" class="produto-link <?php echo $themeClass; ?>">
+                        <div class="produto <?php echo $themeClass; ?>">
+                            <img src="data:image/jpeg;base64,<?php echo $foto_produto; ?>" alt="<?php echo $nome_produto; ?>">
+                            <h3><?php echo $nome_produto; ?></h3>
+                            <p class="descricao-produto"><?php echo $descricao_produto; ?></p>
+                            <div class="avaliacao">
+                                <img src="../medias/estrelacheia.png" alt="Estrela cheia">
+                                <img src="../medias/estrelacheia.png" alt="Estrela cheia">
+                                <img src="../medias/estrelacheia.png" alt="Estrela cheia">
+                                <img src="../medias/estrelacheia.png" alt="Estrela cheia">
+                                <img src="../medias/estrela_vazia.png" alt="Estrela vazia">
+                                <span>(4.1 / 5)</span>
+                            </div>
+                            <h4 style="margin-top: 5px; margin-bottom: 0px;"><?php echo $nome_forn; ?></h4>
+                            <h3>R$ <?php echo $preco_produto; ?></h3>
                         </div>
-                        <h4 style="margin-top: 5px; margin-bottom: 0px;"><?php echo $nome_forn; ?></h4>
-                        <h3>R$ <?php echo $preco_produto; ?></h3>
-                    </div>
+                    </a>
             <?php
                     $prod_count++;
                 }

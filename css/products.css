@@ -1,0 +1,18 @@
+#totaldatas {
+    display: flex;
+}
+
+.imagensprod {
+    width: 50%;
+}
+.rightdatas {
+    width: 50%;
+}
+.descricaoprod {
+    width: 80%;
+    box-sizing: border-box;
+    word-break: normal;
+    overflow-wrap: break-word;
+    padding: 0 10px;
+    text-align: justify;
+}
