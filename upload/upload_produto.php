@@ -30,7 +30,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                           VALUES ('$id_forn', '$nome_produto', '$descricao_produto', '$qtd_produto', '$preco_produto', '$fotoBlob')";
 
                 if (mysqli_query($db->con, $query)) {
-                    echo "<script>alert('Produto adicionado com sucesso!'); window.location.href = 'index.php';</script>";
+                    $id_produto = mysqli_insert_id($db->con);
+                    $nome_produto_encoded = urlencode($nome_produto);
+
+                    echo "<script>alert('Produto adicionado com sucesso!'); window.location.href = '../product/index.php?id=$id_produto&nome=$nome_produto_encoded';</script>";
                 } else {
                     $errorMessage = 'Erro ao salvar produto: ' . mysqli_error($db->con);
                 }

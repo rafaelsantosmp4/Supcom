@@ -2,12 +2,11 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Produto</title>
+    <title>Perfil</title>
     <link rel="shortcut icon" href="../medias/logo/Supcom-white.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/basics.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/mobile.css">
-    <link rel="stylesheet" href="../css/products.css">
 </head>
 
 <?php
@@ -87,17 +86,29 @@
             include('../conexao/conexao.php');
             $db = new BancodeDados();
             $db->conecta();
+
+
             $iduser = $_SESSION['id'];
             $query = "SELECT * FROM usuarios WHERE id_usuario = '$iduser'";
             $result = mysqli_query($db->con, $query);
             $usuario = mysqli_fetch_assoc($result);
-            $nome = $usuario['nome'];
+            $nomeuser = $_SESSION['nome'];
 
             $idenviado = $_GET['id'];
-            $queryprods = "SELECT * FROM produto WHERE id_produto = $idenviado";
+            $queryprods = "SELECT * FROM usuarios WHERE id_usuario = $idenviado";
             $resultprods = mysqli_query($db->con, $queryprods);
+            $usuarioprods = mysqli_fetch_assoc($resultprods);
+            $nome = $usuarioprods['nome'];
+            $email = $usuarioprods['email'];
+            $cnpj = $usuarioprods['cnpj'];
+            $telefone = $usuarioprods['telefone'];
+            $data = $usuarioprods['data_cadastro'];
+            $datacerta = new DateTime($data);
+            $formatted_date = $datacerta->format('d/m/Y');
+            $bio = $usuarioprods['bio'];
+            $foto_perfil = $usuarioprods['perfil_foto'];
 
-            
+            $resultprods = mysqli_query($db->con, $queryprods);
             if ($usuario["tipo_usuario"] == "fornecedor") {
                 echo '<a href="../upload/" id="linkupload" class="'. $themeClass .'"><button class="uploadbutton '. $themeClass .' id="uploadbutton" onclick="../upload/"><i class="fa fa-upload"></i></a>';
             }
@@ -105,7 +116,7 @@
         <button class="config-toggle <?php echo $themeClass; ?>" id="config_toggle" onclick="config_toggle()"><i class="fa fa-gear"></i></button>
         <div id='account-button' onclick='toggleAccountMenu()' style="position: relative;">
             <?php
-                echo "Bem-vindo, $nome";
+                echo "Bem-vindo, $nomeuser";
             ?>
             <i class='fa fa-caret-down'></i>
         </div>
@@ -124,6 +135,7 @@
 
 <div class="overlay2" id="overlay2"></div>
 <div class="overlay3" id="overlay3"></div>
+<div class="overlaybio" id="overlaybio"></div>
 
 <body class="<?php echo $themeClass; ?>">
     <div id="vlibras">
@@ -138,69 +150,113 @@
             new window.VLibras.Widget('https://vlibras.gov.br/app');
         </script>
     </div>
+    <div id="profile">
+        <?php
+            $banner = $usuarioprods['banner_perfil'];
+            if ($banner) {
+                $banner_base64 = base64_encode($banner);
+                $banner_mime = 'image/png';
+                $banner_url = "data:$banner_mime;base64,$banner_base64";
+            } else {
+                $banner_url = '';
+            }
 
-    <?php
-        $produto = mysqli_fetch_assoc($resultprods);
-        $nome_produto = $produto['nome_produto'];
-        $descricao_produto = $produto['descricao_produto'];
-        $preco_produto = $produto['preco_produto'];
-        $foto_produto = base64_encode($produto['foto_prod']);
-        $id_produto = $produto['id_produto'];
-        $qtd_produto = $produto['qtd_produto'];
+            $foto = $usuarioprods['perfil_foto'];
+            if ($foto) {
+                $foto_base64 = base64_encode($foto);
+                $foto_mime = 'image/png';
+                $foto_url = "data:$foto_mime;base64,$foto_base64";
+            } else {
+                $foto_url = '../medias/iconpfp.jpg';
+            }
+        ?>
+        <div class='banner-sobreposto' style='background-image: url("<?php echo $banner_url; ?>");'></div>
+        <div id="pfp">
+            <div id="profile-photo-container" style="position: relative; display: inline-block;">
+                <img id="perfilfoto" src="<?php echo $foto_url; ?>" alt="Foto de Perfil" style="width: 150px; height: 150px; border-radius: 50%;">
+            </div>
 
-        $id_forn = $produto['id_forn'];
-        $tempquery = "SELECT nome FROM usuarios WHERE id_usuario = '$id_forn'";
-        $tempresult = mysqli_query($db->con, $tempquery);
-        $tempusuario = mysqli_fetch_assoc($tempresult);
-        $nome_forn = $tempusuario['nome'];
-        $nome_forn_encoded = urlencode($nome_forn);
-    ?>
+            <div id="nomebio">
+                <h1><?php echo "$nome"; ?></h1>
+                <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+                <p id='attbio'><?php echo $bio; ?> </p>
+            </div>
+        </div>
+    </div>
 
     <div id="container">
         <div id="conteudo">
-            <div id="totaldatas">
-                <div class="imagensprod">
-                    <img src="data:image/jpeg;base64,<?php echo $foto_produto; ?>" alt="<?php echo $nome_produto; ?>" width="100%">
-                </div>
-                <?php
-                    if($id_forn != $iduser) {
-                        $editarprod = '';
-                    } else {
-                        $editarprod = '<a href="../upload/update.php?id='. $id_produto.'" id="nomeempresalink" style="margin-top: 10px; text-decoration: underline; cursor: pointer; font-size: 20pt;">Editar produto <i class="fa fa-pencil" style="font-family: FontAwesome;"></i></a>';
-                    }
-                ?>
-                <div class="rightdatas">
-                    <br><center><?php echo $editarprod ?>
-                    <h1 style="margin-bottom: 10px; margin-top: 5px;"><?php echo $nome_produto; ?></h1>
-                    <div class="avaliacao">
-                        <img style="width: 25px; height: 25px;" src="../medias/estrelacheia.png" alt="Estrela cheia">
-                        <img style="width: 25px; height: 25px;" src="../medias/estrelacheia.png" alt="Estrela cheia">
-                        <img style="width: 25px; height: 25px;" src="../medias/estrelacheia.png" alt="Estrela cheia">
-                        <img style="width: 25px; height: 25px;" src="../medias/estrelacheia.png" alt="Estrela cheia">
-                        <img style="width: 25px; height: 25px;" src="../medias/estrela_vazia.png" alt="Estrela vazia">
-                        <span>(4.1 / 5)</span>
-                    </div><br>
-                    <h2 style="margin-top: 0px;">R$ <?php echo $preco_produto; ?></h2>
-                    <h3 style="margin-bottom: 13px;">Quantidade: <?php echo $qtd_produto; ?></h3>
-                    <a href="#"><button style="width: 50%;" class="submit-button">Entrar em contato</button></a>
-                    <h3>Descrição:</h3>
-                    <p class='descricaoprod'><?php echo $descricao_produto; ?></p>
-                    <h3 style="margin-bottom: 3px;">Empresa:</h3>
-                    <?php
-                        if($id_forn != $iduser) {
-                            $link = '../profile/company.php?id='.$id_forn.'&nome='.$nome_forn_encoded;
-                        } else {
-                            $link = '../profile/index.php';
+            <h1>Informações da empresa:</h1>
+            <ul align='center' style="list-style: none;">
+                <li><b>Email: </b><?php echo $email ?></li><br>
+                <li><b>CNPJ: </b><?php echo $cnpj ?></li><br>
+                <li><b>Telefone: </b><?php echo $telefone ?></li><br>
+                <li><b>Data de cadastro: </b><?php echo $formatted_date ?></li>
+            </ul>
+
+            <h1>Produtos da empresa:</h1>
+            <?php
+                $queryprods = "SELECT * FROM produto WHERE id_forn = $idenviado";
+                $resultprods = mysqli_query($db->con, $queryprods);
+                $prod_count = 0;
+                $prod_per_category = 4;
+                $first_category = true;
+
+                while ($produto = mysqli_fetch_assoc($resultprods)) {
+                    // Inicia uma nova categoria se necessário
+                    if ($prod_count % $prod_per_category == 0) {
+                        if (!$first_category) {
+                            echo '</div>';
+                            echo '</div>';
                         }
-                    ?>
-                    <a href="<?php echo $link?>" id='nomeempresalink' title="Acessar perfil"><p id='nomeempresa'><b><?php echo $nome_forn; ?></b></p></a>
-                </div></center>
-            </div>
+                        echo '<div class="categoria">';
+                        echo '<div class="produtos">';
+                        $first_category = false;
+                    }
+
+                    $nome_produto = $produto['nome_produto'];
+                    $descricao_produto = $produto['descricao_produto'];
+                    $preco_produto = $produto['preco_produto'];
+                    $foto_produto = base64_encode($produto['foto_prod']);
+                    $id_produto = $produto['id_produto'];
+
+                    $id_forn = $produto['id_forn'];
+                    $tempquery = "SELECT nome FROM usuarios WHERE id_usuario = '$id_forn'";
+                    $tempresult = mysqli_query($db->con, $tempquery);
+                    $tempusuario = mysqli_fetch_assoc($tempresult);
+                    $nome_forn = $tempusuario['nome'];
+                    $nome_produto_encoded = urlencode($nome_produto);
+            ?>
+                    <a href="../product/index.php?id=<?php echo $id_produto; ?>&<?php echo $nome_produto_encoded; ?>" class="produto-link <?php echo $themeClass; ?>">
+                        <div class="produto <?php echo $themeClass; ?>">
+                            <img src="data:image/jpeg;base64,<?php echo $foto_produto; ?>" alt="<?php echo $nome_produto; ?>">
+                            <h3><?php echo $nome_produto; ?></h3>
+                            <p class="descricao-produto"><?php echo $descricao_produto; ?></p>
+                            <div class="avaliacao">
+                                <img src="../medias/estrelacheia.png" alt="Estrela cheia">
+                                <img src="../medias/estrelacheia.png" alt="Estrela cheia">
+                                <img src="../medias/estrelacheia.png" alt="Estrela cheia">
+                                <img src="../medias/estrelacheia.png" alt="Estrela cheia">
+                                <img src="../medias/estrela_vazia.png" alt="Estrela vazia">
+                                <span>(4.1 / 5)</span>
+                            </div>
+                            <h4 style="margin-top: 5px; margin-bottom: 0px;"><?php echo $nome_forn; ?></h4>
+                            <h3>R$ <?php echo $preco_produto; ?></h3>
+                        </div>
+                    </a>
+            <?php
+                    $prod_count++;
+                }
+                if ($prod_count > 0) {
+                    echo '</div>'; // Fecha div produtos
+                    echo '</div>'; // Fecha div categoria
+                }
+            ?>
         </div>
     </div>
 </body>
 
-<?php include '../universal/footer.php'; ?>
+<?php include '../universal/footer.php';?>
 
 <script src="../js/script.js"></script>
 </html>

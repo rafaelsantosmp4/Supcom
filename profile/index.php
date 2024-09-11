@@ -100,7 +100,6 @@
         <div id='account-button' onclick='toggleAccountMenu()' style="position: relative;">
             <?php
                 echo "Bem-vindo, $nome";
-                $db->fechar();
             ?>
             <i class='fa fa-caret-down'></i>
         </div>
@@ -432,7 +431,7 @@
 
     <div id="container">
         <div id="conteudo">
-            <h1>Informações da empresa:</h1>
+            <h1>Suas informações:</h1>
             <ul align='center' style="list-style: none;">
                 <li><b>Email: </b><?php echo $email ?></li><br>
                 <li><b>CNPJ: </b><?php echo $cnpj ?></li><br>
@@ -441,6 +440,66 @@
                 <li><b>Data de cadastro: </b><?php echo $formatted_date ?></li><br>
                 <li><b>Hora de cadastro: </b><?php echo $formatted_time ?></li>
             </ul>
+
+
+            <h1>Seus produtos:</h1>
+            <?php
+                $querymyprods = "SELECT * FROM produto WHERE id_forn = $iduser";
+                $resultmyprods = mysqli_query($db->con, $querymyprods);
+                $prod_count = 0;
+                $prod_per_category = 4;
+                $first_category = true;
+
+                while ($produto = mysqli_fetch_assoc($resultmyprods)) {
+                    // Inicia uma nova categoria se necessário
+                    if ($prod_count % $prod_per_category == 0) {
+                        if (!$first_category) {
+                            echo '</div>';
+                            echo '</div>';
+                        }
+                        echo '<div class="categoria">';
+                        echo '<div class="produtos">';
+                        $first_category = false;
+                    }
+
+                    $nome_produto = $produto['nome_produto'];
+                    $descricao_produto = $produto['descricao_produto'];
+                    $preco_produto = $produto['preco_produto'];
+                    $foto_produto = base64_encode($produto['foto_prod']);
+                    $id_produto = $produto['id_produto'];
+
+                    $id_forn = $produto['id_forn'];
+                    $tempquery = "SELECT nome FROM usuarios WHERE id_usuario = '$id_forn'";
+                    $tempresult = mysqli_query($db->con, $tempquery);
+                    $tempusuario = mysqli_fetch_assoc($tempresult);
+                    $nome_forn = $tempusuario['nome'];
+                    $nome_produto_encoded = urlencode($nome_produto);
+            ?>
+                    <a href="../product/index.php?id=<?php echo $id_produto; ?>&<?php echo $nome_produto_encoded; ?>" class="produto-link <?php echo $themeClass; ?>">
+                        <div class="produto <?php echo $themeClass; ?>">
+                            <img src="data:image/jpeg;base64,<?php echo $foto_produto; ?>" alt="<?php echo $nome_produto; ?>">
+                            <h3><?php echo $nome_produto; ?></h3>
+                            <p class="descricao-produto"><?php echo $descricao_produto; ?></p>
+                            <div class="avaliacao">
+                                <img src="../medias/estrelacheia.png" alt="Estrela cheia">
+                                <img src="../medias/estrelacheia.png" alt="Estrela cheia">
+                                <img src="../medias/estrelacheia.png" alt="Estrela cheia">
+                                <img src="../medias/estrelacheia.png" alt="Estrela cheia">
+                                <img src="../medias/estrela_vazia.png" alt="Estrela vazia">
+                                <span>(4.1 / 5)</span>
+                            </div>
+                            <h4 style="margin-top: 5px; margin-bottom: 0px;"><?php echo $nome_forn; ?></h4>
+                            <h3>R$ <?php echo $preco_produto; ?></h3>
+                        </div>
+                    </a>
+            <?php
+                    $prod_count++;
+                }
+                if ($prod_count > 0) {
+                    echo '</div>'; // Fecha div produtos
+                    echo '</div>'; // Fecha div categoria
+                }
+            ?>
         </div>
     </div>
 </body>

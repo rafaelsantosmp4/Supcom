@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Adicionar produto</title>
+    <title>Atualizar produto</title>
     <link rel="shortcut icon" href="../medias/logo/Supcom-white.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/basics.css">
     <link rel="stylesheet" href="../css/style.css">
@@ -65,7 +65,6 @@
         <div id='account-button' onclick='toggleAccountMenu()' style="position: relative;">
             <?php
                 echo "Bem-vindo, $nome";
-                $db->fechar();
             ?>
             <i class='fa fa-caret-down'></i>
         </div>
@@ -140,23 +139,60 @@
 
     <div class="overlay"></div>
 
+    <?php 
+        $idenviado = $_GET['id'];
+        $queryprods = "SELECT * FROM produto WHERE id_produto = $idenviado";
+        $resultprods = mysqli_query($db->con, $queryprods);
+        $produto = mysqli_fetch_assoc($resultprods);
+        $nome_produto = $produto['nome_produto'];
+        $descricao_produto = $produto['descricao_produto'];
+        $preco_produto = $produto['preco_produto'];
+        $foto_produto = base64_encode($produto['foto_prod']);
+        $id_produto = $produto['id_produto'];
+        $qtd_produto = $produto['qtd_produto'];
+    ?>
+
     <div id="container">
         <div id="conteudo">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
             <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
-            <h1 style="font-size: 20pt; margin-bottom: 10px;">ADICIONAR UM PRODUTO:</h1>
-            <form id="fotoperfilForm" class="<?php echo $themeClass; ?>" action="upload_produto.php" method="POST" enctype="multipart/form-data">
+            <h1 style="font-size: 20pt; margin-bottom: 10px;">ALTERAR O PRODUTO "<?php echo $nome_produto; ?>"":</h1>
+            <form id="fotoperfilForm" class="<?php echo $themeClass; ?>" action="update_produto.php" method="POST" enctype="multipart/form-data">
                 <center><div style="display: flex; align-items: center; justify-content: center;">
                     <label for="picture__input" class="input-produto-preview" id="labelPreview"></label>
-                    <input type="file" name="picture__input" class="input-produto-preview__src" id="picture__input" required style="display: none;">
+                    <input type="file" name="picture__input" class="input-produto-preview__src" id="picture__input" style="display: none;">
                     <div id="imageContainer" style="display: none; margin-left: 10px;">
                         <img id="image" style="max-width: 100%; display: block;">
                     </div>
                     <input type="hidden" name="croppedImage" id="croppedImage"></div>
+                    <input type="hidden" name="id_produto_hidden" value="<?php echo $id_produto; ?>">
                     <button type="button" class="submit-button bio" id="cropButton" style="display: none; margin-top: 10px;">Cortar</button>
                     <button type="button" id="showPreviewButton" style="display: none;">Mostrar Imagem Cortada</button>
 
+                    <?php
+                        if ($resultprods && mysqli_num_rows($resultprods) > 0) {
+                            $foto_produto = $produto['foto_prod'];
+                            if ($foto_produto) {
+                                $base64Image = base64_encode($foto_produto);
+                                echo "<script>
+                                        document.addEventListener('DOMContentLoaded', function() {
+                                            const fileProdutoPreview = document.querySelector('.input-produto-preview');
+                                            const inputnome = document.querySelector('#nome');
+                                            const inputdesc = document.querySelector('#desc');
+                                            const inputqtd = document.querySelector('#qtd');
+                                            const inputpreco = document.querySelector('#preco');
+                                            fileProdutoPreview.style.backgroundImage = 'url(data:image/jpeg;base64,$base64Image)';
+                                            fileProdutoPreview.classList.add('has-image');
+                                            inputnome.value = '$nome_produto';
+                                            inputdesc.value = '$descricao_produto';
+                                            inputqtd.value = '$qtd_produto';
+                                            inputpreco.value = '$preco_produto';
+                                        });
+                                    </script>";
+                            }
+                        }
+                    ?>
 
 
                     <div id="dados-produtos"><br>
@@ -202,6 +238,12 @@
                     const croppedImageInput = document.getElementById('croppedImage');
                     const form = document.getElementById('fotoperfilForm');
                     const submitButton = document.getElementById('submitButton');
+
+                    // Função para habilitar o botão de envio
+                    function enableSubmitButton() {
+                        submitButton.disabled = false;
+                    }
+
                     inputImage.addEventListener('change', function(event) {
                         const files = event.target.files;
                         if (files && files.length > 0) {
@@ -220,10 +262,10 @@
                                     autoCropArea: 1,
                                 });
                             };
-                            submitButton.style.display = 'none';
                             reader.readAsDataURL(files[0]);
                         }
                     });
+
                     cropButton.addEventListener('click', function() {
                         if (cropper) {
                             const canvas = cropper.getCroppedCanvas({
@@ -240,27 +282,22 @@
                                     imageContainer.style.display = 'none';
                                     cropButton.style.display = 'none';
                                     showPreviewButton.style.display = 'none';
-                                    submitButton.disabled = false;
-                                    submitButton.style.display = 'block';
+                                    enableSubmitButton(); // Habilita o botão de envio
                                 };
                                 reader.readAsDataURL(blob);
                             }, 'image/jpeg');
                         }
                     });
+
                     showPreviewButton.addEventListener('click', function() {
-                        form.submit();
+                        form.submit(); // Submete o formulário ao clicar no botão
                     });
+
+                    // Habilita o botão de envio quando a página carrega
+                    enableSubmitButton();
                 });
-                const fileImageProduto = document.querySelector('.input-produto-preview__src');
-                const filePreviewProduto = document.querySelector('.input-produto-preview');
-                fileImageProduto.onchange = function () {
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        filePreviewProduto.style.backgroundImage  = "url("+e.target.result+")";
-                        filePreviewProduto.classList.add("has-image");
-                    };
-                    reader.readAsDataURL(this.files[0]);
-                };
+
+
             </script> 
         </div>
     </div>
