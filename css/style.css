@@ -718,8 +718,8 @@
   font-weight: inherit; 
 }
 .descricao-produto {
-  max-width: 100%; /* Ajuste conforme necessário */
-  white-space: nowrap; /* Evita a quebra de linha */
-  overflow: hidden; /* Esconde o texto que ultrapassa o limite */
-  text-overflow: ellipsis; /* Adiciona reticências no final do texto */
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

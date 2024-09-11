@@ -174,6 +174,8 @@
                     <a href="#"><button style="width: 50%;" class="submit-button">Entrar em contato</button></a>
                     <h3>Descrição:</h3>
                     <p class='descricaoprod'><?php echo $descricao_produto; ?></p>
+                    <h3  style="margin-bottom: 3px;">Empresa:</h3>
+                    <a href="#" id='nomeempresalink' title="Acessar perfil"><p id='nomeempresa'><b><?php echo $nome_forn; ?></b></p></a>
                 </div></center>
             </div>
         </div>

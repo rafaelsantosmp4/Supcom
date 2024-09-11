@@ -14,5 +14,12 @@
     word-break: normal;
     overflow-wrap: break-word;
     padding: 0 10px;
-    text-align: justify;
+}
+#nomeempresalink {
+    color: inherit;
+    font-weight: inherit; 
+}
+#nomeempresa {
+    font-size: 25pt; 
+    margin-top: 0px;
 }
