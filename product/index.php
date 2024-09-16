@@ -182,7 +182,11 @@
                     </div><br>
                     <h2 style="margin-top: 0px;">R$ <?php echo $preco_produto; ?></h2>
                     <h3 style="margin-bottom: 13px;">Quantidade: <?php echo $qtd_produto; ?></h3>
-                    <a href="#"><button style="width: 50%;" class="submit-button">Entrar em contato</button></a>
+                    <?php
+                        
+                        echo'<a href="../chat/index.php?myid='.$iduser.'&idforn='.$id_forn.'"><button style="width: 50%;" class="submit-button" id="entraremcontato">Entrar em contato</button></a>';
+                    ?>
+                    
                     <h3>Descrição:</h3>
                     <p class='descricaoprod'><?php echo $descricao_produto; ?></p>
                     <h3 style="margin-bottom: 3px;">Empresa:</h3>
@@ -195,6 +199,11 @@
                     ?>
                     <a href="<?php echo $link?>" id='nomeempresalink' title="Acessar perfil"><p id='nomeempresa'><b><?php echo $nome_forn; ?></b></p></a>
                 </div></center>
+                <?php
+                    if($id_forn == $iduser) {
+                        echo "<script>document.getElementById('entraremcontato').style.display = 'none'</script>";
+                    }
+                ?>
             </div>
         </div>
     </div>

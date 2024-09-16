@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="../css/basics.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/mobile.css">
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4@4/bootstrap-4.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
@@ -210,7 +212,12 @@
                     </div>
                 </center>
                 <div style="display: flex; justify-content: center; flex-direction: row-reverse;"><input type="submit" class="submit-button bio" value="Enviar" style="margin-bottom: 30px;" id="submitButton" disabled>
-            </form></div>
+            </form>
+                <form id="excluirprod" action="excluir_prod.php" method="POST">
+                    <input type="hidden" name="id_produto_hidden" value="<?php echo $id_produto; ?>">
+                    <button type="button" id="excluirprod" class="submit-button bio excluirbut" title="Excluir produto" onclick="exibirConfirmacao()">Excluir</button>&nbsp&nbsp
+                </form>
+                </div>
             <?php
                 if ($result && mysqli_num_rows($result) > 0) {
                     $fotoPerfil = $usuario['perfil_foto'];
@@ -226,6 +233,31 @@
                     }
                 }
             ?>
+            <script>
+                const form_excluir = document.getElementById('excluirprod');
+                function exibirConfirmacao() {
+                    Swal.fire({
+                        title: 'Tem certeza?',
+                        text: "Você não poderá desfazer essa ação!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Sim, deletar!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire(
+                                'Deletado!',
+                                'Seu produto foi deletado.',
+                                'success'
+                            ).then(() => {
+                                form_excluir.submit();
+                            });
+                        }
+                    });
+                }
+            </script>
+
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     let cropper;

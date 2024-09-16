@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="../css/basics.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/mobile.css">
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4@4/bootstrap-4.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <?php
     session_start();
@@ -42,7 +44,7 @@
     <div class="imgright logimg"></div>
 
     <div id="left" class="login <?php echo $themeClass; ?>">
-        <form action="login.php" method="post">
+        <form action="" method="post">
             <center><img id="default-logo" src="<?php echo $logoSrc; ?>"></center>
             <h1>Entre na sua conta</h1>
             <p>Não tem uma conta? <a href="../signup/index.php"><i>cadastrar</i></a></p>
@@ -64,3 +66,71 @@
     <script src="../js/script.js"></script>
 </body>
 </html>
+
+<?php
+include('../conexao/conexao.php');
+session_start();
+
+$db = new BancodeDados();
+$db->conecta();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = $_POST['email'];
+    $senha = $_POST['password'];
+
+    $email = mysqli_real_escape_string($db->con, $email);
+    $senha = mysqli_real_escape_string($db->con, $senha);
+
+    $query = "SELECT * FROM usuarios WHERE email = '$email'";
+    $result = mysqli_query($db->con, $query);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $usuario = mysqli_fetch_assoc($result);
+        if (password_verify($senha, $usuario['senha'])) {
+            $_SESSION['log'] = 'ativo';
+            $_SESSION['id'] = $usuario['id_usuario'];
+            $_SESSION['nome'] = $usuario['nome'];
+            $_SESSION['email'] = $usuario['email'];
+            $_SESSION['cnpj'] = $usuario['cnpj'];
+            $_SESSION['telefone'] = $usuario['telefone'];
+            $_SESSION['tipo'] = $usuario['tipo_usuario'];
+            $_SESSION['data'] = $usuario['data_cadastro'];
+            echo "<script>
+                    Swal.fire({
+                        title: 'Sucesso!',
+                        text: 'Bem vindo, ". $usuario['nome']."',
+                        icon: 'success',
+                        timer: 1500,
+                        showConfirmButton: false
+                    }).then(function() {
+                        window.location.href = '../home/';
+                    });
+                  </script>";
+        } else {
+            echo "<script>
+                    Swal.fire({
+                        title: 'Erro!',
+                        text: 'Senha incorreta.',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    }).then(function() {
+                        window.location.href = 'index.php';
+                    });
+                  </script>";
+        }
+    } else {
+        echo "<script>
+                Swal.fire({
+                    title: 'Erro!',
+                    text: 'Usuário não encontrado.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                }).then(function() {
+                    window.location.href = 'index.php';
+                });
+              </script>";
+    }
+}
+
+$db->fechar();
+?>

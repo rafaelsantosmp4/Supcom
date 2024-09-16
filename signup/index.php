@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="../css/basics.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/mobile.css">
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4@4/bootstrap-4.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <?php
     session_start();
@@ -60,7 +62,7 @@
     </script>
 
     <div id="left" class="signup <?php echo $themeClass; ?>">
-        <form action="signup.php" method="post">
+        <form action="" method="post">
             <center><img id="default-logo" src="<?php echo $logoSrc; ?>" alt="Logo"></center>
             <h1>Cadastre sua empresa na SUPCOM!</h1>
             <p>Já tem uma conta? <a href="../login/index.php"><i>entrar</i></a></p>
@@ -99,3 +101,56 @@
     <script src="../js/script.js"></script>
 </body>
 </html>
+
+<?php
+include('../conexao/conexao.php');
+
+$db = new BancodeDados();
+$db->conecta();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $cnpj = $_POST['cnpj'];
+    $telefone = $_POST['tel'];
+    $senha = $_POST['password'];
+    $tipo_conta = $_POST['tipoconta'] == 'forn' ? 'fornecedor' : 'lojista';
+
+    $nome = mysqli_real_escape_string($db->con, $nome);
+    $email = mysqli_real_escape_string($db->con, $email);
+    $cnpj = mysqli_real_escape_string($db->con, $cnpj);
+    $telefone = mysqli_real_escape_string($db->con, $telefone);
+    $senha = mysqli_real_escape_string($db->con, $senha);
+
+    $senha_hashed = password_hash($senha, PASSWORD_DEFAULT);
+
+    $query = "INSERT INTO Usuarios (nome, bio, email, senha, cnpj, telefone, tipo_usuario) VALUES ('$nome', NULL, '$email', '$senha_hashed', '$cnpj', '$telefone', '$tipo_conta')";
+
+    if (mysqli_query($db->con, $query)) {
+        echo "<script>
+                Swal.fire({
+                    title: 'Sucesso!',
+                    text: 'Cadastro realizado com sucesso. Você pode fazer login agora.',
+                    icon: 'success',
+                    timer: 2000,
+                    showConfirmButton: false
+                }).then(function() {
+                    window.location.href = '../login/';
+                });
+              </script>";
+    } else {
+        echo "<script>
+                Swal.fire({
+                    title: 'Erro!',
+                    text: 'Já existe uma conta cadastrada com esse email, CNPJ ou telefone!',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                }).then(function() {
+                    window.location.href = 'index.php';
+                });
+              </script>";
+    }
+}
+
+$db->fechar();
+?>

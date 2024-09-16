@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="../css/basics.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/mobile.css">
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4@4/bootstrap-4.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <?php
@@ -171,12 +173,36 @@
                 <div style="display: flex; justify-content: center; flex-direction: row-reverse;"><input type="submit" class="submit-button bio" value="Enviar" style="margin-left: 10px;" id="submitButton" disabled>
             </form>
             <form id="excluirFotoForm" action="excluir_foto.php" method="POST">
-                <input type="submit" class="submit-button bio excluirbut" value="Excluir">
+                <button type="button" id="excluirprod" class="submit-button bio excluirbut" title="Excluir foto de perfil" onclick="exibirConfirmacao()">Excluir</button>&nbsp
                 <a href="exibir_foto.php" title="Baixar imagem" download="perfil_foto.jpg">
                     <input type="button" class="submit-button bio" value="Baixar">
                 </a>
             </form></div>
         </ul>
+        <script>
+                const form_foto = document.getElementById('excluirFotoForm');
+                function exibirConfirmacao() {
+                    Swal.fire({
+                        title: 'Tem certeza?',
+                        text: "Você não poderá desfazer essa ação!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Sim, deletar!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire(
+                                'Deletado!',
+                                'Sua foto foi deletada.',
+                                'success'
+                            ).then(() => {
+                                form_foto.submit();
+                            });
+                        }
+                    });
+                }
+            </script>
         <?php
             if ($result && mysqli_num_rows($result) > 0) {
                 $fotoPerfil = $usuario['perfil_foto'];
@@ -288,12 +314,36 @@
             </form>
 
             <form id="excluirBannerForm" action="excluir_banner.php" method="POST">
-                <input type="submit" class="submit-button bio excluirbut" value="Excluir">
+                <button type="button" id="excluirprod" class="submit-button bio excluirbut" title="Excluir banner do perfil" onclick="exibirConfirmacaoBanner()">Excluir</button>&nbsp
                 <a href="exibir_banner.php" title="Baixar imagem" download="perfil_banner.jpg">
                     <input type="button" class="submit-button bio" value="Baixar">
                 </a>
             </form></div>
         </ul>
+        <script>
+                const form_banner = document.getElementById('excluirBannerForm');
+                function exibirConfirmacaoBanner() {
+                    Swal.fire({
+                        title: 'Tem certeza?',
+                        text: "Você não poderá desfazer essa ação!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Sim, deletar!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire(
+                                'Deletado!',
+                                'Sua foto foi deletada.',
+                                'success'
+                            ).then(() => {
+                                form_banner.submit();
+                            });
+                        }
+                    });
+                }
+            </script>
         <?php
             if ($result && mysqli_num_rows($result) > 0) {
                 $bannerPerfil = $usuario['banner_perfil'];
