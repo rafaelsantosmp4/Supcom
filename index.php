@@ -75,7 +75,7 @@
     });
 </script>
 
-
+<div class="loader <?php echo $themeClass; ?>"></div>
 <div class="overlay2" id="overlay2"></div>
 
 <body class="<?php echo $themeClass; ?>">
@@ -190,6 +190,14 @@
 
 
 <script type="text/javascript" >
+    window.addEventListener('load', function() {
+        document.querySelector('.loader').style.display = 'none';
+        document.querySelector('#container').style.opacity = 100;
+        document.querySelector('#bemvindo').style.opacity = 100;
+        document.querySelector('footer').style.opacity = 100;
+        document.body.style.overflow = 'auto';
+    });
+
     var count = 1;
     document.getElementById("radio1").checked = true;
     setInterval( function() {

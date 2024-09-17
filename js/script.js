@@ -5,7 +5,6 @@ window.addEventListener('load', function() {
   document.body.style.overflow = 'auto';
 });
 
-
 const imglogo = document.querySelector("#default-logo");
 const imgiconedark = document.querySelector("#indicador");
 const body = document.body;
