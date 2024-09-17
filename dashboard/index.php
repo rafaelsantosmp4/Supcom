@@ -72,7 +72,7 @@
             <li><a href="../home">Início</a></li>
             <li><a href="../forns/">Fornecedores</a></li>
             <li><a href="../about/">Sobre nós</a></li>
-            <li><a href="../contact/" class="active">Fale conosco</a></li>
+            <li><a href="../contact/">Fale conosco</a></li>
             <li class="config-menu">
                 <div style="font-size: 40pt; padding: 10px 30px;" id="config-button" onclick="toggleConfigMenu()">Configurações <i class="fa fa-caret-down"></i></div>
                 <ul id="config-options" class="config-options">

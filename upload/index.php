@@ -6,13 +6,36 @@
     <link rel="shortcut icon" href="../medias/logo/Supcom-white.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/basics.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/mobile.css">
+    <link rel="stylesheet" href="../css/mobile.css">    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4@4/bootstrap-4.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   
 </head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#preco').mask('000.000.000.000.000,00', {reverse: true});
+        var $preco = $('#preco');
+        $preco.mask('000.000.000.000.000,00', {reverse: true});
+        function formatPreco() {
+            var value = $preco.val().replace(/\D/g, '');
+            if (value) {
+                value = value.replace(/(\d)(\d{2})$/, "$1,$2");
+                value = value.replace(/(?=(\d{3})+(\D))\B/g, '.');
+                $preco.val('R$ ' + value);
+            } else {
+                $preco.val('R$ ');
+            }
+        }
+        $preco.on('input', formatPreco);
+        $preco.on('focus', function() {
+            var value = $preco.val().replace('R$ ', '');
+            value = value.replace(/\./g, '').replace(',', '.');
+            $preco.val(value);
+        });
+        $preco.on('blur', formatPreco);
     });
 </script>
 <?php
@@ -138,15 +161,17 @@
         </script>
     </div>
 
+    <div id="voltarbut" style="margin-top: 100px;">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <button class="back-toggle" onclick="history.go(-1);"><i class="fa fa-chevron-left"></i></button>
+    </div>
+
     <div class="overlay"></div>
 
     <div id="container">
         <div id="conteudo">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-            <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
             <h1 style="font-size: 20pt; margin-bottom: 10px;">ADICIONAR UM PRODUTO:</h1>
-            <form id="fotoperfilForm" class="<?php echo $themeClass; ?>" action="upload_produto.php" method="POST" enctype="multipart/form-data">
+            <form id="fotoperfilForm" class="<?php echo $themeClass; ?>" action="" method="POST" enctype="multipart/form-data">
                 <center><div style="display: flex; align-items: center; justify-content: center;">
                     <label for="picture__input" class="input-produto-preview" id="labelPreview"></label>
                     <input type="file" name="picture__input" class="input-produto-preview__src" id="picture__input" required style="display: none;">
@@ -156,8 +181,6 @@
                     <input type="hidden" name="croppedImage" id="croppedImage"></div>
                     <button type="button" class="submit-button bio" id="cropButton" style="display: none; margin-top: 10px;">Cortar</button>
                     <button type="button" id="showPreviewButton" style="display: none;">Mostrar Imagem Cortada</button>
-
-
 
                     <div id="dados-produtos"><br>
                         <label for="nome">Nome do produto</label><br>
@@ -227,8 +250,8 @@
                     cropButton.addEventListener('click', function() {
                         if (cropper) {
                             const canvas = cropper.getCroppedCanvas({
-                                width: 500,
-                                height: 500
+                                width: 800,
+                                height: 800
                             });
                             canvas.toBlob(function(blob) {
                                 const reader = new FileReader();
@@ -261,7 +284,51 @@
                     };
                     reader.readAsDataURL(this.files[0]);
                 };
-            </script> 
+
+                document.addEventListener('DOMContentLoaded', function() {
+                    const form = document.getElementById('fotoperfilForm');
+
+                    form.addEventListener('submit', function(event) {
+                        event.preventDefault();
+                        
+                        const formData = new FormData(form);
+                        
+                        fetch('upload_produto.php', {
+                            method: 'POST',
+                            body: formData,
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.status === 'success') {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Sucesso!',
+                                    text: data.message,
+                                    timer: 1300,
+                                    showConfirmButton: false
+                                }).then(() => {
+                                    window.location.href = data.redirectUrl;
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Erro!',
+                                    text: data.message,
+                                    confirmButtonText: 'Tentar novamente'
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Erro!',
+                                text: 'A imagem deve ser menor que 8MB.',
+                                confirmButtonText: 'Tentar novamente'
+                            });
+                        });
+                    });
+                });
+            </script>
         </div>
     </div>
 

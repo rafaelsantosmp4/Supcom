@@ -8,6 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $id_forn = $_SESSION['id'];
     $id_produto = $_POST['id_produto_hidden'];
+    $response = [];
 
     $nome_produto = mysqli_real_escape_string($db->con, $_POST['nome']);
     $descricao_produto = mysqli_real_escape_string($db->con, $_POST['desc']);
@@ -23,7 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $imageData = base64_decode($imageData);
 
             if ($imageData === false) {
-                $errorMessage = 'Falha ao decodificar a imagem.';
+                $response['status'] = 'error';
+                $response['message'] = 'Falha ao decodificar a imagem.';
             } else {
                 $fotoBlob = addslashes($imageData);
 
@@ -37,17 +39,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 if (mysqli_query($db->con, $query)) {
                     $nome_produto_encoded = urlencode($nome_produto);
-                    echo "<script>alert('Produto atualizado com sucesso!'); window.location.href = '../product/index.php?id=$id_produto&nome=$nome_produto_encoded';</script>";
+                    $response['status'] = 'success';
+                    $response['message'] = 'Produto atualizado com sucesso!';
+                    $response['redirectUrl'] = "../product/index.php?id=$id_produto&nome=$nome_produto_encoded";
                 } else {
-                    $errorMessage = 'Erro ao atualizar produto: ' . mysqli_error($db->con);
+                    $response['status'] = 'error';
+                    $response['message'] = 'Erro ao atualizar produto: ' . mysqli_error($db->con);
                 }
             }
         } else {
-            $errorMessage = 'Formato de imagem inválido.';
-        }
-
-        if (isset($errorMessage)) {
-            echo "<script>alert('$errorMessage'); window.location.href = 'index.php';</script>";
+            $response['status'] = 'error';
+            $response['message'] = 'Formato de imagem inválido.';
         }
     } else {
         $query = "UPDATE produto 
@@ -59,13 +61,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if (mysqli_query($db->con, $query)) {
             $nome_produto_encoded = urlencode($nome_produto);
-            echo "<script>alert('Produto atualizado com sucesso!'); window.location.href = '../product/index.php?id=$id_produto&nome=$nome_produto_encoded';</script>";
+            $response['status'] = 'success';
+            $response['message'] = 'Produto atualizado com sucesso!';
+            $response['redirectUrl'] = "../product/index.php?id=$id_produto&nome=$nome_produto_encoded";
         } else {
-            $errorMessage = 'Erro ao atualizar produto: ' . mysqli_error($db->con);
-            echo "<script>alert('$errorMessage'); window.location.href = 'index.php';</script>";
+            $response['status'] = 'error';
+            $response['message'] = 'Erro ao atualizar produto: ' . mysqli_error($db->con);
         }
     }
 
     $db->fechar();
+    echo json_encode($response);
 }
 ?>

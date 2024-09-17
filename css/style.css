@@ -574,7 +574,7 @@
 }
 .input-preview-banner {
 	border-radius: 4px;
-	width: 700px;
+	width: 800px;
 	height: 200px;
 	display: flex;
 	justify-content: center;
@@ -640,6 +640,12 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+#bannerImageContainer {
+  width: 1000px;
+  height: 300px;
+  overflow: hidden;
+  position: relative;
 }
 
 .input-produto-preview__src {
@@ -722,4 +728,8 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.swal2-popup {
+  border-radius: 50px !important;
 }

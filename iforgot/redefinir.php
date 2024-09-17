@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="../css/basics.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/mobile.css">
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4@4/bootstrap-4.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <?php
     session_start();
@@ -53,7 +55,7 @@
     <div class="imgright logimg"></div>
 
     <div id="left" class="login <?php echo $themeClass; ?>">
-        <form action="updatepass.php" method="post">
+        <form action="" method="post">
             <center><img id="default-logo" src="<?php echo $logoSrc; ?>"></center>
             <h1>Olá <?php echo $_SESSION['nome_temp'];?>, redefina sua senha</h1>
             <p>Crie uma nova senha</p>
@@ -72,6 +74,65 @@
         </form>
     </div>
 
+    <?php
+        include('../conexao/conexao.php');
+        session_start();
+
+        $db = new BancodeDados();
+        $db->conecta();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_SESSION['id_temp'])) {
+                $id_temp = $_SESSION['id_temp'];
+                $senha = $_POST['password'];
+
+                $id_temp = mysqli_real_escape_string($db->con, $id_temp);
+                $senha = mysqli_real_escape_string($db->con, $senha);
+
+                $senha_hashed = password_hash($senha, PASSWORD_DEFAULT);
+
+                $query = "UPDATE usuarios SET senha = '$senha_hashed' WHERE id_usuario = '$id_temp'";
+
+                if (mysqli_query($db->con, $query)) {
+                    echo "<script>
+                        Swal.fire({
+                            title: 'Sucesso!',
+                            text: 'Senha redefinida com sucesso!',
+                            icon: 'success',
+                            timer: 1300,
+                            showConfirmButton: false
+                        }).then(function() {
+                            window.location.href = '../login/';
+                        });
+                    </script>";
+                } else {
+                    echo "<script>
+                        Swal.fire({
+                            title: 'Erro!',
+                            text: 'Erro ao atualizar a senha.',
+                            icon: 'error',
+                            confirmButtonText: 'Tentar novamente'
+                        }).then(function() {
+                            window.location.href = 'index.php';
+                        });
+                    </script>";
+                }
+            } else {
+                echo "<script>
+                    Swal.fire({
+                        title: 'Erro!',
+                        text: 'Sessão expirada ou inválida.',
+                        icon: 'error',
+                        confirmButtonText: 'Tentar novamente'
+                    }).then(function() {
+                        window.location.href = 'index.php';
+                    });
+                </script>";
+            }
+        }
+
+        $db->fechar();
+    ?>
     <script src="../js/script.js"></script>
 </body>
 </html>

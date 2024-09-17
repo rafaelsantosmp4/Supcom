@@ -180,7 +180,7 @@
                         <img style="width: 25px; height: 25px;" src="../medias/estrela_vazia.png" alt="Estrela vazia">
                         <span>(4.1 / 5)</span>
                     </div><br>
-                    <h2 style="margin-top: 0px;">R$ <?php echo $preco_produto; ?></h2>
+                    <h2 style="margin-top: 0px;"><?php echo $preco_produto; ?></h2>
                     <h3 style="margin-bottom: 13px;">Quantidade: <?php echo $qtd_produto; ?></h3>
                     <?php
                         

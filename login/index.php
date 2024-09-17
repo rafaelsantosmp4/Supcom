@@ -114,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         icon: 'error',
                         confirmButtonText: 'OK'
                     }).then(function() {
-                        window.location.href = 'index.php';
+                        history.go(-1);
                     });
                   </script>";
         }
@@ -126,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     icon: 'error',
                     confirmButtonText: 'OK'
                 }).then(function() {
-                    window.location.href = 'index.php';
+                    history.go(-1);
                 });
               </script>";
     }

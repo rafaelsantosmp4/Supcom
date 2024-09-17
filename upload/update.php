@@ -14,8 +14,28 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#preco').mask('000.000.000.000.000,00', {reverse: true});
+        var $preco = $('#preco');
+        $preco.mask('000.000.000.000.000,00', {reverse: true});
+        function formatPreco() {
+            var value = $preco.val().replace(/\D/g, '');
+            if (value) {
+                value = value.replace(/(\d)(\d{2})$/, "$1,$2");
+                value = value.replace(/(?=(\d{3})+(\D))\B/g, '.');
+                $preco.val('R$ ' + value);
+            } else {
+                $preco.val('R$ ');
+            }
+        }
+        $preco.on('input', formatPreco);
+        $preco.on('focus', function() {
+            var value = $preco.val().replace('R$ ', '');
+            value = value.replace(/\./g, '').replace(',', '.');
+            $preco.val(value);
+            $(this).select();
+        });
+        $preco.on('blur', formatPreco);
     });
+
 </script>
 <?php
     session_start();
@@ -139,6 +159,11 @@
         </script>
     </div>
 
+    <div id="voltarbut" style="margin-top: 100px;">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <button class="back-toggle" onclick="history.go(-1);"><i class="fa fa-chevron-left"></i></button>
+    </div>
+
     <div class="overlay"></div>
 
     <?php 
@@ -159,8 +184,8 @@
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
             <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
-            <h1 style="font-size: 20pt; margin-bottom: 10px;">ALTERAR O PRODUTO "<?php echo $nome_produto; ?>"":</h1>
-            <form id="fotoperfilForm" class="<?php echo $themeClass; ?>" action="update_produto.php" method="POST" enctype="multipart/form-data">
+            <h1 style="font-size: 20pt; margin-bottom: 10px;">ALTERAR O PRODUTO "<?php echo $nome_produto; ?>":</h1>
+            <form id="fotoperfilForm" class="<?php echo $themeClass; ?>" action="" method="POST" enctype="multipart/form-data">
                 <center><div style="display: flex; align-items: center; justify-content: center;">
                     <label for="picture__input" class="input-produto-preview" id="labelPreview"></label>
                     <input type="file" name="picture__input" class="input-produto-preview__src" id="picture__input" style="display: none;">
@@ -195,8 +220,6 @@
                             }
                         }
                     ?>
-
-
                     <div id="dados-produtos"><br>
                         <label for="nome">Nome do produto</label><br>
                         <input type="text" name="nome" id="nome" required/><br>
@@ -256,6 +279,49 @@
                         }
                     });
                 }
+                document.addEventListener('DOMContentLoaded', function() {
+                    const form = document.getElementById('fotoperfilForm');
+
+                    form.addEventListener('submit', function(event) {
+                        event.preventDefault();
+                        
+                        const formData = new FormData(form);
+                        
+                        fetch('update_produto.php', {
+                            method: 'POST',
+                            body: formData,
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.status === 'success') {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Sucesso!',
+                                    text: data.message,
+                                    timer: 1300,
+                                    showConfirmButton: false
+                                }).then(() => {
+                                    window.location.href = data.redirectUrl;
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Erro!',
+                                    text: data.message,
+                                    confirmButtonText: 'Tentar novamente'
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Erro!',
+                                text: 'A imagem deve ser menor que 8MB.',
+                                confirmButtonText: 'Tentar novamente'
+                            });
+                        });
+                    });
+                });
             </script>
 
             <script>
@@ -271,7 +337,6 @@
                     const form = document.getElementById('fotoperfilForm');
                     const submitButton = document.getElementById('submitButton');
 
-                    // Função para habilitar o botão de envio
                     function enableSubmitButton() {
                         submitButton.disabled = false;
                     }
@@ -301,8 +366,8 @@
                     cropButton.addEventListener('click', function() {
                         if (cropper) {
                             const canvas = cropper.getCroppedCanvas({
-                                width: 500,
-                                height: 500
+                                width: 800,
+                                height: 800
                             });
                             canvas.toBlob(function(blob) {
                                 const reader = new FileReader();
@@ -314,7 +379,7 @@
                                     imageContainer.style.display = 'none';
                                     cropButton.style.display = 'none';
                                     showPreviewButton.style.display = 'none';
-                                    enableSubmitButton(); // Habilita o botão de envio
+                                    enableSubmitButton();
                                 };
                                 reader.readAsDataURL(blob);
                             }, 'image/jpeg');
@@ -322,14 +387,10 @@
                     });
 
                     showPreviewButton.addEventListener('click', function() {
-                        form.submit(); // Submete o formulário ao clicar no botão
+                        form.submit(); 
                     });
-
-                    // Habilita o botão de envio quando a página carrega
                     enableSubmitButton();
                 });
-
-
             </script> 
         </div>
     </div>

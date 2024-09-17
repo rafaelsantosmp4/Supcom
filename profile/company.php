@@ -241,7 +241,7 @@
                                 <span>(4.1 / 5)</span>
                             </div>
                             <h4 style="margin-top: 5px; margin-bottom: 0px;"><?php echo $nome_forn; ?></h4>
-                            <h3>R$ <?php echo $preco_produto; ?></h3>
+                            <h3><?php echo $preco_produto; ?></h3>
                         </div>
                     </a>
             <?php

@@ -141,7 +141,7 @@
         <div id="closebio"><i class="fa fa-times <?php echo $themeClass; ?>"></i></div>
         <ul>
             <li style="font-size: 20pt; margin-bottom: 10px;">ATUALIZE SUA BIO:</li> 
-            <form id="bioForm" method="POST" action="save_bio.php">
+            <form id="bioForm" method="POST">
                 <textarea name="bio" id="bio" rows="4" cols="50" maxlength="200" placeholder="max. 200 caracteres"></textarea>
                 <li><input type="submit" class="submit-button bio" value="Salvar"></li>
             </form>
@@ -179,30 +179,6 @@
                 </a>
             </form></div>
         </ul>
-        <script>
-                const form_foto = document.getElementById('excluirFotoForm');
-                function exibirConfirmacao() {
-                    Swal.fire({
-                        title: 'Tem certeza?',
-                        text: "Você não poderá desfazer essa ação!",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Sim, deletar!'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            Swal.fire(
-                                'Deletado!',
-                                'Sua foto foi deletada.',
-                                'success'
-                            ).then(() => {
-                                form_foto.submit();
-                            });
-                        }
-                    });
-                }
-            </script>
         <?php
             if ($result && mysqli_num_rows($result) > 0) {
                 $fotoPerfil = $usuario['perfil_foto'];
@@ -218,71 +194,6 @@
                 }
             }
         ?>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                let cropper;
-                const image = document.getElementById('image');
-                const inputImage = document.getElementById('picture__input');
-                const imageContainer = document.getElementById('imageContainer');
-                const cropButton = document.getElementById('cropButton');
-                const showPreviewButton = document.getElementById('showPreviewButton');
-                const labelPreview = document.getElementById('labelPreview');
-                const croppedImageInput = document.getElementById('croppedImage');
-                const form = document.getElementById('fotoperfilForm');
-                const submitButton = document.getElementById('submitButton');
-                const excluirFotoForm = document.getElementById('excluirFotoForm');
-                inputImage.addEventListener('change', function(event) {
-                    const files = event.target.files;
-                    if (files && files.length > 0) {
-                        const reader = new FileReader();
-                        reader.onload = function(e) {
-                            image.src = e.target.result;
-                            imageContainer.style.display = 'block';
-                            cropButton.style.display = 'inline';
-                            showPreviewButton.style.display = 'none';
-                            if (cropper) {
-                                cropper.destroy();
-                            }
-                            cropper = new Cropper(image, {
-                                aspectRatio: 1,
-                                viewMode: 1,
-                                autoCropArea: 1,
-                            });
-                        };
-                        excluirFotoForm.style.display = 'none';
-                        submitButton.style.display = 'none';
-                        reader.readAsDataURL(files[0]);
-                    }
-                });
-                cropButton.addEventListener('click', function() {
-                    if (cropper) {
-                        const canvas = cropper.getCroppedCanvas({
-                            width: 500,
-                            height: 500
-                        });
-                        canvas.toBlob(function(blob) {
-                            const reader = new FileReader();
-                            reader.onloadend = function() {
-                                const croppedImageDataURL = reader.result;
-                                croppedImageInput.value = croppedImageDataURL;
-                                labelPreview.style.backgroundImage = `url(${croppedImageDataURL})`;
-                                labelPreview.style.backgroundSize = 'cover';
-                                imageContainer.style.display = 'none';
-                                cropButton.style.display = 'none';
-                                showPreviewButton.style.display = 'none';
-                                submitButton.disabled = false;
-                                excluirFotoForm.style.display = 'block';
-                                submitButton.style.display = 'block';
-                            };
-                            reader.readAsDataURL(blob);
-                        }, 'image/jpeg');
-                    }
-                });
-                showPreviewButton.addEventListener('click', function() {
-                    form.submit();
-                });
-            });
-        </script>
     </nav>
 
     <nav id="addbanner" class="mudarfoto <?php echo $themeClass; ?> navconfigs">
@@ -298,7 +209,7 @@
             <p>Tamanho máximo: <i>8MB</i></p><br>
             <form id="fotobannerForm" class="<?php echo $themeClass; ?>" action="upload_banner.php" method="POST" enctype="multipart/form-data">
                 <center>
-                    <div style="display: flex; align-items: center; justify-content: center;">
+                    <div style="display: flex; align-items: center; justify-content: center; padding-right: 30px; padding-left: 30px;">
                         <label for="banner__input" class="input-preview-banner" id="labelPreviewBanner"></label>
                         <input type="file" name="banner__input" class="input-banner-preview__src" id="banner__input" style="display: none;">
                         <div id="bannerImageContainer" style="display: none; margin-left: 10px;">
@@ -320,30 +231,6 @@
                 </a>
             </form></div>
         </ul>
-        <script>
-                const form_banner = document.getElementById('excluirBannerForm');
-                function exibirConfirmacaoBanner() {
-                    Swal.fire({
-                        title: 'Tem certeza?',
-                        text: "Você não poderá desfazer essa ação!",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Sim, deletar!'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            Swal.fire(
-                                'Deletado!',
-                                'Sua foto foi deletada.',
-                                'success'
-                            ).then(() => {
-                                form_banner.submit();
-                            });
-                        }
-                    });
-                }
-            </script>
         <?php
             if ($result && mysqli_num_rows($result) > 0) {
                 $bannerPerfil = $usuario['banner_perfil'];
@@ -359,71 +246,6 @@
                 }
             }
         ?>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                let cropper;
-                const bannerImage = document.getElementById('bannerImage');
-                const inputBanner = document.getElementById('banner__input');
-                const bannerImageContainer = document.getElementById('bannerImageContainer');
-                const cropBannerButton = document.getElementById('cropBannerButton');
-                const showBannerPreviewButton = document.getElementById('showBannerPreviewButton');
-                const labelPreviewBanner = document.getElementById('labelPreviewBanner');
-                const croppedBannerImageInput = document.getElementById('croppedBannerImage');
-                const bannerForm = document.getElementById('fotobannerForm');
-                const bannerSubmitButton = document.getElementById('bannerSubmitButton');
-                const excluirBannerForm = document.getElementById('excluirBannerForm');
-                inputBanner.addEventListener('change', function(event) {
-                    const files = event.target.files;
-                    if (files && files.length > 0) {
-                        const reader = new FileReader();
-                        reader.onload = function(e) {
-                            bannerImage.src = e.target.result;
-                            bannerImageContainer.style.display = 'block';
-                            cropBannerButton.style.display = 'inline';
-                            showBannerPreviewButton.style.display = 'none';
-                            if (cropper) {
-                                cropper.destroy();
-                            }
-                            cropper = new Cropper(bannerImage, {
-                                aspectRatio: 4 / 1,
-                                viewMode: 1,
-                                autoCropArea: 1,
-                            });
-                        };
-                        excluirBannerForm.style.display = 'none';
-                        bannerSubmitButton.style.display = 'none';
-                        reader.readAsDataURL(files[0]);
-                    }
-                });
-                cropBannerButton.addEventListener('click', function() {
-                    if (cropper) {
-                        const canvas = cropper.getCroppedCanvas({
-                            width: 1200,
-                            height: 300
-                        });
-                        canvas.toBlob(function(blob) {
-                            const reader = new FileReader();
-                            reader.onloadend = function() {
-                                const croppedImageBannerDataURL = reader.result;
-                                croppedBannerImageInput.value = croppedImageBannerDataURL.split(',')[1];
-                                labelPreviewBanner.style.backgroundImage = `url(${croppedImageBannerDataURL})`;
-                                labelPreviewBanner.style.backgroundSize = 'cover';
-                                bannerImageContainer.style.display = 'none';
-                                cropBannerButton.style.display = 'none';
-                                showBannerPreviewButton.style.display = 'none';
-                                bannerSubmitButton.disabled = false;
-                                excluirBannerForm.style.display = 'block';
-                                bannerSubmitButton.style.display = 'block';
-                            };
-                            reader.readAsDataURL(blob);
-                        }, 'image/jpeg');
-                    }
-                });
-                showBannerPreviewButton.addEventListener('click', function() {
-                    bannerForm.submit();
-                });
-            });
-        </script>
     </nav>
 
     <?php
@@ -539,7 +361,7 @@
                                 <span>(4.1 / 5)</span>
                             </div>
                             <h4 style="margin-top: 5px; margin-bottom: 0px;"><?php echo $nome_forn; ?></h4>
-                            <h3>R$ <?php echo $preco_produto; ?></h3>
+                            <h3><?php echo $preco_produto; ?></h3>
                         </div>
                     </a>
             <?php

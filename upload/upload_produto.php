@@ -7,6 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $db->conecta();
 
     $id_forn = $_SESSION['id'];
+    $response = [];
 
     $nome_produto = mysqli_real_escape_string($db->con, $_POST['nome']);
     $descricao_produto = mysqli_real_escape_string($db->con, $_POST['desc']);
@@ -22,7 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $imageData = base64_decode($imageData);
 
             if ($imageData === false) {
-                $errorMessage = 'Falha ao decodificar a imagem.';
+                $response['status'] = 'error';
+                $response['message'] = 'Falha ao decodificar a imagem.';
             } else {
                 $fotoBlob = addslashes($imageData);
 
@@ -33,22 +35,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $id_produto = mysqli_insert_id($db->con);
                     $nome_produto_encoded = urlencode($nome_produto);
 
-                    echo "<script>alert('Produto adicionado com sucesso!'); window.location.href = '../product/index.php?id=$id_produto&nome=$nome_produto_encoded';</script>";
+                    $response['status'] = 'success';
+                    $response['message'] = 'Produto adicionado com sucesso!';
+                    $response['redirectUrl'] = "../product/index.php?id=$id_produto&nome=$nome_produto_encoded";
                 } else {
-                    $errorMessage = 'Erro ao salvar produto: ' . mysqli_error($db->con);
+                    $response['status'] = 'error';
+                    $response['message'] = 'Erro ao adicionar produto: ' . mysqli_error($db->con);
                 }
             }
         } else {
-            $errorMessage = 'Formato de imagem inválido.';
-        }
-
-        if (isset($errorMessage)) {
-            echo "<script>alert('$errorMessage'); window.location.href = 'index.php';</script>";
+            $response['status'] = 'error';
+            $response['message'] = 'Formato de imagem inválido.';
         }
     } else {
-        echo "<script>alert('Nenhuma imagem cortada recebida.'); window.location.href = 'index.php';</script>";
+        $response['status'] = 'error';
+        $response['message'] = 'A imagem deve ser menor que 8MB.';
     }
 
     $db->fechar();
+    echo json_encode($response);
 }
 ?>
