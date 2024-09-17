@@ -121,7 +121,7 @@
 
     <button class="menu-toggle" id="menu_toggle" onclick="menu_toggle()">&#9776;</button>
 </header>
-
+<div class="loader <?php echo $themeClass; ?>"></div>
 <div class="overlay2" id="overlay2"></div>
 <div class="overlay3" id="overlay3"></div>
 

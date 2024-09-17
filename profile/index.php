@@ -117,7 +117,7 @@
 
     <button class="menu-toggle" id="menu_toggle" onclick="menu_toggle()">&#9776;</button>
 </header>
-
+<div class="loader <?php echo $themeClass; ?>"></div>
 <div class="overlay2" id="overlay2"></div>
 <div class="overlay3" id="overlay3"></div>
 <div class="overlaybio" id="overlaybio"></div>
@@ -312,9 +312,12 @@
                 <li><b>Data de cadastro: </b><?php echo $formatted_date ?></li><br>
                 <li><b>Hora de cadastro: </b><?php echo $formatted_time ?></li>
             </ul>
-
-
-            <h1>Seus produtos:</h1>
+            
+            <?php
+                if ($usuario["tipo_usuario"] == "fornecedor") {
+                    echo '<h1>Seus produtos:</h1>';
+                }
+            ?>
             <?php
                 $querymyprods = "SELECT * FROM produto WHERE id_forn = $iduser";
                 $resultmyprods = mysqli_query($db->con, $querymyprods);

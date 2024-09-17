@@ -143,7 +143,7 @@
         }
     });
 </script>
-
+<div class="loader <?php echo $themeClass; ?>"></div>
 <div class="overlay2" id="overlay2"></div>
 <div class="overlay3" id="overlay3"></div>
 

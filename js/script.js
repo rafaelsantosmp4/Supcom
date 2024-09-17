@@ -1,3 +1,11 @@
+window.addEventListener('load', function() {
+  document.querySelector('.loader').style.display = 'none';
+  document.querySelector('#container').style.opacity = 100;
+  document.querySelector('footer').style.opacity = 100;
+  document.body.style.overflow = 'auto';
+});
+
+
 const imglogo = document.querySelector("#default-logo");
 const imgiconedark = document.querySelector("#indicador");
 const body = document.body;

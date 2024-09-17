@@ -6,6 +6,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: gotham;
+  overflow: hidden;
 }
 body.light-mode {
   background-color: #E8F1F2;
@@ -18,7 +19,8 @@ body.dark-mode {
 #container {
   display: flex;
   justify-content: center;
-  align-items: center
+  align-items: center;
+  opacity: 0;
 }
 #conteudo {
   width: 85%;
@@ -270,6 +272,7 @@ header #mobile-nav a:hover:after, #account-options a:hover:after, #entrarlink:ho
     padding: 10px;
     box-shadow: 0px 0px 10px black;
     height: 300px;
+    opacity: 0;
   }
   footer h1 {
     color: #fff;
@@ -365,4 +368,84 @@ input:checked + .toggle-slider:before {
 }
 .uploadbutton.dark-mode {
   color: #E8F1F2;
+}
+
+
+.loader {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 5rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  position: fixed;
+  top: 45vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  animation: pulsOut 1.8s ease-in-out infinite;
+}
+
+/* Light Mode */
+.loader.light-mode:before,
+.loader.light-mode:after {
+  filter: drop-shadow(0 0 0.5rem rgba(12, 70, 109, 0.479));
+}
+.loader.light-mode:before {
+  width: 100%;
+  padding-bottom: 100%;
+  animation-name: pulsIn;
+  box-shadow: inset 0 0 0 0.5rem #0c486b;
+}
+.loader.light-mode:after {
+  width: calc(100% - 1rem);
+  padding-bottom: calc(100% - 1rem);
+  box-shadow: 0 0 0 0 #0c4a6e;
+}
+
+/* Dark Mode */
+.loader.dark-mode:before,
+.loader.dark-mode:after {
+  filter: drop-shadow(0 0 0.5rem rgba(105, 185, 238, 0.788));
+}
+.loader.dark-mode:before {
+  width: 100%;
+  padding-bottom: 100%;
+  animation-name: pulsIn;
+  box-shadow: inset 0 0 0 0.5rem #56baf5;
+}
+.loader.dark-mode:after {
+  width: calc(100% - 1rem);
+  padding-bottom: calc(100% - 1rem);
+  box-shadow: 0 0 0 0 #56baf5;
+}
+
+@keyframes pulsIn {
+  0% {
+    box-shadow: inset 0 0 0 0.5rem #56baf5;
+    opacity: 1;
+  }
+  50%, 100% {
+    box-shadow: inset 0 0 0 0 #56baf5;
+    opacity: 0;
+  }
+}
+
+@keyframes pulsOut {
+  0%, 50% {
+    box-shadow: 0 0 0 0 #56baf5;
+    opacity: 0;
+  }
+  100% {
+    box-shadow: 0 0 0 0.5rem #56baf5;
+    opacity: 1;
+  }
 }

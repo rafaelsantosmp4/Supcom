@@ -132,13 +132,13 @@
             new window.VLibras.Widget('https://vlibras.gov.br/app');
         </script>
     </div>
-
+    <div class="loader <?php echo $themeClass; ?>"></div>
     <div class="overlay"></div>
 
     <div id="container">
         <div id="conteudo">
             <h1>HOME</h1>
-            <p>CONTEUDO AQUI</p>              
+            <p>CONTEUDO AQUI</p>
         </div>
     </div>
 
