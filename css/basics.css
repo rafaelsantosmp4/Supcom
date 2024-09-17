@@ -6,7 +6,6 @@ body {
   margin: 0;
   padding: 0;
   font-family: gotham;
-  overflow: hidden;
 }
 body.light-mode {
   background-color: #E8F1F2;
