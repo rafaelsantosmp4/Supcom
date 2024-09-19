@@ -735,3 +735,16 @@
 .swal2-popup {
   border-radius: 50px !important;
 }
+
+
+.password-container #togglePassword {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #333;
+  font-size: 20pt;
+  padding-bottom: 10px;
+  padding-right: 10px;
+}

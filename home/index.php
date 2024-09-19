@@ -118,6 +118,11 @@
 
 <div class="overlay2" id="overlay2"></div>
 <div class="overlay3" id="overlay3"></div>
+<div class="loader-container">
+  <div class="loader <?php echo $themeClass; ?>"></div>
+  <span class="loader-text <?php echo $themeClass; ?>">Carregando...</span>
+</div>
+
 
 <body class="<?php echo $themeClass; ?>">
     <div id="vlibras">
@@ -132,7 +137,6 @@
             new window.VLibras.Widget('https://vlibras.gov.br/app');
         </script>
     </div>
-    <div class="loader <?php echo $themeClass; ?>"></div>
     <div class="overlay"></div>
 
     <div id="container">

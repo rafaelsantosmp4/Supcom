@@ -370,6 +370,15 @@ input:checked + .toggle-slider:before {
 }
 
 
+:root {
+  /* Cores do Light Mode */
+  --primary-color: #0065a0;
+}
+
+.dark-mode {
+  /* Cores do Dark Mode */
+  --primary-color: #56baf5;
+}
 .loader {
   position: relative;
   display: flex;
@@ -380,10 +389,10 @@ input:checked + .toggle-slider:before {
   margin-top: 3rem;
   margin-bottom: 3rem;
   position: fixed;
-  top: 45vh;
-  left: 50%;
+  left: calc(50% - 2.5rem);
   transform: translate(-50%, -50%);
   z-index: 1000;
+  transform: scale(1.8);
 }
 .loader:before,
 .loader:after {
@@ -396,18 +405,18 @@ input:checked + .toggle-slider:before {
 /* Light Mode */
 .loader.light-mode:before,
 .loader.light-mode:after {
-  filter: drop-shadow(0 0 0.5rem rgba(12, 70, 109, 0.479));
+  filter: drop-shadow(0 0 10px rgba(24, 10, 87, 0.6));
 }
 .loader.light-mode:before {
   width: 100%;
   padding-bottom: 100%;
   animation-name: pulsIn;
-  box-shadow: inset 0 0 0 0.5rem #0c486b;
+  box-shadow: inset 0 0 0 0.5rem #0065a0;
 }
 .loader.light-mode:after {
   width: calc(100% - 1rem);
   padding-bottom: calc(100% - 1rem);
-  box-shadow: 0 0 0 0 #0c4a6e;
+  box-shadow: 0 0 0 0 #0065a0;
 }
 
 /* Dark Mode */
@@ -426,25 +435,50 @@ input:checked + .toggle-slider:before {
   padding-bottom: calc(100% - 1rem);
   box-shadow: 0 0 0 0 #56baf5;
 }
-
 @keyframes pulsIn {
   0% {
-    box-shadow: inset 0 0 0 0.5rem #56baf5;
+    box-shadow: inset 0 0 0 0.5rem var(--primary-color);
     opacity: 1;
   }
   50%, 100% {
-    box-shadow: inset 0 0 0 0 #56baf5;
+    box-shadow: inset 0 0 0 0 var(--primary-color);
     opacity: 0;
   }
 }
-
 @keyframes pulsOut {
   0%, 50% {
-    box-shadow: 0 0 0 0 #56baf5;
+    box-shadow: 0 0 0 0 var(--primary-color);
     opacity: 0;
   }
   100% {
-    box-shadow: 0 0 0 0.5rem #56baf5;
+    box-shadow: 0 0 0 0.5rem var(--primary-color);
     opacity: 1;
   }
+}
+.loader-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 5rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  position: fixed;
+  top: 43vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+.loader-text {
+  margin-top: 11rem;
+  font-size: 1.5rem;
+  font-family: Arial, sans-serif;
+}
+.loader-text.light-mode {
+  color: #0065a0;
+}
+.loader-text.dark-mode {
+  color: #56baf5;
 }
