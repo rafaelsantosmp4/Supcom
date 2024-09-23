@@ -171,19 +171,10 @@
                 ?>
                 <div class="rightdatas">
                     <br><center><?php echo $editarprod ?>
-                    <h1 style="margin-bottom: 10px; margin-top: 5px;"><?php echo $nome_produto; ?></h1>
-                    <div class="avaliacao">
-                        <img style="width: 25px; height: 25px;" src="../medias/estrelacheia.png" alt="Estrela cheia">
-                        <img style="width: 25px; height: 25px;" src="../medias/estrelacheia.png" alt="Estrela cheia">
-                        <img style="width: 25px; height: 25px;" src="../medias/estrelacheia.png" alt="Estrela cheia">
-                        <img style="width: 25px; height: 25px;" src="../medias/estrelacheia.png" alt="Estrela cheia">
-                        <img style="width: 25px; height: 25px;" src="../medias/estrela_vazia.png" alt="Estrela vazia">
-                        <span>(4.1 / 5)</span>
-                    </div><br>
+                    <h1 style="margin-top: 5px;"><?php echo $nome_produto; ?></h1>
                     <h2 style="margin-top: 0px;"><?php echo $preco_produto; ?></h2>
                     <h3 style="margin-bottom: 13px;">Quantidade: <?php echo $qtd_produto; ?></h3>
-                    <?php
-                        
+                    <?php                        
                         echo'<a href="../chat/index.php?myid='.$iduser.'&idforn='.$id_forn.'"><button style="width: 50%;" class="submit-button" id="entraremcontato">Entrar em contato</button></a>';
                     ?>
                     

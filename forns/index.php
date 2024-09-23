@@ -178,14 +178,6 @@
                             <img src="data:image/jpeg;base64,<?php echo $foto_produto; ?>" alt="<?php echo $nome_produto; ?>">
                             <h3><?php echo $nome_produto; ?></h3>
                             <p class="descricao-produto"><?php echo $descricao_produto; ?></p>
-                            <div class="avaliacao">
-                                <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                                <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                                <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                                <img src="../medias/estrelacheia.png" alt="Estrela cheia">
-                                <img src="../medias/estrela_vazia.png" alt="Estrela vazia">
-                                <span>(4.1 / 5)</span>
-                            </div>
                             <h4 style="margin-top: 5px; margin-bottom: 0px;"><?php echo $nome_forn; ?></h4>
                             <h3><?php echo $preco_produto; ?></h3>
                         </div>
