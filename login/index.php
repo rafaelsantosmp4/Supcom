@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/mobile.css">
     <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4@4/bootstrap-4.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <?php
     session_start();
@@ -44,12 +45,15 @@
             <h1>Entre na sua conta</h1>
             <p>Não tem uma conta? <a href="../signup/index.php"><i>cadastrar</i></a></p>
 
-            <div id="datas">
+            <div id="datas" style="width: 100%;">
                 <label for="email" id="emaillabel">E-mail</label>
                 <input type="email" name="email" id="email" required/>
                 
-                <label for="password" id="passwordlabel">Senha</label>
-                <input type="password" name="password" id="password" required/>
+                <label for="password" id="passwordlabel">Senha</label><br>       
+                <div class="password-container" style="position: relative;">
+                    <input type="password" name="password" id="password" required/>
+                    <span id="togglePassword"><i class="fa fa-eye"></i></span>
+                </div>
             </div>
 
             <a href="../iforgot/" class="forgot-password">Esqueceu a senha?</a>
@@ -58,14 +62,30 @@
         </form>
     </div>
 
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+
+        togglePassword.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+
+            const icon = this.querySelector('i');
+            if (icon.classList.contains('fa-eye')) {
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+    </script>
     <script src="../js/script.js"></script>
 </body>
 </html>
 
 <?php
 include('../conexao/conexao.php');
-session_start();
-
 $db = new BancodeDados();
 $db->conecta();
 

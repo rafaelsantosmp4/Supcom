@@ -75,7 +75,10 @@
     });
 </script>
 
-<div class="loader <?php echo $themeClass; ?>"></div>
+<div class="loader-container">
+  <div class="loader <?php echo $themeClass; ?>"></div>
+  <span class="loader-text">Carregando...</span>
+</div>
 <div class="overlay2" id="overlay2"></div>
 
 <body class="<?php echo $themeClass; ?>">
@@ -196,6 +199,7 @@
         document.querySelector('#bemvindo').style.opacity = 100;
         document.querySelector('footer').style.opacity = 100;
         document.body.style.overflow = 'auto';
+        document.querySelector('.loader-text').style.display = 'none';
     });
 
     var count = 1;

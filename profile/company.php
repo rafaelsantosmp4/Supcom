@@ -133,7 +133,10 @@
     <button class="menu-toggle" id="menu_toggle" onclick="menu_toggle()">&#9776;</button>
 </header>
 
-<div class="loader <?php echo $themeClass; ?>"></div>
+<div class="loader-container">
+  <div class="loader <?php echo $themeClass; ?>"></div>
+  <span class="loader-text <?php echo $themeClass; ?>">Carregando...</span>
+</div>
 <div class="overlay2" id="overlay2"></div>
 <div class="overlay3" id="overlay3"></div>
 <div class="overlaybio" id="overlaybio"></div>
