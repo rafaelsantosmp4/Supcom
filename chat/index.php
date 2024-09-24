@@ -161,7 +161,7 @@
                 <h1 id="titulochat">Carregando...</h1>
             </div></a>
             <div id="chat">
-                <div id="messages"></div>                
+                <div id="messages"></div>
                 <div class="message-container" style="position: relative;">
                     <input id="message" type="text" placeholder="Digite sua mensagem" />
                     <button id="send" style='background: none; border: none;'><span id="sendicon" class="<?php echo $themeClass; ?>"><i class="fa fa-paper-plane"></i></span></button>
@@ -230,9 +230,10 @@
                             var messages = data.messages;
                             var messagesDiv = document.getElementById('messages');
                             messagesDiv.innerHTML = ''; 
-                            
+
                             messages.forEach(function(message) {
                                 var msgElement = document.createElement('p');
+                                msgElement.className = message.sender_id == myId ? 'message-sent' : 'message-received';
                                 var sender = message.sender_id == chatPartnerId ? partnerName : 'Eu';
                                 msgElement.textContent = `${sender}: ${message.message}`;
                                 messagesDiv.appendChild(msgElement);
@@ -248,7 +249,6 @@
                     fetchMessages();
                 });
             </script>
-
         </div>
     </div>
 </body>

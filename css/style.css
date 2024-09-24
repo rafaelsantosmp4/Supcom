@@ -777,16 +777,37 @@
 .message-container #sendicon {  
   position: absolute;
   top: 50%;
-  right: 10px;
   transform: translateY(-50%);
   cursor: pointer;
-  font-size: 20pt;
+  font-size: 25pt;
   padding-bottom: 10px;
-  padding-right: 10px;
+  transition: 150ms;
+}
+#sendicon:hover {
+  font-size: 30pt;
 }
 #sendicon.light-mode {
   color: #006494;
 }
 #sendicon.dark-mode {
   color: #E8F1F2;
+}
+#messages {
+  font-size: 14pt;
+}
+.message-sent {
+  background-color: #3f86c9;
+  text-align: right;
+  padding: 20px;
+  border-radius: 10px;
+  width: 50%;
+  margin-left: 50%;
+}
+.message-received {
+  background-color: #658eb4;
+  text-align: left;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  width: 50%;
 }
