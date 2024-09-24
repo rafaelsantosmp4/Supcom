@@ -162,9 +162,9 @@
             </div></a>
             <div id="chat">
                 <div id="messages"></div>
-                <div class="message-container" style="position: relative;">
+                <div class="message-container" style="position: relative; display: flex; justify-content: center;">
                     <input id="message" type="text" placeholder="Digite sua mensagem" />
-                    <button id="send" style='background: none; border: none;'><span id="sendicon" class="<?php echo $themeClass; ?>"><i class="fa fa-paper-plane"></i></span></button>
+                    <button id="send" style='background: none; border: none;'><i id="sendicon" class="fa fa-paper-plane <?php echo $themeClass; ?>"></i></button>
                 </div>
             </div>
 
@@ -232,10 +232,19 @@
                             messagesDiv.innerHTML = ''; 
 
                             messages.forEach(function(message) {
-                                var msgElement = document.createElement('p');
+                                var msgElement = document.createElement('div');
                                 msgElement.className = message.sender_id == myId ? 'message-sent' : 'message-received';
+
                                 var sender = message.sender_id == chatPartnerId ? partnerName : 'Eu';
-                                msgElement.textContent = `${sender}: ${message.message}`;
+                                var timestamp = new Date(message.created_at); // Converte a string para um objeto Date
+                                var options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+                                var formattedTime = timestamp.toLocaleDateString('pt-BR', options); // Formata a data e hora
+
+                                msgElement.innerHTML = `
+                                    <p>${sender}: ${message.message}</p>
+                                    <span class="message-timestamp">${formattedTime}</span>
+                                `;
+                                
                                 messagesDiv.appendChild(msgElement);
                             });
 
@@ -246,7 +255,9 @@
                 fetchMessages(); 
 
                 window.addEventListener('load', function() {
-                    fetchMessages();
+                    fetchMessages();                    
+                    const messagesDiv = document.getElementById('messages');
+                    window.scrollTo(0,document.messagesDiv.scrollHeight);
                 });
             </script>
         </div>

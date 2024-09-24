@@ -736,18 +736,6 @@
   border-radius: 50px !important;
 }
 
-
-.password-container #togglePassword {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  cursor: pointer;
-  color: #333;
-  font-size: 20pt;
-  padding-bottom: 10px;
-  padding-right: 10px;
-}
 #initialnamelink {
   max-width: 20%;
   color: inherit;
@@ -762,17 +750,36 @@
   transform: scale(1.1);
 }
 
+
+
+#chat {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 200px);
+  overflow: hidden;
+  width: 100%;
+}
 #message {
-  width: 95%;
+  width: 90%;
   height: 35pt;
   border-radius: 50px;
   border: 3px solid #006494;
-  padding-left: 15px;  
+  padding-left: 15px;
+  padding-right: 15px;
   font-family: Arial, sans-serif; 
-  font-size: 14pt; 
+  font-size: 14pt;
   color: #333; 
   margin-bottom: 10px;
   background-color: light-dark(rgb(232, 240, 254), rgba(70, 90, 126, 0.4));
+}
+#messages {
+  font-size: 14pt;
+  overflow-wrap: break-word;
+  text-align: justify;
+  font-weight: bold;
+  overflow-y: auto;
+  padding: 10px;
+  scroll-behavior: smooth;
 }
 .message-container #sendicon {  
   position: absolute;
@@ -801,7 +808,8 @@
   padding: 20px;
   border-radius: 10px;
   width: 50%;
-  margin-left: 50%;
+  margin-left: 45%;
+  margin-bottom: 20px;
 }
 .message-received {
   background-color: #658eb4;
@@ -810,4 +818,25 @@
   padding: 20px;
   border-radius: 10px;
   width: 50%;
+  margin-left: 5%;
+}
+#messages p {
+  margin-bottom: 5px;
+}
+.message-received .message-timestamp {
+  font-size: 10pt;
+  font-weight: 100;
+  display: block;
+  font-size: 0.8em;
+  text-align: right;
+}
+.message-sent .message-timestamp {
+  font-size: 10pt;
+  font-weight: 100;
+  display: block;
+  font-size: 0.8em;
+  text-align: left;
+}
+.message-container {
+  padding: 10px;
 }
