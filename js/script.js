@@ -1,8 +1,8 @@
 window.addEventListener('load', function() {
-  document.querySelector('.loader').style.display = 'none';
   document.querySelector('#container').style.opacity = 100;
   document.querySelector('footer').style.opacity = 100;
-  document.querySelector('.loader-text').style.display = 'none';
+  document.querySelector('.loader-container').style.display = 'none';
+  document.body.style.pointerEvents = 'inherit';
 });
 
 const imglogo = document.querySelector("#default-logo");
