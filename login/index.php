@@ -17,7 +17,10 @@
 
     $logoSrc = $themeClass === 'dark-mode' ? '../medias/logo/Black-logo.png' : '../medias/logo/Logo-white.png';
 ?>
-
+<div class="loader-container">
+  <div class="loader <?php echo $themeClass; ?>"></div>
+  <span class="loader-text">Carregando...</span>
+</div>
 <body class="<?php echo $themeClass; ?>">
     <div id="vlibras">
         <div vw class="enabled">
@@ -79,8 +82,13 @@
                 icon.classList.add('fa-eye');
             }
         });
+
+
+        window.addEventListener('load', function() {
+            document.querySelector('.loader-container').style.display = 'none';
+            document.body.style.pointerEvents = 'inherit';
+        });
     </script>
-    <script src="../js/script.js"></script>
 </body>
 </html>
 

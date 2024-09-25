@@ -200,6 +200,7 @@
         document.querySelector('footer').style.opacity = 100;
         document.body.style.overflow = 'auto';
         document.querySelector('.loader-text').style.display = 'none';
+        document.body.style.pointerEvents = 'inherit';
     });
 
     var count = 1;

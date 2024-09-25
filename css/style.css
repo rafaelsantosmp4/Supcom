@@ -752,13 +752,6 @@
 
 
 
-#chat {
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 200px);
-  overflow: hidden;
-  width: 100%;
-}
 #message {
   width: 90%;
   height: 35pt;
@@ -772,13 +765,21 @@
   margin-bottom: 10px;
   background-color: light-dark(rgb(232, 240, 254), rgba(70, 90, 126, 0.4));
 }
+#chat {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 200px);
+  overflow: hidden;
+  width: 100%;
+}
 #messages {
-  font-size: 14pt;
+  height: 100%;
+  font-size: 12pt;
   overflow-wrap: break-word;
   text-align: justify;
   font-weight: bold;
   overflow-y: auto;
-  padding: 10px;
+  padding: 5px;
   scroll-behavior: smooth;
 }
 .message-container #sendicon {  
@@ -799,21 +800,16 @@
 #sendicon.dark-mode {
   color: #E8F1F2;
 }
-#messages {
-  font-size: 14pt;
-}
-.message-sent {
+.message-sent .message-body {
   background-color: #3f86c9;
-  text-align: right;
   padding: 20px;
   border-radius: 10px;
   width: 50%;
   margin-left: 45%;
   margin-bottom: 20px;
 }
-.message-received {
+.message-received .message-body {
   background-color: #658eb4;
-  text-align: left;
   margin: 10px;
   padding: 20px;
   border-radius: 10px;
@@ -822,21 +818,48 @@
 }
 #messages p {
   margin-bottom: 5px;
+  margin-top: 5px;
 }
-.message-received .message-timestamp {
+.message-timestamp {
   font-size: 10pt;
   font-weight: 100;
   display: block;
   font-size: 0.8em;
-  text-align: right;
-}
-.message-sent .message-timestamp {
-  font-size: 10pt;
-  font-weight: 100;
-  display: block;
-  font-size: 0.8em;
-  text-align: left;
 }
 .message-container {
   padding: 10px;
+}
+.password-container #togglePassword {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #333;
+  font-size: 20pt;
+  padding-bottom: 10px;
+  padding-right: 10px;
+}
+
+.context-menu {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.349);
+  backdrop-filter: blur(8px);
+  border: 1px solid #cccccc63;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 1);
+  z-index: 1000;
+  border-radius: 10px;
+}
+.context-menu ul {
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+}
+.context-menu li {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.context-menu li:hover {
+  background-color: #00000015;
+  border-radius: 10px;
 }

@@ -166,6 +166,12 @@
                     <input id="message" type="text" placeholder="Digite sua mensagem" />
                     <button id="send" style='background: none; border: none;'><i id="sendicon" class="fa fa-paper-plane <?php echo $themeClass; ?>"></i></button>
                 </div>
+                <div id="context-menu" class="context-menu" style="display:none;">
+                    <ul>
+                        <li id="edit-message"><i class="fa fa-pencil" style='font-family: FontAwesome;'></i> Editar</li>
+                        <li id="delete-message" style='color: #EE2B39;'><i class="fa fa-trash"></i> Deletar</li>
+                    </ul>
+                </div>
             </div>
 
             <script>
@@ -222,6 +228,7 @@
                     }
                 });
 
+                let firstLoad = true; // Variável de controle para a primeira carga de mensagens
                 function fetchMessages() {
                     fetch('getMessages.php?myid=' + myId + '&idforn=' + chatPartnerId)
                         .then(response => response.json())
@@ -229,35 +236,104 @@
                             partnerName = data.partner_name;
                             var messages = data.messages;
                             var messagesDiv = document.getElementById('messages');
-                            messagesDiv.innerHTML = ''; 
-
+                            messagesDiv.innerHTML = '';
                             messages.forEach(function(message) {
                                 var msgElement = document.createElement('div');
                                 msgElement.className = message.sender_id == myId ? 'message-sent' : 'message-received';
+                                msgElement.setAttribute('data-message-id', message.id);
 
                                 var sender = message.sender_id == chatPartnerId ? partnerName : 'Eu';
-                                var timestamp = new Date(message.created_at); // Converte a string para um objeto Date
+                                var timestamp = new Date(message.created_at);
                                 var options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
-                                var formattedTime = timestamp.toLocaleDateString('pt-BR', options); // Formata a data e hora
+                                var formattedTime = timestamp.toLocaleDateString('pt-BR', options);
 
                                 msgElement.innerHTML = `
-                                    <p>${sender}: ${message.message}</p>
-                                    <span class="message-timestamp">${formattedTime}</span>
+                                    <div class="message-body">
+                                        <p>${message.messagetext}</p>
+                                        <span class="message-timestamp">${formattedTime}</span>
+                                    </div>
                                 `;
-                                
                                 messagesDiv.appendChild(msgElement);
                             });
 
                             document.getElementById('titulochat').innerHTML = partnerName;
+                            if (firstLoad) {
+                                messagesDiv.scrollTop = messagesDiv.scrollHeight; 
+                                firstLoad = false; 
+                            }
+                            var isAtBottom = messagesDiv.scrollHeight - messagesDiv.scrollTop === messagesDiv.clientHeight;
+                            if (isAtBottom) {
+                                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                            }
                         });
                 }
-                setInterval(fetchMessages, 1000);
-                fetchMessages(); 
+                window.onload = function() {
+                    fetchMessages();
+                };
+                setInterval(fetchMessages, 3000);
 
-                window.addEventListener('load', function() {
-                    fetchMessages();                    
-                    const messagesDiv = document.getElementById('messages');
-                    window.scrollTo(0,document.messagesDiv.scrollHeight);
+                let selectedMessageId = null;
+                document.getElementById('messages').addEventListener('contextmenu', function(e) {
+                    e.preventDefault(); 
+                    const messageElement = e.target.closest('.message-sent') || e.target.closest('.message-received');                    
+                    if (messageElement) {
+                        const isSentByUser = messageElement.classList.contains('message-sent'); 
+                        if (isSentByUser) {
+                            selectedMessageId = messageElement.dataset.messageId;
+                            const contextMenu = document.getElementById('context-menu');
+                            contextMenu.style.display = 'block';
+                            contextMenu.style.left = `${e.pageX}px`;
+                            contextMenu.style.top = `${e.pageY}px`;
+                        }
+                    }
+                });
+                window.addEventListener('click', function() {
+                    const contextMenu = document.getElementById('context-menu');
+                    contextMenu.style.display = 'none';
+                });
+                document.getElementById('edit-message').addEventListener('click', function() {
+                    if (selectedMessageId) {
+                        alert(`Editar mensagem com ID: ${selectedMessageId}`);
+                    }
+                });
+
+                document.getElementById('delete-message').addEventListener('click', function() {
+                    if (selectedMessageId) {
+                        Swal.fire({
+                            title: 'Tem certeza?',
+                            text: "Você não poderá desfazer essa ação!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Sim, apagar!',
+                            cancelButtonText: 'Cancelar'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                fetch('deleteMessage.php?message_id=' + encodeURIComponent(selectedMessageId), {
+                                    method: 'GET',
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.status === 'success') {
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Sucesso!',
+                                            text: data.message
+                                        }).then(() => {
+                                            fetchMessages();
+                                        });
+                                    } else {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Erro!',
+                                            text: data.message,
+                                        });
+                                    }
+                                });
+                            }
+                        });
+                    }
                 });
             </script>
         </div>

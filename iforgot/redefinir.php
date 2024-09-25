@@ -20,6 +20,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 <script>
+    window.addEventListener('load', function() {
+        document.querySelector('.loader-container').style.display = 'none';
+        document.body.style.pointerEvents = 'inherit';
+    });
+
     $(document).ready(function() {
         var check = function() {
             var modeClass = $('#left').hasClass('dark-mode') ? 'error' : '';
@@ -32,7 +37,10 @@
         $('#password, #checkpassword').on('input', check);
     });
 </script>
-
+<div class="loader-container">
+  <div class="loader <?php echo $themeClass; ?>"></div>
+  <span class="loader-text">Carregando...</span>
+</div>
 <body class="<?php echo $themeClass; ?>">
     <div id="vlibras">
         <div vw class="enabled">

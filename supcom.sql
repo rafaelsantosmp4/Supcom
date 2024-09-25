@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 18/09/2024 às 18:23
--- Versão do servidor: 8.0.27
--- Versão do PHP: 8.2.13
+-- Tempo de geração: 25/09/2024 às 00:07
+-- Versão do servidor: 8.3.0
+-- Versão do PHP: 8.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,25 +34,14 @@ CREATE TABLE IF NOT EXISTS `chat_messages` (
   `id` int NOT NULL AUTO_INCREMENT,
   `sender_id` int DEFAULT NULL,
   `receiver_id` int DEFAULT NULL,
-  `message` text,
+  `messagetext` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `edited` tinyint(1) DEFAULT '0',
+  `deleted` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `receiver_id` (`receiver_id`),
   KEY `sender_id` (`sender_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Despejando dados para a tabela `chat_messages`
---
-
-INSERT INTO `chat_messages` (`id`, `sender_id`, `receiver_id`, `message`, `created_at`) VALUES
-(1, 4, 3, 'ola', '2024-09-18 18:07:05'),
-(2, 3, 4, 'oie', '2024-09-18 18:07:18'),
-(3, 11, 3, 'peido', '2024-09-18 18:13:01'),
-(4, 3, 11, 'peidão', '2024-09-18 18:13:10'),
-(5, 4, 3, 'a', '2024-09-18 18:14:11'),
-(6, 4, 3, '657489645', '2024-09-18 18:14:15'),
-(7, 4, 3, '54738976589476945', '2024-09-18 18:14:21');
+) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
