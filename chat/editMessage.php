@@ -1,24 +1,20 @@
 <?php
-session_start();
 include('../conexao/conexao.php');
 $db = new BancodeDados();
 $db->conecta();
 
-$message_id = mysqli_real_escape_string($db->con, $_GET['message_id']);
-$edited_message = mysqli_real_escape_string($db->con, $_GET['edited_message']);
-$message_id = mysqli_real_escape_string($db->con, $_GET['message_id']);
-$query = "UPDATE chat_messages SET messagetext = '$edited_message', edited = 1 WHERE id = '$message_id'";
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $message_id = $_POST['message_id'];
+    $new_message = $_POST['message'];
 
-$response = [];
+    $query = "UPDATE chat_messages SET messagetext = '$new_message' WHERE id = $message_id";
 
-if (mysqli_query($db->con, $query)) {
-    $response['status'] = 'success';
-    $response['message'] = 'Mensagem editada com sucesso.';
-} else {
-    $response['status'] = 'error';
-    $response['message'] = 'Erro ao editar a mensagem: ' . mysqli_error($db->con);
+    if (mysqli_query($db->con, $query)) {
+        echo json_encode(['status' => 'success', 'message' => 'Mensagem editada com sucesso.']);
+    } else {
+        echo json_encode(['status' => 'error', 'message' => mysqli_error($db->con)]);
+    }
+    
 }
 
-header('Content-Type: application/json');
-echo json_encode($response);
 ?>

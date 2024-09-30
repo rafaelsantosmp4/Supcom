@@ -863,3 +863,14 @@
   background-color: #00000015;
   border-radius: 10px;
 }
+#deletedMessageSpan {
+  color: #c92828;
+  font-style: italic;
+  position: relative;
+}
+#deletedMessageSpan::before {
+  content: '\1F6C8';
+  margin-right: 10px;
+  font-size: 25pt;
+  vertical-align: middle;
+}

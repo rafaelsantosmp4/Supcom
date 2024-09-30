@@ -165,6 +165,7 @@
                 <div class="message-container" style="position: relative; display: flex; justify-content: center;">
                     <input id="message" type="text" placeholder="Digite sua mensagem" />
                     <button id="send" style='background: none; border: none;'><i id="sendicon" class="fa fa-paper-plane <?php echo $themeClass; ?>"></i></button>
+                    <button id="edit" style='background: none; border: none; display: none;'><i id="sendicon" class="fa fa-edit <?php echo $themeClass; ?>"></i></button>
                 </div>
                 <div id="context-menu" class="context-menu" style="display:none;">
                     <ul>
@@ -175,12 +176,16 @@
             </div>
 
             <script>
-                document.getElementById('send').addEventListener('click', sendMessage); 
+                var isEditing = false;
                 document.getElementById('message').addEventListener('keypress', function(e) {
                     var key = e.which || e.keyCode;
                     if (key === 13) { 
                         e.preventDefault(); 
-                        sendMessage(); 
+                        if (isEditing == true) {
+                            sendEditedMessage();
+                        } else {
+                            sendMessage();
+                        }
                     }
                 });
 
@@ -195,7 +200,7 @@
                         body: 'message=' + encodeURIComponent(message) + '&sender_id=' + myId + '&receiver_id=' + chatPartnerId
                     }).then(() => {
                         document.getElementById('message').value = ''; 
-                        fetchMessages(); 
+                        fetchMessages();
                     });
                 }
 
@@ -206,7 +211,6 @@
 
                 document.getElementById('send').addEventListener('click', function() {
                     var message = document.getElementById('message').value;
-
                     if(message != '') {
                         fetch('sendMessage.php', {
                             method: 'POST',
@@ -291,11 +295,53 @@
                     const contextMenu = document.getElementById('context-menu');
                     contextMenu.style.display = 'none';
                 });
-                document.getElementById('edit-message').addEventListener('click', function() {
+
+                let originalMessage = '';
+
+                document.getElementById('edit-message').addEventListener('click', async function() {
                     if (selectedMessageId) {
-                        alert(`Editar mensagem com ID: ${selectedMessageId}`);
+                        const response = await fetch(`getMessages.php?myid=${myId}&idforn=${chatPartnerId}&message_id=${selectedMessageId}`);
+                        const messageData = await response.json();
+                        
+                        if (messageData.message) {
+                            originalMessage = messageData.message.messagetext; 
+                            document.getElementById('message').value = originalMessage;
+                            document.getElementById('send').style.display = 'none';
+                            document.getElementById('edit').style.display = 'block';
+                            isEditing = true;
+                        } else {
+                            alert('Mensagem não encontrada.');
+                        }
                     }
                 });
+                
+                document.getElementById('edit').addEventListener('click', function() {
+                    document.getElementById('send').style.display = 'block';
+                    document.getElementById('edit').style.display = 'none';
+                    sendEditedMessage();
+                });
+
+                function sendEditedMessage() {
+                    var editedMessage = document.getElementById('message').value;
+                    if (editedMessage.trim() === originalMessage.trim()) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Erro!',
+                            text: "Nenhuma edição foi feita.",
+                        });
+                    }
+                    fetch(`editMessage.php`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: 'message=' + encodeURIComponent(editedMessage) + '&message_id=' + selectedMessageId
+                    }).then(() => {
+                        document.getElementById('message').value = '';
+                        isEditing = false;
+                        fetchMessages();
+                    });
+                }
 
                 document.getElementById('delete-message').addEventListener('click', function() {
                     if (selectedMessageId) {
