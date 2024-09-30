@@ -753,7 +753,7 @@
 
 
 #message {
-  width: 90%;
+  width: 86%;
   height: 35pt;
   border-radius: 50px;
   border: 3px solid #006494;
@@ -877,4 +877,12 @@
   font-style: italic;
   color: rgba(0, 0, 0, 0.445);
   padding-top: 50px;
+}
+#lateralchats {
+  width: 400px;
+  height: calc(100vh - 90px);
+  overflow-y: scroll;
+  background-color: #0054a3;
+  margin-left: 0px;
+  color: #E8F1F2;
 }

@@ -263,7 +263,41 @@
         </div>
 
         <div id="conteudo">
-            <H1>INICIE UMA CONVERSA!</H1>
+            <?php
+                $idenviado = $_GET['idforn'];
+                $queryprods = "SELECT * FROM usuarios WHERE id_usuario = $idenviado";
+                $resultprods = mysqli_query($db->con, $queryprods);
+                $usuarioprods = mysqli_fetch_assoc($resultprods);
+                $nome_forn = $usuarioprods['nome'];
+                $nome_forn_encoded = urlencode($nome_forn);
+
+                $foto = $usuarioprods['perfil_foto'];
+                if ($foto) {
+                    $foto_base64 = base64_encode($foto);
+                    $foto_mime = 'image/png';
+                    $foto_url = "data:$foto_mime;base64,$foto_base64";
+                } else {
+                    $foto_url = '../medias/iconpfp.jpg';
+                }
+            ?>
+            <a href=<?php echo "../profile/company.php?id=$idenviado&nome=$nome_forn_encoded"; ?> id="initialnamelink"><div id="initialname" style='display: flex; align-items: center; justify-content: center; margin-top: 10px;'>
+                <img id="perfilfoto" src="<?php echo $foto_url; ?>" alt="Foto de Perfil" style="width: 80px; height: 80px; border-radius: 50%; margin-right: 10px;">
+                <h1 id="titulochat">Carregando...</h1>
+            </div></a>
+            <div id="chat">
+                <div id="messages"></div>
+                <div class="message-container" style="position: relative; display: flex; justify-content: center;">
+                    <input id="message" type="text" placeholder="Digite sua mensagem" />
+                    <button id="send" style='background: none; border: none;'><i id="sendicon" class="fa fa-paper-plane <?php echo $themeClass; ?>"></i></button>
+                    <button id="edit" style='background: none; border: none; display: none;'><i id="sendicon" class="fa fa-edit <?php echo $themeClass; ?>"></i></button>
+                </div>
+                <div id="context-menu" class="context-menu" style="display:none;">
+                    <ul>
+                        <li id="edit-message"><i class="fa fa-pencil" style='font-family: FontAwesome;'></i> Editar</li>
+                        <li id="delete-message" style='color: #EE2B39;'><i class="fa fa-trash"></i> Deletar</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </body>
@@ -273,5 +307,7 @@
 </div>
 
 <script src="../js/script.js"></script>
+<script src="getsend.js"></script>
+<script src="contextmenu.js"></script>
 
 </html>

@@ -69,6 +69,7 @@
         </ul>
     </nav>
     <div style="justify-content: center; align-items: center; display: flex;">
+        <a href="../chat/" style="color: inherit; text-decoration: none; font-size: inherit; font-weight: inherit;" id="linkupload" class="'. $themeClass .'"><button class="uploadbutton <?php echo $themeClass; ?>" id="uploadbutton"><i class="fa fa-commenting-o" style="font-family: FontAwesome;"></i></a>
         <?php
             include('../conexao/conexao.php');
             $db = new BancodeDados();

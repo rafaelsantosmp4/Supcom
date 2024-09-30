@@ -83,6 +83,7 @@
         </ul>
     </nav>
     <div style="justify-content: center; align-items: center; display: flex;">
+        <a href="../chat/" style="color: inherit; text-decoration: none; font-size: inherit; font-weight: inherit;" id="linkupload" class="'. $themeClass .'"><button class="uploadbutton <?php echo $themeClass; ?>" id="uploadbutton"><i class="fa fa-commenting-o" style="font-family: FontAwesome;"></i></a>
         <?php
             include('../conexao/conexao.php');
             $db = new BancodeDados();
@@ -178,7 +179,7 @@
                     <h2 style="margin-top: 0px;"><?php echo $preco_produto; ?></h2>
                     <h3 style="margin-bottom: 13px;">Quantidade: <?php echo $qtd_produto; ?></h3>
                     <?php                        
-                        echo'<a href="../chat/index.php?myid='.$iduser.'&idforn='.$id_forn.'"><button style="width: 50%;" class="submit-button" id="entraremcontato">Entrar em contato</button></a>';
+                        echo'<a href="../chat/company.php?myid='.$iduser.'&idforn='.$id_forn.'"><button style="width: 50%;" class="submit-button" id="entraremcontato">Entrar em contato</button></a>';
                     ?>
                     
                     <h3>Descrição:</h3>
