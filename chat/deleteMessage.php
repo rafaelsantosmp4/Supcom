@@ -5,7 +5,7 @@ $db = new BancodeDados();
 $db->conecta();
 
 $message_id = mysqli_real_escape_string($db->con, $_GET['message_id']);
-$query = "UPDATE chat_messages SET messagetext = '<span id=\"deletedMessageSpan\"> Mensagem apagada!</span>', deleted = 1 WHERE id = '$message_id'";
+$query = "UPDATE chat_messages SET deleted = 1 WHERE id = '$message_id'";
 
 $response = [];
 

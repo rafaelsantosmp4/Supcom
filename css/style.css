@@ -802,7 +802,7 @@
 }
 .message-sent .message-body {
   background-color: #3f86c9;
-  padding: 20px;
+  padding: 5px 20px;
   border-radius: 10px;
   width: 50%;
   margin-left: 45%;
@@ -811,7 +811,7 @@
 .message-received .message-body {
   background-color: #658eb4;
   margin: 10px;
-  padding: 20px;
+  padding: 5px 20px;
   border-radius: 10px;
   width: 50%;
   margin-left: 5%;
@@ -821,10 +821,9 @@
   margin-top: 5px;
 }
 .message-timestamp {
-  font-size: 10pt;
   font-weight: 100;
   display: block;
-  font-size: 0.8em;
+  font-size: 0.7em;
 }
 .message-container {
   padding: 10px;
@@ -873,4 +872,9 @@
   margin-right: 10px;
   font-size: 25pt;
   vertical-align: middle;
+}
+.message-edited {
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.445);
+  padding-top: 50px;
 }

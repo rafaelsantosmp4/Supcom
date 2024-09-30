@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $message_id = $_POST['message_id'];
     $new_message = $_POST['message'];
 
-    $query = "UPDATE chat_messages SET messagetext = '$new_message' WHERE id = $message_id";
+    $query = "UPDATE chat_messages SET messagetext = '$new_message', edited = 1 WHERE id = $message_id";
 
     if (mysqli_query($db->con, $query)) {
         echo json_encode(['status' => 'success', 'message' => 'Mensagem editada com sucesso.']);
@@ -16,5 +16,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     
 }
-
 ?>
