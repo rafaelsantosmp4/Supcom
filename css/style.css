@@ -754,16 +754,19 @@
 
 #message {
   width: 86%;
-  height: 35pt;
-  border-radius: 50px;
+  height: 50pt;
+  border-radius: 20px;
   border: 3px solid #006494;
   padding-left: 15px;
-  padding-right: 15px;
+  padding-right: 10px;
+  padding-top: 5px;
   font-family: Arial, sans-serif; 
   font-size: 14pt;
   color: #333; 
   margin-bottom: 10px;
   background-color: light-dark(rgb(232, 240, 254), rgba(70, 90, 126, 0.4));
+  resize: none;
+  scrollbar-width: none;
 }
 #chat {
   display: flex;
@@ -814,7 +817,7 @@
   padding: 5px 20px;
   border-radius: 10px;
   width: 50%;
-  margin-left: 5%;
+  margin-left: 1%;
 }
 #messages p {
   margin-bottom: 5px;
@@ -889,38 +892,42 @@
   padding-top: 60px;
 }
 #lateralchats ul {
-  text-align: center;
   padding-left: 0px;
   list-style-type: none;
   display: flex;
   flex-direction: column-reverse;
 }
-#lateralchats ul a {  
+#lateralchats ul a {
   color: inherit;
   text-decoration: none;
   font-size: inherit;
   font-weight: inherit;
 }
 .user-image {
-  width: 40px;
-  height: 40px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   margin-right: 10px;
 }
 .prfchat {
   transition: 300ms;
   margin-bottom: 30px;
+  margin-left: 20px;
+  font-size: 17pt;
 }
 .prfchat:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
   background-color: #004a8f;
   padding: 10px;
 }
 .prfchatflex {
   display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .last-message {
-  color: #8ebce7;
+  color: #8ebce7;  
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12pt;
 }

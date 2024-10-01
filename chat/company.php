@@ -174,9 +174,11 @@
                                     <div class='prfchat'>
                                         <div class='prfchatflex'>
                                             <img src='${userImageUrl}' alt='${userName}' class='user-image' />
-                                            <span>${userName}</span>
+                                            <div style="margin-left: 5px;">
+                                                <span>${userName}</span>                                                
+                                                <div class='last-message'>${lastMessage}</div>
+                                            </div>                                            
                                         </div>
-                                        <div class='last-message'>${lastMessage}</div>
                                     </div>
                                 </a>
                             `;
@@ -186,7 +188,7 @@
                     previousData = userData;
                 }
 
-                setInterval(fetchConversations, 500);
+                setInterval(fetchConversations, 1000);
                 fetchConversations();
             </script>
         </div>
@@ -216,7 +218,7 @@
             <div id="chat">
                 <div id="messages"></div>
                 <div class="message-container" style="position: relative; display: flex; justify-content: center;">
-                    <input id="message" type="text" placeholder="Digite sua mensagem" />
+                    <textarea name="message" id="message" placeholder="Digite sua mensagem" cols="30" rows="10"></textarea>
                     <button id="send" style='background: none; border: none;'><i id="sendicon" class="fa fa-paper-plane <?php echo $themeClass; ?>"></i></button>
                     <button id="edit" style='background: none; border: none; display: none;'><i id="sendicon" class="fa fa-edit <?php echo $themeClass; ?>"></i></button>
                 </div>
