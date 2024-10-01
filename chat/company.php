@@ -26,7 +26,7 @@
         echo"<script>alert('Você precisa entrar na sua conta para continuar.'); window.location.href = '../login/index.php';</script>";
     }
 ?>
-<header class='<?php echo $themeClass; ?>'>
+<header class='<?php echo $themeClass; ?>' style="border-bottom-left-radius: 30px; border-bottom-right-radius: 30px;">
     <a href="../home" id="button-logo-index"><img width="120px" id="default-logo" src="<?php echo $logoSrc; ?>"></a>
     <nav id="mobile-nav">
         <ul>
