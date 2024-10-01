@@ -36,7 +36,7 @@
   font-size: 40pt;
 }
 #imagem-contraria {
-  background-image: url('../medias/estoquemob.webp');
+  background-image: url('https://files.catbox.moe/4st09c.webp');
   background-position: center;
   background-size: cover;
   width: 50%;
@@ -64,10 +64,10 @@
   position: fixed;
 }
 .logimg {
-  background-image: url('../medias/estoqueseg.webp');
+  background-image: url('https://files.catbox.moe/bf5ru5.webp');
 }
 .signupimg {
-  background-image: url('../medias/contract.jpg');
+  background-image: url('https://files.catbox.moe/3qsnqo.jpg');
 }
 
 

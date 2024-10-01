@@ -114,16 +114,16 @@
             <input type="radio" name="radio-btn" id="radio4">
 
             <div class="slide first">
-                <div class="divslide" style="width: 100%; height: 100%; background-image: url('medias/bannerdrone.png');"></div>
+                <div class="divslide" style="width: 100%; height: 100%; background-image: url('https://files.catbox.moe/25qk6t.png');"></div>
             </div>
             <div class="slide">
-                <div class="divslide" style="width: 100%; height: 100%; background-image: url('medias/bannerabast.png');"></div>
+                <div class="divslide" style="width: 100%; height: 100%; background-image: url('https://files.catbox.moe/zari03.png');"></div>
             </div>
             <div class="slide">
-                <div class="divslide" style="width: 100%; height: 100%; background-image: url('medias/bannerforn.png');"></div>
+                <div class="divslide" style="width: 100%; height: 100%; background-image: url('https://files.catbox.moe/00h6ox.png');"></div>
             </div>
             <div class="slide">
-                <div class="divslide" style="width: 100%; height: 100%; background-image: url('medias/bannermundo.png');"></div>
+                <div class="divslide" style="width: 100%; height: 100%; background-image: url('https://files.catbox.moe/2qosu0.png');"></div>
             </div>
 
             <div class="navigation-auto">
