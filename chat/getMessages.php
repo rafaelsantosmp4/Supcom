@@ -13,7 +13,7 @@ $response = [];
 $query = "SELECT nome FROM usuarios WHERE id_usuario = '$chat_partner_id'";
 $result = mysqli_query($db->con, $query);
 $partner = mysqli_fetch_assoc($result);
-$partner_name = $partner ? $partner['nome'] : 'Ele'; 
+$partner_name = $partner ? $partner['nome'] : 'Ele';
 
 if ($message_id) {
     $query = "SELECT * FROM chat_messages WHERE id = '$message_id'";

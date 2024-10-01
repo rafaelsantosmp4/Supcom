@@ -141,125 +141,44 @@
     <div id="container">
         <div id="lateralchats">
             <h1 align='center'>Conversas</h1>
-            <ul>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-                <li>AAAAAAAAAAAAAAAA</li>
-            </ul>
+            <ul id="conversations-list"></ul>
+
+            <script>
+                const iduser = '<?php echo $iduser; ?>';
+                async function fetchConversations() {
+                    const response = await fetch(`get_conversations.php?iduser=${iduser}`);
+                    const userData = await response.json();
+                    updateConversationsList(userData);
+                }
+
+                function updateConversationsList(userData) {
+                    const listElement = document.getElementById('conversations-list');
+                    listElement.innerHTML = '';
+
+                    userData.forEach(user => {
+                        const userId = user.id;
+                        const userName = user.nome;
+                        const userImageUrl = `getprofilepfp.php?id=${userId}`;
+                        const lastMessage = user.ultima_mensagem || "<i>Nenhuma mensagem</i>";
+
+                        const listItem = document.createElement('li');
+                        listItem.innerHTML = `
+                            <a href='company.php?myid=${iduser}&idforn=${userId}'>
+                                <div class='prfchat'>
+                                    <div class='prfchatflex'>
+                                        <img src='${userImageUrl}' alt='${userName}' class='user-image' />
+                                        <span>${userName}</span>
+                                    </div>
+                                    <div class='last-message'>${lastMessage}</div>
+                                </div>
+                            </a>
+                        `;
+                        listElement.appendChild(listItem);
+                    });
+                }
+                setInterval(fetchConversations, 3000);
+                fetchConversations();
+            </script>
         </div>
 
         <div id="conteudo">

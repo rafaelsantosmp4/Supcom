@@ -199,7 +199,11 @@
                 <li><b>Data de cadastro: </b><?php echo $formatted_date ?></li>
             </ul>
 
-            <h1>Produtos da empresa:</h1>
+            <?php
+                if ($usuarioprods["tipo_usuario"] == "fornecedor") {
+                    echo '<h1>Produtos da empresa</h1>';
+                }
+            ?>
             <?php
                 $queryprods = "SELECT * FROM produto WHERE id_forn = $idenviado";
                 $resultprods = mysqli_query($db->con, $queryprods);
