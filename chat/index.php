@@ -145,6 +145,8 @@
 
             <script>
                 const iduser = '<?php echo $iduser; ?>';
+                let previousData = [];
+
                 async function fetchConversations() {
                     const response = await fetch(`get_conversations.php?iduser=${iduser}`);
                     const userData = await response.json();
@@ -153,30 +155,39 @@
 
                 function updateConversationsList(userData) {
                     const listElement = document.getElementById('conversations-list');
-                    listElement.innerHTML = '';
-
                     userData.forEach(user => {
                         const userId = user.id;
                         const userName = user.nome;
                         const userImageUrl = `getprofilepfp.php?id=${userId}`;
                         const lastMessage = user.ultima_mensagem || "<i>Nenhuma mensagem</i>";
+                        const existingItem = previousData.find(item => item.id === userId);
 
-                        const listItem = document.createElement('li');
-                        listItem.innerHTML = `
-                            <a href='company.php?myid=${iduser}&idforn=${userId}'>
-                                <div class='prfchat'>
-                                    <div class='prfchatflex'>
-                                        <img src='${userImageUrl}' alt='${userName}' class='user-image' />
-                                        <span>${userName}</span>
+                        if (existingItem) {
+                            const listItem = listElement.querySelector(`[data-user-id='${userId}']`);
+                            if (listItem) {
+                                listItem.querySelector('.last-message').innerHTML = lastMessage;
+                            }
+                        } else {
+                            const listItem = document.createElement('li');
+                            listItem.setAttribute('data-user-id', userId);
+                            listItem.innerHTML = `
+                                <a href='company.php?myid=${iduser}&idforn=${userId}'>
+                                    <div class='prfchat'>
+                                        <div class='prfchatflex'>
+                                            <img src='${userImageUrl}' alt='${userName}' class='user-image' />
+                                            <span>${userName}</span>
+                                        </div>
+                                        <div class='last-message'>${lastMessage}</div>
                                     </div>
-                                    <div class='last-message'>${lastMessage}</div>
-                                </div>
-                            </a>
-                        `;
-                        listElement.appendChild(listItem);
+                                </a>
+                            `;
+                            listElement.appendChild(listItem);
+                        }
                     });
+                    previousData = userData;
                 }
-                setInterval(fetchConversations, 3000);
+
+                setInterval(fetchConversations, 1000);
                 fetchConversations();
             </script>
         </div>

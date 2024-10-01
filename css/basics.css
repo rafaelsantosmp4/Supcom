@@ -55,6 +55,8 @@ header {
   box-shadow: 0px 0px 20px black;
   position: relative;
   font-size: 14pt;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
 }
 header.light-mode {
   background-color: #E8F1F2;

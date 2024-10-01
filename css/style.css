@@ -884,7 +884,9 @@
   overflow-y: scroll;
   background-color: #0054a3;
   margin-left: 0px;
-  color: #E8F1F2;
+  color: #E8F1F2;  
+  margin-top: -60px;
+  padding-top: 60px;
 }
 #lateralchats ul {
   text-align: center;
