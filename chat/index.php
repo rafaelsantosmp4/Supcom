@@ -176,9 +176,9 @@
                                         <div class='prfchatflex'>
                                             <img src='${userImageUrl}' alt='${userName}' class='user-image' />
                                             <div style="margin-left: 5px;">
-                                                <span>${userName}</span>                                                
+                                                <span>${userName}</span>
                                                 <div class='last-message'>${lastMessage}</div>
-                                            </div>                                            
+                                            </div>
                                         </div>
                                     </div>
                                 </a>

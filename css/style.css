@@ -890,6 +890,7 @@
   color: #E8F1F2;  
   margin-top: -60px;
   padding-top: 60px;
+  overflow-x: hidden;
 }
 #lateralchats ul {
   padding-left: 0px;
@@ -912,16 +913,16 @@
 .prfchat {
   transition: 300ms;
   margin-bottom: 30px;
-  margin-left: 20px;
   font-size: 17pt;
+  padding: 5px 0px;
 }
 .prfchat:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   background-color: #004a8f;
-  padding: 10px;
 }
 .prfchatflex {
   display: flex;
+  margin-left: 20px;
 }
 .last-message {
   color: #8ebce7;  

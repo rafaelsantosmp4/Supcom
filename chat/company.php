@@ -188,7 +188,7 @@
                     previousData = userData;
                 }
 
-                setInterval(fetchConversations, 1000);
+                setInterval(fetchConversations, 3000);
                 fetchConversations();
             </script>
         </div>
