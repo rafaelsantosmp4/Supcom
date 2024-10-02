@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $receiver_id = $_POST['receiver_id']; // ID do destinatário vindo pelo POST
     $message = $_POST['message'];
 
-    $stmt = $pdo->prepare("INSERT INTO chat_messages (sender_id, receiver_id, messagetext) VALUES (?, ?, ?)");
+    $stmt = $pdo->prepare("INSERT INTO chat_messages (sender_id, receiver_id, messagetext, lida) VALUES (?, ?, ?, 0)");
     $stmt->execute([$sender_id, $receiver_id, $message]);
 
     header('Content-Type: application/json');

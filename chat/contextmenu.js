@@ -1,3 +1,7 @@
+window.addEventListener('load', function() {
+    document.body.style.overflow = 'hidden';
+});
+
 let selectedMessageId = null;
 document.getElementById('messages').addEventListener('contextmenu', function(e) {
     e.preventDefault();

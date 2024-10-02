@@ -932,3 +932,12 @@
   text-overflow: ellipsis;
   font-size: 12pt;
 }
+.notification-dot {
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+  margin-left: 300px;
+  margin-top: 10px;
+  position: absolute;
+}

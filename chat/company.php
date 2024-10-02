@@ -124,7 +124,7 @@
   <span class="loader-text <?php echo $themeClass; ?>">Carregando...</span>
 </div>
 
-<body class="<?php echo $themeClass; ?>" style='overflow: hidden;'>
+<body class="<?php echo $themeClass; ?>">
     <div id="vlibras">
         <div vw class="enabled">
             <div vw-access-button class="active"></div>
@@ -146,14 +146,34 @@
                 const iduser = '<?php echo $iduser; ?>';
                 let previousData = [];
 
+                async function updateMessageStatusToRead(userId, recipientId) {
+                    const response = await fetch('update_message_status.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ userId, recipientId })
+                    });
+                }
+
                 async function fetchConversations() {
                     const response = await fetch(`get_conversations.php?iduser=${iduser}`);
                     const userData = await response.json();
                     updateConversationsList(userData);
+
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const idforn = urlParams.get('idforn');
+
+                    if (idforn) {
+                        const userToUpdate = userData.find(user => user.id == idforn);
+                        if (userToUpdate && userToUpdate.sender_id !== iduser) {
+                            await updateMessageStatusToRead(iduser, idforn);
+                        }
+                    }
                 }
 
                 function updateConversationsList(userData) {
-                    const listElement = document.getElementById('conversations-list');
+                    const listElement = document.getElementById('conversations-list');                    
                     userData.forEach(user => {
                         const userId = user.id;
                         const userName = user.nome;
@@ -165,6 +185,8 @@
                             const listItem = listElement.querySelector(`[data-user-id='${userId}']`);
                             if (listItem) {
                                 listItem.querySelector('.last-message').innerHTML = lastMessage;
+                                const notificationDot = listItem.querySelector('.notification-dot');
+                                notificationDot.style.display = user.notificada && user.sender_id !== iduser ? 'block' : 'none';
                             }
                         } else {
                             const listItem = document.createElement('li');
@@ -172,12 +194,13 @@
                             listItem.innerHTML = `
                                 <a href='company.php?myid=${iduser}&idforn=${userId}'>
                                     <div class='prfchat'>
+                                        <span class='notification-dot' style='display: ${user.notificada && user.sender_id !== iduser ? 'block' : 'none'};'></span>
                                         <div class='prfchatflex'>
                                             <img src='${userImageUrl}' alt='${userName}' class='user-image' />
                                             <div style="margin-left: 5px;">
-                                                <span>${userName}</span>                                                
+                                                <span>${userName}</span>
                                                 <div class='last-message'>${lastMessage}</div>
-                                            </div>                                            
+                                            </div>
                                         </div>
                                     </div>
                                 </a>
@@ -187,8 +210,7 @@
                     });
                     previousData = userData;
                 }
-
-                setInterval(fetchConversations, 3000);
+                setInterval(fetchConversations, 100);
                 fetchConversations();
             </script>
         </div>

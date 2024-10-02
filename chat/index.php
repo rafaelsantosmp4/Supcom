@@ -147,14 +147,37 @@
                 const iduser = '<?php echo $iduser; ?>';
                 let previousData = [];
 
+                async function updateMessageStatusToRead(userId, recipientId) {
+                    const response = await fetch('update_message_status.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ userId, recipientId })
+                    });
+                    if (!response.ok) {
+                        console.error('Erro ao atualizar o status da mensagem:', response.statusText);
+                    }
+                }
+
                 async function fetchConversations() {
                     const response = await fetch(`get_conversations.php?iduser=${iduser}`);
                     const userData = await response.json();
                     updateConversationsList(userData);
+
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const idforn = urlParams.get('idforn');
+
+                    if (idforn) {
+                        const userToUpdate = userData.find(user => user.id == idforn);
+                        if (userToUpdate && userToUpdate.sender_id !== iduser) {
+                            await updateMessageStatusToRead(iduser, idforn);
+                        }
+                    }
                 }
 
                 function updateConversationsList(userData) {
-                    const listElement = document.getElementById('conversations-list');
+                    const listElement = document.getElementById('conversations-list');                    
                     userData.forEach(user => {
                         const userId = user.id;
                         const userName = user.nome;
@@ -166,6 +189,8 @@
                             const listItem = listElement.querySelector(`[data-user-id='${userId}']`);
                             if (listItem) {
                                 listItem.querySelector('.last-message').innerHTML = lastMessage;
+                                const notificationDot = listItem.querySelector('.notification-dot');
+                                notificationDot.style.display = user.notificada ? 'block' : 'none';
                             }
                         } else {
                             const listItem = document.createElement('li');
@@ -173,6 +198,7 @@
                             listItem.innerHTML = `
                                 <a href='company.php?myid=${iduser}&idforn=${userId}'>
                                     <div class='prfchat'>
+                                        <span class='notification-dot' style='display: ${user.notificada ? 'block' : 'none'};'></span>
                                         <div class='prfchatflex'>
                                             <img src='${userImageUrl}' alt='${userName}' class='user-image' />
                                             <div style="margin-left: 5px;">
@@ -189,7 +215,7 @@
                     previousData = userData;
                 }
 
-                setInterval(fetchConversations, 1000);
+                setInterval(fetchConversations, 100);
                 fetchConversations();
             </script>
         </div>
