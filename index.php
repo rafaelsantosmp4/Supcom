@@ -114,16 +114,16 @@
             <input type="radio" name="radio-btn" id="radio4">
 
             <div class="slide first">
-                <div class="divslide" style="width: 100%; height: 100%; background-image: url('https://files.catbox.moe/25qk6t.png');"></div>
+                <div class="divslide" style="width: 100%; height: 100%; background-image: url('medias/baninit.png');"></div>
             </div>
             <div class="slide">
-                <div class="divslide" style="width: 100%; height: 100%; background-image: url('https://files.catbox.moe/zari03.png');"></div>
+                <div class="divslide" style="width: 100%; height: 100%; background-image: url('medias/banconnect.png');"></div>
             </div>
             <div class="slide">
-                <div class="divslide" style="width: 100%; height: 100%; background-image: url('https://files.catbox.moe/00h6ox.png');"></div>
+                <div class="divslide" style="width: 100%; height: 100%; background-image: url('medias/banmundo.png');"></div>
             </div>
             <div class="slide">
-                <div class="divslide" style="width: 100%; height: 100%; background-image: url('https://files.catbox.moe/2qosu0.png');"></div>
+                <div class="divslide" style="width: 100%; height: 100%; background-image: url('medias/banabasteca.png');"></div>
             </div>
 
             <div class="navigation-auto">
@@ -201,6 +201,7 @@
         document.body.style.overflow = 'auto';
         document.querySelector('.loader-text').style.display = 'none';
         document.body.style.pointerEvents = 'inherit';
+        document.body.style.overflow = 'inherit';
     });
 
     var count = 1;

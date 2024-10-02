@@ -36,7 +36,7 @@
   font-size: 40pt;
 }
 #imagem-contraria {
-  background-image: url('https://files.catbox.moe/4st09c.webp');
+  background-image: url('../medias/contraria.webp');
   background-position: center;
   background-size: cover;
   width: 50%;
@@ -64,10 +64,10 @@
   position: fixed;
 }
 .logimg {
-  background-image: url('https://files.catbox.moe/bf5ru5.webp');
+  background-image: url('../medias/contrarialog_1_11zon.webp');
 }
 .signupimg {
-  background-image: url('https://files.catbox.moe/3qsnqo.jpg');
+  background-image: url('../medias/contrariasignup_2_11zon.jpg');
 }
 
 

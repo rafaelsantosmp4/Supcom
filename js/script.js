@@ -3,6 +3,7 @@ window.addEventListener('load', function() {
   document.querySelector('footer').style.opacity = 100;
   document.querySelector('.loader-container').style.display = 'none';
   document.body.style.pointerEvents = 'inherit';
+  document.body.style.overflow = 'inherit';
 });
 
 const imglogo = document.querySelector("#default-logo");
