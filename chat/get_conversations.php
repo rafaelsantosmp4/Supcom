@@ -30,10 +30,22 @@ while ($row = mysqli_fetch_assoc($conversations)) {
         ORDER BY created_at DESC
         LIMIT 1";
 
+    $lidaQuery = "
+        SELECT lida
+        FROM chat_messages
+        WHERE ((sender_id = '$otherUserId' AND receiver_id = '$iduser'))
+            AND deleted = 0
+        ORDER BY created_at DESC
+        LIMIT 1";
+
     $lastMessageResult = mysqli_query($db->con, $lastMessageQuery);
     $lastMessageRow = mysqli_fetch_assoc($lastMessageResult);
+
+    $lidaResult = mysqli_query($db->con, $lidaQuery);
+    $lidaRow = mysqli_fetch_assoc($lidaResult);
+
     $lastMessage = isset($lastMessageRow['messagetext']) ? $lastMessageRow['messagetext'] : '<i>Nenhuma mensagem</i>';
-    $notificada = isset($lastMessageRow['lida']) && $lastMessageRow['lida'] == 0;
+    $notificada = isset($lidaRow['lida']) && $lidaRow['lida'] == 0;
 
     if ($userRow = mysqli_fetch_assoc($userResult)) {
         $userData[] = [
