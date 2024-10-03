@@ -933,11 +933,22 @@
   font-size: 12pt;
 }
 .notification-dot {
-  width: 10px;
-  height: 10px;
+  width: 15px;
+  height: 15px;
   background-color: red;
   border-radius: 50%;
   margin-left: 300px;
   margin-top: 10px;
   position: absolute;
+}
+.notification-icon {
+  display: none;
+  position: absolute;
+  top: 0px;
+  right: 2px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 8px;
+  font-size: 20px;
 }

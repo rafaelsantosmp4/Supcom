@@ -43,7 +43,13 @@
         </ul>
     </nav>
     <div style="justify-content: center; align-items: center; display: flex;">
-        <a href="../chat/" style="color: inherit; text-decoration: none; font-size: inherit; font-weight: inherit;" id="linkupload" class="'. $themeClass .'"><button class="uploadbutton <?php echo $themeClass; ?>" id="uploadbutton"><i class="fa fa-commenting-o" style="font-family: FontAwesome;"></i></a>
+        <a href="../chat/" style="color: inherit; text-decoration: none; font-size: inherit; font-weight: inherit;" id="linkupload" class="'. $themeClass .'">
+            <button class="uploadbutton <?php echo $themeClass; ?>" id="uploadbutton">
+                <i class="fa fa-commenting-o" style="font-family: FontAwesome;"></i>
+                <span id="message-notification" class="notification-icon"></span>
+                <audio id="notification-sound" src="../chat/notification.mp3" preload="auto"></audio>
+            </button>
+        </a>
         <?php
             include('../conexao/conexao.php');
             $db = new BancodeDados();
@@ -142,10 +148,11 @@
         <div id="lateralchats">
             <h1 align='center'>Conversas</h1>
             <ul id="conversations-list"></ul>
-
+            <audio id="notification-sound" src="notification.mp3" preload="auto"></audio>
             <script>
                 const iduser = '<?php echo $iduser; ?>';
                 let previousData = [];
+                let lastNotifiedUserId = null;
 
                 async function updateMessageStatusToRead(userId, recipientId) {
                     const response = await fetch('update_message_status.php', {
@@ -191,6 +198,12 @@
                                 listItem.querySelector('.last-message').innerHTML = lastMessage;
                                 const notificationDot = listItem.querySelector('.notification-dot');
                                 notificationDot.style.display = user.notificada ? 'block' : 'none';
+                                document.getElementById('message-notification').style.display = user.notificada ? 'block' : 'none';
+
+                                if (user.notificada && userId !== lastNotifiedUserId) {
+                                    document.getElementById('notification-sound').play();
+                                    lastNotifiedUserId = userId;
+                                }
                             }
                         } else {
                             const listItem = document.createElement('li');
