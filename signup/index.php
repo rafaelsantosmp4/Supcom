@@ -157,3 +157,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $db->fechar();
 ?>
+<script>
+window.addEventListener('load', function() {
+    document.body.style.overflow = 'inherit';
+});
+</script>
