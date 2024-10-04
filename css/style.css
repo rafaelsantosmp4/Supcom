@@ -915,10 +915,13 @@
   transition: 300ms;
   margin-bottom: 30px;
   font-size: 17pt;
-  padding: 5px 0px;
+  padding: 10px 0px;
 }
 .prfchat:hover {
   transform: scale(1.05);
+  background-color: #004a8f;
+}
+.chatactive {
   background-color: #004a8f;
 }
 .prfchatflex {

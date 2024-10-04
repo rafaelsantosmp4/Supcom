@@ -185,14 +185,16 @@
                 }
 
                 function updateConversationsList(userData) {
-                    const listElement = document.getElementById('conversations-list');                    
+                    const listElement = document.getElementById('conversations-list');
+                    const currentChatUserId = <?php echo json_encode($_GET['idforn']); ?>;
+
                     userData.forEach(user => {
                         const userId = user.id;
                         const userName = user.nome;
                         const userImageUrl = `getprofilepfp.php?id=${userId}`;
                         const lastMessage = user.ultima_mensagem || "<i>Nenhuma mensagem</i>";
                         const existingItem = previousData.find(item => item.id === userId);
-
+                        
                         if (existingItem) {
                             const listItem = listElement.querySelector(`[data-user-id='${userId}']`);
                             if (listItem) {
@@ -201,11 +203,16 @@
                                 notificationDot.style.display = user.notificada ? 'block' : 'none';
 
                                 if (user.notificada && userId !== lastNotifiedUserId) {
-                                    if (userId !== <?php echo json_encode($_GET['idforn']); ?>) {
+                                    if (userId !== currentChatUserId) {
                                         document.getElementById('message-notification').style.display = 'block';
                                         document.getElementById('notification-sound').play();
                                     }
                                     lastNotifiedUserId = userId;
+                                }
+                                if (userId === currentChatUserId) {
+                                    listItem.querySelector('.prfchat').classList.add('chatactive');
+                                } else {
+                                    listItem.querySelector('.prfchat').classList.remove('chatactive');
                                 }
                             }
                         } else {
