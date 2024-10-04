@@ -82,7 +82,13 @@
         </ul>
     </nav>
     <div style="justify-content: center; align-items: center; display: flex;">
-        <a href="../chat/" style="color: inherit; text-decoration: none; font-size: inherit; font-weight: inherit;" id="linkupload" class="'. $themeClass .'"><button class="uploadbutton <?php echo $themeClass; ?>" id="uploadbutton"><i class="fa fa-commenting-o" style="font-family: FontAwesome;"></i></a>
+        <a href="../chat/" style="color: inherit; text-decoration: none; font-size: inherit; font-weight: inherit;" id="linkupload" class="<?php echo $themeClass; ?>">
+            <button class="uploadbutton <?php echo $themeClass; ?>" id="uploadbutton">
+                <i class="fa fa-commenting-o" style="font-family: FontAwesome;"></i>
+                <span id="message-notification" class="notification-icon" style="display: none;"></span>
+                <audio id="notification-sound" src="../chat/notification.mp3" preload="auto"></audio>
+            </button>
+        </a>
         <?php
             include('../conexao/conexao.php');
             $db = new BancodeDados();
@@ -256,7 +262,34 @@
         </div>
     </div>
 </body>
+<script>
+    const iduser = '<?php echo $iduser; ?>';
+    let previousData = [];
+    let lastNotifiedUserId = null;
 
+    if (!localStorage.getItem('NotificationFinish')) {
+        async function fetchConversations() {
+            const response = await fetch(`../chat/get_conversations.php?iduser=${iduser}`);
+            const userData = await response.json();
+            
+            userData.forEach(user => {
+                const userId = user.id;
+                if (user.notificada && userId !== lastNotifiedUserId) {
+                    document.getElementById('notification-sound').play();
+                    lastNotifiedUserId = userId;
+                    document.getElementById('message-notification').style.display = 'block';
+                    localStorage.setItem('NotificationFinish', 'true');
+                }
+            });
+            previousData = userData;
+        }
+
+        setInterval(fetchConversations, 1000);
+        fetchConversations();
+    } else {
+        document.getElementById('message-notification').style.display = 'block';
+    }
+</script>
 <?php include '../universal/footer.php';?>
 
 <script src="../js/script.js"></script>

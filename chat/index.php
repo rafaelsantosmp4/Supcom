@@ -198,11 +198,13 @@
                                 listItem.querySelector('.last-message').innerHTML = lastMessage;
                                 const notificationDot = listItem.querySelector('.notification-dot');
                                 notificationDot.style.display = user.notificada ? 'block' : 'none';
-                                document.getElementById('message-notification').style.display = user.notificada ? 'block' : 'none';
 
                                 if (user.notificada && userId !== lastNotifiedUserId) {
-                                    document.getElementById('notification-sound').play();
+                                    if(!localStorage.getItem('NotificationFinish')) {
+                                        document.getElementById('notification-sound').play();
+                                    }
                                     lastNotifiedUserId = userId;
+                                    document.getElementById('message-notification').style.display = 'block';
                                 }
                             }
                         } else {

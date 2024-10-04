@@ -118,3 +118,9 @@ window.onload = function() {
     document.getElementById('message').focus();
 };
 setInterval(fetchMessages, 3000);
+
+document.addEventListener('keydown', function(event) {
+    if ((event.key.length === 1 && event.key.match(/[a-zA-Z]/)) && !event.ctrlKey && !event.altKey && !event.shiftKey && !event.metaKey) {
+        document.getElementById('message').focus();
+    }
+});

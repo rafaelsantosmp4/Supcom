@@ -150,6 +150,7 @@
             <ul id="conversations-list"></ul>
             <audio id="notification-sound" src="notification.mp3" preload="auto"></audio>
             <script>
+                localStorage.removeItem('NotificationFinish');
                 const iduser = '<?php echo $iduser; ?>';
                 let previousData = [];
                 let lastNotifiedUserId = null;
@@ -198,10 +199,12 @@
                                 listItem.querySelector('.last-message').innerHTML = lastMessage;
                                 const notificationDot = listItem.querySelector('.notification-dot');
                                 notificationDot.style.display = user.notificada ? 'block' : 'none';
-                                document.getElementById('message-notification').style.display = user.notificada ? 'block' : 'none';
 
                                 if (user.notificada && userId !== lastNotifiedUserId) {
-                                    document.getElementById('notification-sound').play();
+                                    if (userId !== <?php echo json_encode($_GET['idforn']); ?>) {
+                                        document.getElementById('message-notification').style.display = 'block';
+                                        document.getElementById('notification-sound').play();
+                                    }
                                     lastNotifiedUserId = userId;
                                 }
                             }
