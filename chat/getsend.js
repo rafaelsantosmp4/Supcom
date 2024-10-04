@@ -11,6 +11,24 @@ document.getElementById('message').addEventListener('keypress', function(e) {
     }
 });
 
+const messagesDiv = document.getElementById('messages');
+const scrollToBottomButton = document.getElementById('scrollToBottom');
+messagesDiv.addEventListener('scroll', function() {
+    if (messagesDiv.scrollTop + messagesDiv.clientHeight < messagesDiv.scrollHeight) {
+        scrollToBottomButton.style.display = 'block';
+    } else {
+        scrollToBottomButton.style.display = 'none';
+    }
+});
+scrollToBottomButton.addEventListener('click', function() {
+    messagesDiv.scroll({
+        top: messagesDiv.scrollHeight,
+        behavior: 'smooth'
+    });
+    scrollToBottomButton.style.display = 'none'; 
+});
+
+
 function sendMessage() {
     var message = document.getElementById('message').value;
     if (message.trim() === '') return; 
@@ -21,8 +39,11 @@ function sendMessage() {
         },
         body: 'message=' + encodeURIComponent(message) + '&sender_id=' + myId + '&receiver_id=' + chatPartnerId
     }).then(() => {
-        document.getElementById('message').value = ''; 
-        fetchMessages();
+        document.getElementById('message').value = '';
+        return fetchMessages();
+    }).then(() => {
+        var messagesDiv = document.getElementById('messages');
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
     });
 }
 
@@ -54,9 +75,9 @@ document.getElementById('send').addEventListener('click', function() {
     }
 });
 
-let firstLoad = true; // Variável de controle para a primeira carga de mensagens
+let firstLoad = true;
 function fetchMessages() {
-    fetch('getMessages.php?myid=' + myId + '&idforn=' + chatPartnerId)
+    return fetch('getMessages.php?myid=' + myId + '&idforn=' + chatPartnerId)
         .then(response => response.json())
         .then(data => {
             partnerName = data.partner_name;
@@ -81,7 +102,7 @@ function fetchMessages() {
                         </div>
                     `;
                 } else {
-                    if(message.edited == 1) {
+                    if (message.edited == 1) {
                         msgElement.innerHTML = `
                             <div class="message-body">
                                 <p>${message.messagetext}</p>
@@ -104,12 +125,8 @@ function fetchMessages() {
 
             document.getElementById('titulochat').innerHTML = partnerName;
             if (firstLoad) {
-                messagesDiv.scrollTop = messagesDiv.scrollHeight; 
-                firstLoad = false; 
-            }
-            var isAtBottom = messagesDiv.scrollHeight - messagesDiv.scrollTop === messagesDiv.clientHeight;
-            if (isAtBottom) {
                 messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                firstLoad = false; 
             }
         });
 }

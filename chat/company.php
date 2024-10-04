@@ -271,6 +271,7 @@
                         <li id="delete-message" style='color: #EE2B39;'><i class="fa fa-trash"></i> Deletar</li>
                     </ul>
                 </div>
+                <button id="scrollToBottom" style="display: none; position: absolute; bottom: 10px; right: 10px;"><i class="fa fa-angle-down" aria-hidden="true"></i></button>
             </div>
         </div>
     </div>
