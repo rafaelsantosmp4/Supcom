@@ -106,8 +106,7 @@
         <button class="config-toggle <?php echo $themeClass; ?>" id="config_toggle" onclick="config_toggle()"><i class="fa fa-gear"></i></button>
         <div id='account-button' onclick='toggleAccountMenu()' style="position: relative;">
             <?php
-                echo "Bem-vindo, $nome";
-                $db->fechar();
+                echo "<div id='fullname'>Bem-vindo, $nome </div>";
             ?>
             <i class='fa fa-caret-down'></i>
         </div>

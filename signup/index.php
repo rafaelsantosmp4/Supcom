@@ -72,7 +72,7 @@
 
             <div id="datas">
                 <label for="nome">Nome da empresa</label>
-                <input type="text" name="nome" id="nome" required/>
+                <input type="text" placeholder="Max. 30 caracteres" name="nome" id="nome" maxlength="30" required/>
 
                 <label for="email">E-mail</label>
                 <input type="email" name="email" id="email" placeholder="xxxxx@email.com" required/>
@@ -158,7 +158,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $db->fechar();
 ?>
 <script>
-window.addEventListener('load', function() {
-    document.body.style.overflow = 'inherit';
-});
+    window.addEventListener('load', function() {
+        document.body.style.overflow = 'inherit';
+    });
 </script>
