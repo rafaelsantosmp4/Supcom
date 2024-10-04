@@ -147,7 +147,7 @@
         <div id="conteudo">
         <form action="" method="GET" id="formBarraBusca">
             <center>
-                <input type='text' placeholder='Busca' id="barrabusca" name="barrabusca">
+                <input type='text' placeholder='Busca' id="barrabusca" name="Busca">
                 <button type="submit" class="produto-link" style="background: none; border: none; cursor: pointer;">
                     <i class="fa fa-search" style="font-size: 25pt;"></i>
                 </button>
@@ -155,7 +155,7 @@
         </form>            
             <?php
                 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-                    $busca_nome = isset($_GET['barrabusca']) ? mysqli_real_escape_string($db->con, $_GET['barrabusca']) : '';
+                    $busca_nome = isset($_GET['Busca']) ? mysqli_real_escape_string($db->con, $_GET['Busca']) : '';
                     
                     echo"<script>document.getElementById('barrabusca').value = '$busca_nome';</script>";
 
