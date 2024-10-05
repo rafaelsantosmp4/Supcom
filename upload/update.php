@@ -93,9 +93,8 @@
         <button class="config-toggle <?php echo $themeClass; ?>" id="config_toggle" onclick="config_toggle()"><i class="fa fa-gear"></i></button>
         <div id='account-button' onclick='toggleAccountMenu()' style="position: relative;">
             <?php
-                echo "<div id='fullname'>Bem-vindo, $nome </div>";
+                echo "<div style='display: flex; align-items: center;'><img src='../chat/getprofilepfp.php?id=$iduser' style='margin-right: 10px; width: 40px; height: 40px; border-radius: 50%; object-fit: cover;'> <div id='fullname'>Bem-vindo, $nome </div><i class='fa fa-caret-down'></i></div>";
             ?>
-            <i class='fa fa-caret-down'></i>
         </div>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <div id='account-options' class="<?php echo $themeClass; ?>">
