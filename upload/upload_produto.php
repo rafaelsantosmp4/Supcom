@@ -10,7 +10,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $response = [];
 
     $nome_produto = mysqli_real_escape_string($db->con, $_POST['nome']);
-    $descricao_produto = mysqli_real_escape_string($db->con, $_POST['desc']);
+    
+    $descricao_produto = $_POST['desc'];
+    $descricao_produto = trim($descricao_produto);
+    $descricao_produto = preg_replace('/^\s*\n|\n\s*$/', '', $descricao_produto);
+    
     $qtd_produto = intval($_POST['qtd']);
     $preco_produto = mysqli_real_escape_string($db->con, $_POST['preco']);
 

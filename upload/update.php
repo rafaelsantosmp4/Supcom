@@ -183,7 +183,10 @@
         $resultprods = mysqli_query($db->con, $queryprods);
         $produto = mysqli_fetch_assoc($resultprods);
         $nome_produto = $produto['nome_produto'];
+        
         $descricao_produto = $produto['descricao_produto'];
+        $descricao_produto_display = nl2br(htmlspecialchars($descricao_produto, ENT_QUOTES));
+
         $preco_produto = $produto['preco_produto'];
         $foto_produto = base64_encode($produto['foto_prod']);
         $id_produto = $produto['id_produto'];
@@ -208,7 +211,31 @@
                     <button type="button" class="submit-button bio" id="cropButton" style="display: none; margin-top: 10px;">Cortar</button>
                     <button type="button" id="showPreviewButton" style="display: none;">Mostrar Imagem Cortada</button>
 
-                    <?php
+                    <div id="dados-produtos"><br>
+                        <label for="nome">Nome do produto</label><br>
+                        <input type="text" maxlength="60" placeholder="max. 60 caracteres" name="nome" id="nome" required/><br>
+
+                        <label for="desc">Descrição</label><br>
+                        <textarea name="desc" id="desc" maxlength="2000" placeholder="max. 2000 caracteres" required><?php echo htmlspecialchars($descricao_produto, ENT_QUOTES); ?></textarea><br>
+
+                        <script>
+                            const textarea = document.getElementById('desc');
+                            function autoResize() {
+                                this.style.height = 'auto';
+                                this.style.height = this.scrollHeight + 'px';
+                            }
+                            textarea.addEventListener('input', autoResize);
+                            autoResize.call(textarea);
+                        </script>   
+
+                        <label for="qtd">Quantidade disponível</label><br>
+                        <input type="number" name="qtd" id="qtd" required/><br>
+
+                        <label for="preco">Preço (R$)</label><br>
+                        <input type="text" name="preco" id="preco" required/><br>
+                    </div>
+                </center>
+                <?php
                         if ($resultprods && mysqli_num_rows($resultprods) > 0) {
                             $foto_produto = $produto['foto_prod'];
                             if ($foto_produto) {
@@ -223,28 +250,13 @@
                                             fileProdutoPreview.style.backgroundImage = 'url(data:image/jpeg;base64,$base64Image)';
                                             fileProdutoPreview.classList.add('has-image');
                                             inputnome.value = '$nome_produto';
-                                            inputdesc.value = '$descricao_produto';
                                             inputqtd.value = '$qtd_produto';
                                             inputpreco.value = '$preco_produto';
                                         });
                                     </script>";
                             }
                         }
-                    ?>
-                    <div id="dados-produtos"><br>
-                        <label for="nome">Nome do produto</label><br>
-                        <input type="text" name="nome" id="nome" required/><br>
-
-                        <label for="desc">Descrição</label><br>
-                        <input type="text" name="desc" id="desc" maxlength="500" placeholder="max. 500 caracteres" required/><br>
-
-                        <label for="qtd">Quantidade disponível</label><br>
-                        <input type="number" name="qtd" id="qtd" required/><br>
-
-                        <label for="preco">Preço (R$)</label><br>
-                        <input type="text" name="preco" id="preco" required/><br>
-                    </div>
-                </center>
+                    ?>                    
                 <div style="display: flex; justify-content: center; flex-direction: row-reverse;"><input type="submit" class="submit-button bio" value="Enviar" style="margin-bottom: 30px;" id="submitButton" disabled>
             </form>
                 <form id="excluirprod" action="excluir_prod.php" method="POST">

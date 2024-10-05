@@ -194,10 +194,18 @@
 
                     <div id="dados-produtos"><br>
                         <label for="nome">Nome do produto</label><br>
-                        <input type="text" name="nome" id="nome" required/><br>
+                        <input type="text" maxlength="60" placeholder="max. 60 caracteres" name="nome" id="nome" required/><br>
 
                         <label for="desc">Descrição</label><br>
-                        <input type="text" name="desc" id="desc" maxlength="500" placeholder="max. 500 caracteres" required/><br>
+                        <textarea name="desc" id="desc" maxlength="2000" placeholder="max. 2000 caracteres" required></textarea><br>
+
+                        <script>
+                            const textarea = document.getElementById('desc');
+                                textarea.addEventListener('input', function() {
+                                this.style.height = 'auto';
+                                this.style.height = this.scrollHeight + 'px';
+                            });
+                        </script>
 
                         <label for="qtd">Quantidade disponível</label><br>
                         <input type="number" name="qtd" id="qtd" required/><br>

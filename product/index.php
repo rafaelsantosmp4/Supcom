@@ -152,7 +152,10 @@
     <?php
         $produto = mysqli_fetch_assoc($resultprods);
         $nome_produto = $produto['nome_produto'];
+        
         $descricao_produto = $produto['descricao_produto'];
+        $descricao_produto_display = nl2br(htmlspecialchars($descricao_produto, ENT_QUOTES));
+
         $preco_produto = $produto['preco_produto'];
         $foto_produto = base64_encode($produto['foto_prod']);
         $id_produto = $produto['id_produto'];
@@ -176,20 +179,20 @@
                     if($id_forn != $iduser) {
                         $editarprod = '';
                     } else {
-                        $editarprod = '<a href="../upload/update.php?id='. $id_produto.'" id="nomeempresalink" style="margin-top: 10px; text-decoration: underline; cursor: pointer; font-size: 20pt;">Editar produto <i class="fa fa-pencil" style="font-family: FontAwesome;"></i></a>';
+                        $editarprod = '<a href="../upload/update.php?id='. $id_produto.'" id="nomeempresalink" style="margin-top: 10px; text-decoration: underline; cursor: pointer; font-size: 20pt; color: gray;">Editar produto <i class="fa fa-pencil" style="font-family: FontAwesome;"></i></a>';
                     }
                 ?>
                 <div class="rightdatas">
                     <br><center><?php echo $editarprod ?>
-                    <h1 style="margin-top: 5px;"><?php echo $nome_produto; ?></h1>
-                    <h2 style="margin-top: 0px;"><?php echo $preco_produto; ?></h2>
-                    <h3 style="margin-bottom: 13px;">Quantidade: <?php echo $qtd_produto; ?></h3>
+                    <h1 style="margin-top: 5px;" id="tituloprodutounico"><?php echo $nome_produto; ?></h1>
+                    <h2 style="margin-top: 0px; font-size: 30pt;"><?php echo $preco_produto; ?></h2>
+                    <span style="margin-bottom: 13px; font-size: 24pt;">Quantidade: <b> <?php echo $qtd_produto; ?> </b></span><br><br>
                     <?php                        
                         echo'<a href="../chat/company.php?myid='.$iduser.'&idforn='.$id_forn.'"><button style="width: 50%;" class="submit-button" id="entraremcontato">Entrar em contato</button></a>';
                     ?>
                     
                     <h3>Descrição:</h3>
-                    <p class='descricaoprod'><?php echo $descricao_produto; ?></p>
+                    <p class='descricaoprod'><?php echo $descricao_produto_display; ?></p>
                     <h3 style="margin-bottom: 3px;">Empresa:</h3>
                     <?php
                         if($id_forn != $iduser) {
@@ -198,7 +201,10 @@
                             $link = '../profile/index.php';
                         }
                     ?>
-                    <a href="<?php echo $link?>" id='nomeempresalink' title="Acessar perfil"><p id='nomeempresa'><b><?php echo $nome_forn; ?></b></p></a>
+                    <a href="<?php echo $link?>" id='nomeempresalink' title="Acessar perfil" style="display: flex; align-items: center; justify-content: center; margin-top: 10px;">
+                        <img src='<?php echo '../chat/getprofilepfp.php?id='. $id_forn; ?>' class='user-image-produto' />
+                        <p id='nomeempresa'><b><?php echo $nome_forn; ?></b></p>
+                    </a>
                 </div></center>
                 <?php
                     if($id_forn == $iduser) {

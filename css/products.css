@@ -17,10 +17,25 @@
 }
 #nomeempresalink {
     color: inherit;
-    font-weight: inherit; 
+    font-weight: inherit;
+    text-decoration: none;
 }
 #nomeempresa {
-    font-size: 25pt; 
+    font-size: 20pt;
     margin-top: 0px;
     margin-bottom: 10px;
+}
+#tituloprodutounico {
+    width: 80%;
+    box-sizing: border-box;
+    word-break: normal;
+    overflow-wrap: break-word;
+    padding: 0 10px;
+}
+
+.user-image-produto {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 10px;
 }

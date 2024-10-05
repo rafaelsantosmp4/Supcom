@@ -147,7 +147,7 @@
         <div id="conteudo">
         <form action="" method="GET" id="formBarraBusca">
             <center>
-                <input type='text' placeholder='Busca' id="barrabusca" name="Busca">
+                <input type='text' placeholder='Busca' id="barrabusca" name="busca">
                 <button type="submit" class="produto-link" style="background: none; border: none; cursor: pointer;">
                     <i class="fa fa-search" style="font-size: 25pt;"></i>
                 </button>
@@ -155,7 +155,7 @@
         </form>            
             <?php
                 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-                    $busca_nome = isset($_GET['Busca']) ? mysqli_real_escape_string($db->con, $_GET['Busca']) : '';
+                    $busca_nome = isset($_GET['busca']) ? mysqli_real_escape_string($db->con, $_GET['busca']) : '';
                     
                     echo"<script>document.getElementById('barrabusca').value = '$busca_nome';</script>";
 
@@ -205,8 +205,8 @@
                             <a href="../product/index.php?id=<?php echo $id_produto; ?>&<?php echo $nome_produto_encoded; ?>" class="produto-link <?php echo $themeClass; ?>">
                                 <div class="produto <?php echo $themeClass; ?>">
                                     <img src="data:image/jpeg;base64,<?php echo $foto_produto; ?>" alt="<?php echo $nome_produto; ?>">
-                                    <h3><?php echo $nome_produto; ?></h3>
-                                    <p class="descricao-produto"><?php echo $descricao_produto; ?></p>
+                                    <h3 title="<?php echo $nome_produto; ?>"><?php echo $nome_produto; ?></h3>
+                                    <p title="<?php echo $descricao_produto; ?>" class="descricao-produto"><?php echo $descricao_produto; ?></p>
                                     <h4 style="margin-top: 5px; margin-bottom: 0px;"><?php echo $nome_forn; ?></h4>
                                     <h3><?php echo $preco_produto; ?></h3>
                                 </div>
@@ -219,60 +219,6 @@
                                 echo '</div>'; // Fecha div categoria
                             }
                     }
-                } else {
-                    echo"
-                        <h1 align='center'>Todos os produtos</h1>
-                        <h2>Adicionados recentemente</h2>
-                    ";
-
-                    $queryprods = "SELECT * FROM produto";
-                    $resultprods = mysqli_query($db->con, $queryprods);
-    
-                    $prod_count = 0;
-                    $prod_per_category = 4;
-                    $first_category = true;
-    
-                    while ($produto = mysqli_fetch_assoc($resultprods)) {
-                        // Inicia uma nova categoria se necessário
-                        if ($prod_count % $prod_per_category == 0) {
-                            if (!$first_category) {
-                                echo '</div>';
-                                echo '</div>';
-                            }
-                            echo '<div class="categoria">';
-                            echo '<div class="produtos">';
-                            $first_category = false;
-                        }
-    
-                        $nome_produto = $produto['nome_produto'];
-                        $descricao_produto = $produto['descricao_produto'];
-                        $preco_produto = $produto['preco_produto'];
-                        $foto_produto = base64_encode($produto['foto_prod']);
-                        $id_produto = $produto['id_produto'];
-    
-                        $id_forn = $produto['id_forn'];
-                        $tempquery = "SELECT nome FROM usuarios WHERE id_usuario = '$id_forn'";
-                        $tempresult = mysqli_query($db->con, $tempquery);
-                        $tempusuario = mysqli_fetch_assoc($tempresult);
-                        $nome_forn = $tempusuario['nome'];
-                        $nome_produto_encoded = urlencode($nome_produto);
-                    ?>
-                        <a href="../product/index.php?id=<?php echo $id_produto; ?>&<?php echo $nome_produto_encoded; ?>" class="produto-link <?php echo $themeClass; ?>">
-                            <div class="produto <?php echo $themeClass; ?>">
-                                <img src="data:image/jpeg;base64,<?php echo $foto_produto; ?>" alt="<?php echo $nome_produto; ?>">
-                                <h3><?php echo $nome_produto; ?></h3>
-                                <p class="descricao-produto"><?php echo $descricao_produto; ?></p>
-                                <h4 style="margin-top: 5px; margin-bottom: 0px;"><?php echo $nome_forn; ?></h4>
-                                <h3><?php echo $preco_produto; ?></h3>
-                            </div>
-                        </a>
-                    <?php
-                            $prod_count++;
-                        }
-                        if ($prod_count > 0) {
-                            echo '</div>'; // Fecha div produtos
-                            echo '</div>'; // Fecha div categoria
-                        }
                 }
             ?>
         </div>
