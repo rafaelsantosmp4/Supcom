@@ -484,3 +484,15 @@ input:checked + .toggle-slider:before {
 .loader-text.dark-mode {
   color: #56baf5;
 }
+
+.notification-icon {
+  display: none;
+  position: absolute;
+  top: 0px;
+  right: 2px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 8px;
+  font-size: 20px;
+}
