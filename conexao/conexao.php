@@ -10,7 +10,7 @@ class BancodeDados {
     function conecta() {
         $this->con = mysqli_connect($this->host, $this->user, $this->senha, $this->banco, $this->port);
         if(!$this->con){
-            die("<script>alert('Problemas com a conexão!'); window.location.href='index.php'</script>");
+            die("<script>alert('Problemas com a conexão!'); window.location.href='../index.php'</script>");
         }
     }
 

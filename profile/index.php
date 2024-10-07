@@ -261,7 +261,7 @@
         $id = $_SESSION['id'];
         $nome = $_SESSION['nome'];
         $email = $_SESSION['email'];
-        $cnpj = $_SESSION['cnpj'];
+        $doc_serial = $_SESSION['doc_serial'];
         $telefone = $_SESSION['telefone'];
         $tipo = $_SESSION['tipo'];
         $data = $_SESSION['data'];
@@ -315,7 +315,13 @@
             <h1>Suas informações:</h1>
             <ul align='center' style="list-style: none;">
                 <li><b>Email: </b><?php echo $email ?></li><br>
-                <li><b>CNPJ: </b><?php echo $cnpj ?></li><br>
+                <?php
+                    if (strlen($doc_serial) > 14) {
+                        echo "<li><b>CNPJ: </b>$doc_serial</li><br>";
+                    } else {
+                        echo "<li><b>CPF: </b>$doc_serial <br><i>Fique tranquilo(a), apenas você consegue ver essa informação!</i></li><br>";
+                    }
+                ?>
                 <li><b>Telefone: </b><?php echo $telefone ?></li><br>
                 <li><b>Tipo da conta: </b><?php echo $tipo ?></li><br>
                 <li><b>Data de cadastro: </b><?php echo $formatted_date ?></li><br>

@@ -54,15 +54,6 @@
             };
             $('#tel').mask(behavior, options);
 
-            $('#tel').on('input', function() {
-                var telValue = $(this).val().replace(/\D/g, '');
-                if (telValue.length === 11) {
-                    $('label[for="tel"]').text('Celular');
-                } else {
-                    $('label[for="tel"]').text('Telefone');
-                }
-            });
-
             var options = {
                 onKeyPress: function (cpf, ev, el, op) {
                     var masks = ['000.000.000-000', '00.000.000/0000-00'];
@@ -120,7 +111,7 @@
                 <input type="text" name="doc_serial" id="doc_serial" maxlength="18" required/>
                 
                 <label for="tel">Telefone</label>
-                <input type="text" name="tel" id="tel" maxlength="14" required/>
+                <input type="text" class="tel" name="tel" id="tel" maxlength="15" required/>
                 
                 <label for="password">Senha</label>
                 <input type="password" name="password" id="password" required/>
