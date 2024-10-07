@@ -114,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['id'] = $usuario['id_usuario'];
             $_SESSION['nome'] = $usuario['nome'];
             $_SESSION['email'] = $usuario['email'];
-            $_SESSION['cnpj'] = $usuario['cnpj'];
+            $_SESSION['doc_serial'] = $usuario['doc_serial'];
             $_SESSION['telefone'] = $usuario['telefone'];
             $_SESSION['tipo'] = $usuario['tipo_usuario'];
             $_SESSION['data'] = $usuario['data_cadastro'];

@@ -44,8 +44,41 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#cnpj').mask('00.000.000/0000-00');
-            $('#tel').mask('(00) 0000-0000');
+            var behavior = function (val) {
+                return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+            },
+            options = {
+                onKeyPress: function (val, e, field, options) {
+                    field.mask(behavior.apply({}, arguments), options);
+                }
+            };
+            $('#tel').mask(behavior, options);
+
+            $('#tel').on('input', function() {
+                var telValue = $(this).val().replace(/\D/g, '');
+                if (telValue.length === 11) {
+                    $('label[for="tel"]').text('Celular');
+                } else {
+                    $('label[for="tel"]').text('Telefone');
+                }
+            });
+
+            var options = {
+                onKeyPress: function (cpf, ev, el, op) {
+                    var masks = ['000.000.000-000', '00.000.000/0000-00'];
+                    $('#doc_serial').mask((cpf.length > 14) ? masks[1] : masks[0], op);
+                }
+            }
+            $('#doc_serial').length > 11 ? $('#doc_serial').mask('00.000.000/0000-00', options) : $('#doc_serial').mask('000.000.000-00#', options);
+
+            $('#doc_serial').on('input', function() {
+                var cnpjValue = $(this).val();
+                if (cnpjValue.length > 14) {
+                    $('label[for="doc_serial"]').text('CNPJ');
+                } else {
+                    $('label[for="doc_serial"]').text('CPF');
+                }
+            });
 
             var check = function() {
                 var modeClass = $('#left').hasClass('dark-mode') ? 'error' : '';
@@ -83,11 +116,11 @@
                     <option value="forn">Vender mercadorias da minha empresa fornecedora</option>
                 </select>
                 
-                <label for="cnpj">CNPJ</label>
-                <input type="text" name="cnpj" id="cnpj" placeholder="00.000.000/0000-00" maxlength="18" required/>
+                <label for="doc_serial">CPF/CNPJ</label>
+                <input type="text" name="doc_serial" id="doc_serial" maxlength="18" required/>
                 
                 <label for="tel">Telefone</label>
-                <input type="text" name="tel" id="tel" placeholder="(99) 9999-9999" maxlength="14" required/>
+                <input type="text" name="tel" id="tel" maxlength="14" required/>
                 
                 <label for="password">Senha</label>
                 <input type="password" name="password" id="password" required/>
@@ -114,20 +147,22 @@ $db->conecta();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = $_POST['nome'];
     $email = $_POST['email'];
-    $cnpj = $_POST['cnpj'];
+    $doc_serial = $_POST['doc_serial'];
     $telefone = $_POST['tel'];
     $senha = $_POST['password'];
     $tipo_conta = $_POST['tipoconta'] == 'forn' ? 'fornecedor' : 'lojista';
 
+    echo"<script></script>";
+
     $nome = mysqli_real_escape_string($db->con, $nome);
     $email = mysqli_real_escape_string($db->con, $email);
-    $cnpj = mysqli_real_escape_string($db->con, $cnpj);
+    $doc_serial = mysqli_real_escape_string($db->con, $doc_serial);
     $telefone = mysqli_real_escape_string($db->con, $telefone);
     $senha = mysqli_real_escape_string($db->con, $senha);
 
     $senha_hashed = password_hash($senha, PASSWORD_DEFAULT);
 
-    $query = "INSERT INTO Usuarios (nome, bio, email, senha, cnpj, telefone, tipo_usuario) VALUES ('$nome', NULL, '$email', '$senha_hashed', '$cnpj', '$telefone', '$tipo_conta')";
+    $query = "INSERT INTO Usuarios (nome, bio, email, senha, doc_serial, telefone, tipo_usuario) VALUES ('$nome', NULL, '$email', '$senha_hashed', '$doc_serial', '$telefone', '$tipo_conta')";
 
     if (mysqli_query($db->con, $query)) {
         echo "<script>
@@ -145,7 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<script>
                 Swal.fire({
                     title: 'Erro!',
-                    text: 'Já existe uma conta cadastrada com esse email, CNPJ ou telefone!',
+                    text: 'Já existe uma conta cadastrada com esse email, CPF/CNPJ ou telefone!',
                     icon: 'error',
                     confirmButtonText: 'OK'
                 }).then(function() {
