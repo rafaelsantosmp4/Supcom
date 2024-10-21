@@ -147,8 +147,10 @@
     <div id="container">
         <div id="conteudo">
             <div id="sectioncontact">
-                <form action="https://api.web3forms.com/submit" method="POST">
-                    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                <form method="POST" id='form'>
+                    <input type="hidden" name="access_key" value="c2d6bd52-cdd7-4358-9c90-77648a2d4973">
+                    <input type="hidden" name="subject" value="Contato de <?php echo $usuario['nome']; ?>">
+                    <input type="checkbox" name="botcheck" id="" style="display: none;">
                     <section class="contact__section">
                         <h2 class="section__title">
                             Contate-nos! <br>
@@ -158,21 +160,23 @@
                         <div class="contact__page container grid <?php echo $themeClass; ?>">
                             <div class="contact__group">
                                 <div class="contact__box">
-                                    <input type="text" name="user_name" id="name" required placeholder="Escreva o nome da empresa" class="contact__input">
+                                    <input type="text" name="name" id="name" required placeholder="Escreva o nome da empresa" class="contact__input">
                                     <label for="name" class="contact__label">Nome</label>
                                 </div>
                                 <div class="contact__box">
-                                    <input type="email" name="user_email" id="email" required placeholder="Escreva seu email" class="contact__input">
+                                    <input type="email" name="email" id="email" required placeholder="Escreva seu email" class="contact__input">
                                     <label for="email" class="contact__label">Email</label>
                                 </div>
                             </div>
 
                             <div class="contact__box contact__area">
-                                <textarea name="user-message" id="message" required placeholder="Escreva a messagem" class="contact__input"></textarea>
+                                <textarea name="message" id="message" required placeholder="Escreva a messagem" class="contact__input"></textarea>
                                 <label for="message" class="contact__label">Mensagem</label>
                             </div>
 
                             <button type="submit" class="contact__send">Enviar mensagem</button>
+
+                            <div id="result"></div>
            
                             <script>
                                 document.getElementById('name').value = '<?php echo $usuario['nome']; ?>';
@@ -181,6 +185,47 @@
                         </div>
                     </section>
                 </form>
+                <script>
+                    const form = document.getElementById('form');
+                    const result = document.getElementById('result');
+
+                    form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const formData = new FormData(form);
+                    const object = Object.fromEntries(formData);
+                    const json = JSON.stringify(object);
+                    result.innerHTML = "Aguarde, enviando..."
+
+                        fetch('https://api.web3forms.com/submit', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Accept': 'application/json'
+                                },
+                                body: json
+                            })
+                            .then(async (response) => {
+                                let json = await response.json();
+                                if (response.status == 200) {
+                                    result.innerHTML = json.message;
+                                } else {
+                                    console.log(response);
+                                    result.innerHTML = json.message;
+                                }
+                            })
+                            .catch(error => {
+                                console.log(error);
+                                result.innerHTML = "Algo deu errado!";
+                            })
+                            .then(function() {
+                                result.style.color = '#008000';
+                                form.reset();
+                                setTimeout(() => {
+                                    result.style.display = "none";
+                                }, 2000);
+                            });
+                    });
+                </script>
             </div>
         </div>
     </div>
