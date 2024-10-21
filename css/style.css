@@ -795,3 +795,103 @@
 body.light-mode .fa-search {
   color: #006494;
 }
+
+#sectioncontact {  
+  display: flex;
+  justify-content: center;
+}
+#sectioncontact form {
+  width: 90%;
+  height: 600px;
+  padding: 20px;
+  border-radius: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.grid {
+  display: grid;
+  gap: 50px;
+}
+.contact__send {
+  display: inline-flex;
+  justify-content: center;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  transition: background-color 0.4s, box-shadow 0.4s;
+  cursor: pointer;
+  border: none;
+}
+.grid.dark-mode .contact__send {
+  background-color: #E8F1F2;
+  color: #233e53;
+}
+.grid.light-mode .contact__send {
+  background-color: #233e53;
+  color: #E8F1F2;
+}
+.contact__send:hover {
+  background-color: #0f67b9;
+}
+.contact__form {
+  position: relative;
+}
+.contact__box {
+  position: relative;
+  width: 50%;
+  height: 58px;
+}
+.contact__input {
+  width: calc(100% - 60px);
+  height: 100%;
+  border-radius: 8px;
+  padding: 8px 24px;
+}
+.grid.dark-mode .contact__input::placeholder {
+  color: #E8F1F2;
+  opacity: 0.8;
+}
+.contact__input:focus {
+  border-color: #0054a3;
+}
+.grid.dark-mode .contact__input {
+  background-color: #233e53;
+  color: #E8F1F2;
+  border: 3px solid #E8F1F2;
+}
+.grid.light-mode .contact__input {
+  background-color: #E8F1F2;
+  color: #233e53;
+  border: 3px solid #233e53;
+}
+.contact__group {
+  display: flex;
+}
+.contact__label {
+  position: absolute;
+  top: -16px;
+  left: 16px;
+  font-weight: bold;
+  padding: 8px;
+}
+.grid.dark-mode .contact__label {
+  background-color: #233e53;
+  color: #E8F1F2;
+}
+.grid.light-mode .contact__label {
+  background-color: #E8F1F2;
+  color: #233e53;
+}
+.contact__area {
+  height: 10rem;
+  width: 100%;
+}
+.contact__area textarea {
+  resize: none;
+  padding-top: 1.25rem;
+  font-family: gotham;
+}
+.contact__section {
+  width: 70%;
+}

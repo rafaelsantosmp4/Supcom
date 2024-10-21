@@ -146,10 +146,40 @@
 
     <div id="container">
         <div id="conteudo">
-            <h1>Em construção</h1>          
+            <div id="sectioncontact">
+                <form action="">
+                    <section class="contact__section">
+                        <h2 class="section__title">
+                            Contate-nos! <br>
+                            Sugestões, elogios e reclamações:
+                        </h2>
+
+                        <div class="contact__page container grid <?php echo $themeClass; ?>">
+                            <div class="contact__group">
+                                <div class="contact__box">
+                                    <input type="text" name="user_name" id="name" required placeholder="Escreva o nome da empresa" class="contact__input">
+                                    <label for="name" class="contact__label">Nome</label>
+                                    <script>document.getElementById('name').value = '<?php echo $usuario['nome']; ?>';</script>
+                                </div>
+                                <div class="contact__box">
+                                    <input type="email" name="user_email" id="email" required placeholder="Escreva seu email" class="contact__input">
+                                    <label for="email" class="contact__label">Email</label>
+                                    <script>document.getElementById('email').value = '<?php echo $usuario['email']; ?>';</script>
+                                </div>
+                            </div>
+
+                            <div class="contact__box contact__area">
+                                <textarea name="user-message" id="message" required placeholder="Escreva a messagem" class="contact__input"></textarea>
+                                <label for="message" class="contact__label">Mensagem</label>
+                            </div>
+
+                            <button type="submit" class="contact__send">Enviar mensagem</button>
+                        </div>
+                    </section>
+                </form>
+            </div>
         </div>
     </div>
-
 </body>
 <script>
     const iduser = '<?php echo $iduser; ?>';

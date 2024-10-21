@@ -9,6 +9,41 @@
     <link rel="stylesheet" href="../css/mobile.css">
 </head>
 
+<style>
+    #fotinha {
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        height: 75%;
+        border-radius: 30px;  
+    }
+    .fotinha-container {
+        text-align: center;
+        width: 25%;
+        margin-left: 20px;
+    }
+    .fotinha-name {
+        margin-top: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        font-family: Arial, sans-serif;
+    }
+    .fotinha-handle {
+        margin-top: 5px;
+        font-size: 15pt;
+        color: #666;
+        font-family: Arial, sans-serif;
+    }
+    .fotinha-handle a {
+        text-decoration: none;
+        color: #333;
+    }
+    .fotinha-handle a:hover {
+        color: #000;
+    }
+</style>
+
 <?php
     session_start();
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -144,29 +179,53 @@
 
     <div class="overlay"></div>
 
-    <div id="container">
-        <div id="conteudo">
-            <h1>O que é a SUPCOM?</h1>
-            <p>A SUPCOM é uma plataforma que busca facilitar a conexão entre uma empresa fornecedora e o lojista, que necessita de mercadorias e contatos confiáveis.</p>
 
-            <h1>Missão, Visão e Valores</h1>
-            <h2>Missão</h2>
-            <p>Nossa missão é capacitar micro e pequenas empresas, fornecendo uma plataforma B2B intuitiva e eficiente que facilita a conexão entre fornecedores e lojistas. Estamos comprometidos em reduzir barreiras e promover a eficiência operacional, permitindo que os empreendedores alcancem seu potencial máximo no mercado.</p>
-            <h2>Visão</h2>
-            <p>Nosso objetivo é ser a principal plataforma de referência para transações B2B entre micro e pequenas empresas, reconhecida por nossa inovação, transparência e compromisso com o sucesso dos nossos usuários. Visualizamos um ambiente de negócios mais dinâmico e acessível, impulsionado pela nossa tecnologia e foco na experiência do cliente.</p>
-            <h2>Valores</h2>
+    <div id="container">
+        <div id="conteudo" style="width: 55%; font-size: 20px; margin-bottom: 30px;">
+            <h1>Quem somos?</h1>
+            <p style="margin-top: 4%;">
+            Na SUPCOM, estamos comprometidos em facilitar a jornada de micro e pequenos negócios ao conectar diretamente fornecedores confiáveis às necessidades específicas de cada 
+            lojista. Nossa plataforma nasceu da necessidade de simplificar e fortalecer essas parcerias, oferecendo um ambiente digital seguro e eficiente para que empresas prosperem 
+            juntas.
+            <br><br>
+            Nosso foco vai além da simples conexão. Acreditamos que a união entre fornecedores e lojistas é a base para alcançar resultados duradouros e significativos. Com um compromisso
+             claro com a eficiência e a transparência, buscamos não apenas atender, mas superar as expectativas de nossos clientes, proporcionando oportunidades de crescimento sustentável 
+             em um mercado cada vez mais dinâmico.
+             <br><br>
+             Nossa missão é impulsionar o sucesso de negócios em todos os estágios, desde startups até empreendimentos estabelecidos. Valorizamos relações construídas sobre confiança 
+             mútua e dedicação ao serviço ao cliente, colocando sempre a excelência e a inovação no centro de tudo que fazemos.
+            </p>
+            <h1>Venha conheçer a SUPCOM</h1>
             <p>
-                <ul>
-                    <li><b>Inovação:</b> Buscamos constantemente maneiras criativas de melhorar e evoluir nossa plataforma, antecipando as necessidades do mercado e oferecendo soluções inovadoras.</li>
-                    <li><b>Transparência:</b> Promovemos a transparência em todas as nossas interações, construindo relações sólidas e baseadas na confiança com nossos usuários e parceiros.</li>
-                    <li><b>Eficiência:</b> Priorizamos a eficiência em todos os aspectos do nosso trabalho, desde a interface do usuário até o suporte técnico, para garantir uma experiência fluida e produtiva para nossos clientes.</li>
-                    <li><b>Empoderamento:</b> Acreditamos no poder das micro e pequenas empresas e estamos empenhados em capacitá-las, fornecendo as ferramentas e recursos necessários para que alcancem o sucesso.</li>
-                    <li><b>Compromisso com o cliente:</b> Colocamos as necessidades e interesses dos nossos clientes em primeiro lugar, comprometendo-nos a oferecer um serviço excepcional e atendimento personalizado em todas as etapas da jornada do usuário.</li>
-                </ul>
-            </p>                
+            Queremos simplificar e fortalecer as conexões entre micro e pequenos lojistas e fornecedores, criando uma plataforma eficiente e acessível que impulsione o crescimento de ambos.
+             Guiados pelos valores de transparência, assegurando negociações claras e acessíveis; eficiência, proporcionando soluções rápidas e práticas; e colaboração, acreditando que o crescimento mútuo 
+             é fruto de parcerias fortes e confiáveis, buscamos oferecer um ambiente onde a confiança e as relações duradouras floresçam. Assim, promovemos resultados sustentáveis e geramos oportunidades reais 
+             de sucesso para todos os nossos clientes.
+            </p>
+            <div id="fotinhas" style="width: 100%; height: 500px; display: flex; justify-content: space-between; margin-top: 35px;">
+                <div class="fotinha-container">
+                    <div id="fotinha" style="background-image: url('../medias/caio_cort.jpg');"></div>
+                    <p class="fotinha-name">Caio Custódio Parolin</p>
+                    <p class="fotinha-handle"><a href="https://www.instagram.com/parolincaio_/" target="_blank"><i class="fab fa-instagram"></i> @parolincaio_</a></p>
+                </div>
+                <div class="fotinha-container">
+                    <div id="fotinha" style="background-image: url('../medias/leo_cort.jpg');"></div>
+                    <p class="fotinha-name">Leonardo Moreira Nakashima Monteiro</p>
+                </div>
+                <div class="fotinha-container">
+                    <div id="fotinha" style="background-image: url('../medias/fael_cort.jpg');"></div>
+                    <p class="fotinha-name">Rafael Santos Rodrigues</p>
+                    <p class="fotinha-handle"><a href="https://www.instagram.com/fael_v8/" target="_blank"><i class="fab fa-instagram"></i> @fael_v8</a></p>
+                </div>
+                <div class="fotinha-container">
+                    <div id="fotinha" style="background-image: url('../medias/raul_cort.jpg');"></div>
+                    <p class="fotinha-name">Raul Ribeiro Fialho</p>
+                    <p class="fotinha-handle"><a href="https://www.instagram.com/f.r4ul/" target="_blank"><i class="fab fa-instagram"></i> @f.r4ul</a></p>
+                </div>
+            </div>
+
         </div>
     </div>
-
 </body>
 <script>
     const iduser = '<?php echo $iduser; ?>';

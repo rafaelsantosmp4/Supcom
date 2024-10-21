@@ -292,14 +292,14 @@ header #mobile-nav a:hover:after, #account-options a:hover:after, #entrarlink:ho
   #parts img {
     width: 200px;
   }
-  .fab {
+  #Instagram {
     border-radius: 50%;
     padding: 15px 15px;
     font-size: 18pt;
     transition: 500ms;
     box-shadow: 5px 5px 10px 5px black;
   }
-  .fab:hover {
+  #Instagram:hover {
     transition: 500ms;
   }
   #Instagram {
