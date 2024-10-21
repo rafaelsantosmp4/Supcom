@@ -147,7 +147,8 @@
     <div id="container">
         <div id="conteudo">
             <div id="sectioncontact">
-                <form action="">
+                <form action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
                     <section class="contact__section">
                         <h2 class="section__title">
                             Contate-nos! <br>
