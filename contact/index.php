@@ -159,12 +159,10 @@
                                 <div class="contact__box">
                                     <input type="text" name="user_name" id="name" required placeholder="Escreva o nome da empresa" class="contact__input">
                                     <label for="name" class="contact__label">Nome</label>
-                                    <script>document.getElementById('name').value = '<?php echo $usuario['nome']; ?>';</script>
                                 </div>
                                 <div class="contact__box">
                                     <input type="email" name="user_email" id="email" required placeholder="Escreva seu email" class="contact__input">
                                     <label for="email" class="contact__label">Email</label>
-                                    <script>document.getElementById('email').value = '<?php echo $usuario['email']; ?>';</script>
                                 </div>
                             </div>
 
@@ -174,6 +172,11 @@
                             </div>
 
                             <button type="submit" class="contact__send">Enviar mensagem</button>
+           
+                            <script>
+                                document.getElementById('name').value = '<?php echo $usuario['nome']; ?>';
+                                document.getElementById('email').value = '<?php echo $usuario['email']; ?>';
+                            </script>
                         </div>
                     </section>
                 </form>

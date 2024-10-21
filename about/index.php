@@ -26,21 +26,29 @@
         margin-top: 10px;
         font-size: 18px;
         font-weight: bold;
-        color: #333;
         font-family: Arial, sans-serif;
+    }
+    .fotinha-name.light-mode {
+        color: #333;
+    }
+    .fotinha-name.dark-mode {
+        color: #E8F1F2;
     }
     .fotinha-handle {
         margin-top: 5px;
         font-size: 15pt;
-        color: #666;
         font-family: Arial, sans-serif;
     }
     .fotinha-handle a {
         text-decoration: none;
-        color: #333;
     }
     .fotinha-handle a:hover {
-        color: #000;
+    }
+    .fotinha-handle.light-mode a {
+        color: #333;
+    }
+    .fotinha-handle.dark-mode a {
+        color: #E8F1F2;
     }
 </style>
 
@@ -205,22 +213,22 @@
             <div id="fotinhas" style="width: 100%; height: 500px; display: flex; justify-content: space-between; margin-top: 35px;">
                 <div class="fotinha-container">
                     <div id="fotinha" style="background-image: url('../medias/caio_cort.jpg');"></div>
-                    <p class="fotinha-name">Caio Custódio Parolin</p>
-                    <p class="fotinha-handle"><a href="https://www.instagram.com/parolincaio_/" target="_blank"><i class="fab fa-instagram"></i> @parolincaio_</a></p>
+                    <p class="fotinha-name <?php echo $themeClass; ?>">Caio Custódio Parolin</p>
+                    <p class="fotinha-handle <?php echo $themeClass; ?>"><a href="https://www.instagram.com/parolincaio_/" target="_blank"><i class="fab fa-instagram"></i> @parolincaio_</a></p>
                 </div>
                 <div class="fotinha-container">
                     <div id="fotinha" style="background-image: url('../medias/leo_cort.jpg');"></div>
-                    <p class="fotinha-name">Leonardo Moreira Nakashima Monteiro</p>
+                    <p class="fotinha-name <?php echo $themeClass; ?>">Leonardo Moreira Nakashima Monteiro</p>
                 </div>
                 <div class="fotinha-container">
                     <div id="fotinha" style="background-image: url('../medias/fael_cort.jpg');"></div>
-                    <p class="fotinha-name">Rafael Santos Rodrigues</p>
-                    <p class="fotinha-handle"><a href="https://www.instagram.com/fael_v8/" target="_blank"><i class="fab fa-instagram"></i> @fael_v8</a></p>
+                    <p class="fotinha-name <?php echo $themeClass; ?>">Rafael Santos Rodrigues</p>
+                    <p class="fotinha-handle <?php echo $themeClass; ?>"><a href="https://www.instagram.com/fael_v8/" target="_blank"><i class="fab fa-instagram"></i> @fael_v8</a></p>
                 </div>
                 <div class="fotinha-container">
                     <div id="fotinha" style="background-image: url('../medias/raul_cort.jpg');"></div>
-                    <p class="fotinha-name">Raul Ribeiro Fialho</p>
-                    <p class="fotinha-handle"><a href="https://www.instagram.com/f.r4ul/" target="_blank"><i class="fab fa-instagram"></i> @f.r4ul</a></p>
+                    <p class="fotinha-name <?php echo $themeClass; ?>">Raul Ribeiro Fialho</p>
+                    <p class="fotinha-handle <?php echo $themeClass; ?>"><a href="https://www.instagram.com/f.r4ul/" target="_blank"><i class="fab fa-instagram"></i> @f.r4ul</a></p>
                 </div>
             </div>
 

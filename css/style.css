@@ -817,6 +817,7 @@ body.light-mode .fa-search {
   display: inline-flex;
   justify-content: center;
   font-weight: bold;
+  font-size: 13pt;
   padding: 1rem 2rem;
   border-radius: 8px;
   transition: background-color 0.4s, box-shadow 0.4s;
@@ -847,6 +848,8 @@ body.light-mode .fa-search {
   height: 100%;
   border-radius: 8px;
   padding: 8px 24px;
+  font-family: gotham;
+  font-size: 13pt;
 }
 .grid.dark-mode .contact__input::placeholder {
   color: #E8F1F2;
@@ -890,7 +893,6 @@ body.light-mode .fa-search {
 .contact__area textarea {
   resize: none;
   padding-top: 1.25rem;
-  font-family: gotham;
 }
 .contact__section {
   width: 70%;
