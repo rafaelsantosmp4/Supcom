@@ -210,28 +210,48 @@
                     <button type="button" class="submit-button bio" id="cropButton" style="display: none; margin-top: 10px;">Cortar</button>
                     <button type="button" id="showPreviewButton" style="display: none;">Mostrar Imagem Cortada</button>
 
-                    <div id="dados-produtos"><br>
-                        <label for="nome">Nome do produto</label><br>
-                        <input type="text" maxlength="60" placeholder="max. 60 caracteres" name="nome" id="nome" required/><br>
+                    <div id="dados-produtos" class='grid <?php echo $themeClass; ?>'><br>
+                        <div class="contact__box contact__area">
+                            <input type="text" maxlength="60" placeholder="max. 60 caracteres" name="nome" id="nome" class='contact__input' required/>
+                            <label for="nome" class="contact__label">Nome do produto</label>
+                        </div>
 
-                        <label for="desc">Descrição</label><br>
-                        <textarea name="desc" id="desc" maxlength="2000" placeholder="max. 2000 caracteres" required><?php echo htmlspecialchars($descricao_produto, ENT_QUOTES); ?></textarea><br>
+                        <div class="contact__box contact__area">
+                            <textarea name="desc" class='contact__input' id="desc" maxlength="2000" placeholder="max. 2000 caracteres" required><?php echo htmlspecialchars($descricao_produto, ENT_QUOTES); ?></textarea><br>
+                            <label for="desc" class="contact__label">Descrição</label>
+                        </div>
 
-                        <script>
-                            const textarea = document.getElementById('desc');
-                            function autoResize() {
-                                this.style.height = 'auto';
-                                this.style.height = this.scrollHeight + 'px';
+                        <div class="contact__box contact__area">
+                            <input type="number" name="qtd" class='contact__input' id="qtd" required><br>
+                            <label for="qtd" class="contact__label">Quantidade disponível</label>
+                        </div>
+
+                        <div class="contact__box contact__area">
+                            <input type="text" name="preco" class='contact__input' id="preco" required><br>
+                            <label for="preco" class="contact__label">Preço (R$)</label><br>
+                        </div>
+
+                        <style>
+                            .contact__input {
+                                padding: 20px;
+                                width: 70%;
+                                height: auto;
                             }
-                            textarea.addEventListener('input', autoResize);
-                            autoResize.call(textarea);
-                        </script>   
-
-                        <label for="qtd">Quantidade disponível</label><br>
-                        <input type="number" name="qtd" id="qtd" required/><br>
-
-                        <label for="preco">Preço (R$)</label><br>
-                        <input type="text" name="preco" id="preco" required/><br>
+                            #desc {
+                                height: 200px;
+                                border-radius: 10px;
+                                padding-left: 15px;
+                                max-height: 300px;
+                                margin-bottom: 20px;
+                                resize: none;
+                            }
+                            .contact__label {
+                                margin-left: calc(14% - 5px);
+                            }
+                            .contact__area {
+                                height: auto;
+                            }
+                        </style>
                     </div>
                 </center>
                 <?php
@@ -256,7 +276,7 @@
                             }
                         }
                     ?>                    
-                <div style="display: flex; justify-content: center; flex-direction: row-reverse;"><input type="submit" class="submit-button bio" value="Enviar" style="margin-bottom: 30px;" id="submitButton" disabled>
+                <div style="display: flex; justify-content: center; flex-direction: row-reverse;" class='grid <?php echo $themeClass; ?>'><button id="submitButtonnew" style="margin-bottom: 30px;" type="submit" class="contact__send">Enviar</button>
             </form>
                 <form id="excluirprod" action="excluir_prod.php" method="POST">
                     <input type="hidden" name="id_produto_hidden" value="<?php echo $id_produto; ?>">
@@ -302,6 +322,7 @@
                     });
                 }
                 document.addEventListener('DOMContentLoaded', function() {
+                    document.getElementById('preco').focus();
                     const form = document.getElementById('fotoperfilForm');
 
                     form.addEventListener('submit', function(event) {
@@ -357,7 +378,7 @@
                     const labelPreview = document.getElementById('labelPreview');
                     const croppedImageInput = document.getElementById('croppedImage');
                     const form = document.getElementById('fotoperfilForm');
-                    const submitButton = document.getElementById('submitButton');
+                    const submitButton = document.getElementById('submitButtonnew');
 
                     function enableSubmitButton() {
                         submitButton.disabled = false;

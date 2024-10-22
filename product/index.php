@@ -183,15 +183,17 @@
                 ?>
                 <div class="rightdatas">
                     <br><center><?php echo $editarprod ?>
-                    <h1 style="margin-top: 5px;" id="tituloprodutounico"><?php echo $nome_produto; ?></h1>
-                    <h2 style="margin-top: 0px; font-size: 30pt;"><?php echo $preco_produto; ?></h2>
-                    <span style="margin-bottom: 13px; font-size: 24pt;">Quantidade: <b> <?php echo $qtd_produto; ?> </b></span><br><br>
+                    <h1 style="margin-top: 5px; margin-bottom: 12px;" id="tituloprodutounico"><?php echo $nome_produto; ?></h1>
+                    <span style="font-size: 24pt;"><?php echo $preco_produto; ?></span><br><br>
+                    <span style="font-size: 16pt;"><b> <?php echo $qtd_produto; ?> </b> disponíveis.</span><br><br>
+
                     <?php                        
                         echo'<a href="../chat/company.php?myid='.$iduser.'&idforn='.$id_forn.'"><button style="width: 50%;" class="submit-button" id="entraremcontato">Entrar em contato</button></a>';
                     ?>
-                    
-                    <h3>Descrição:</h3>
+                    <hr>
+                    <h2 style="text-align: left;">Descrição:</h2>
                     <p class='descricaoprod'><?php echo $descricao_produto_display; ?></p>
+                    <hr>
                     <h3 style="margin-bottom: 3px;">Empresa:</h3>
                     <?php
                         if($id_forn != $iduser) {

@@ -8,13 +8,17 @@
 .rightdatas {
     width: 50%;
     padding-bottom: 50px;
+    padding-left: 60px;
 }
 .descricaoprod {
-    width: 80%;
+    width: 100%;
     box-sizing: border-box;
     word-break: normal;
     overflow-wrap: break-word;
     padding: 0 10px;
+    text-align: justify;
+    font-size: 14pt;
+    font-family: Arial, Helvetica, sans-serif;
 }
 #nomeempresalink {
     color: inherit;
@@ -39,4 +43,8 @@
   height: 80px;
   border-radius: 50%;
   margin-right: 10px;
+}
+hr {
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
