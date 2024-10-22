@@ -180,7 +180,10 @@
            
                             <script>
                                 document.getElementById('name').value = '<?php echo $usuario['nome']; ?>';
+                                document.getElementById('name').readOnly = true;
+                                
                                 document.getElementById('email').value = '<?php echo $usuario['email']; ?>';
+                                document.getElementById('email').readOnly = true;
                             </script>
                         </div>
                     </section>
