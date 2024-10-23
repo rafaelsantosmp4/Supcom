@@ -721,10 +721,15 @@
   right: 10px;
   transform: translateY(-50%);
   cursor: pointer;
-  color: #333;
   font-size: 20pt;
   padding-bottom: 4px;
   padding-right: 10px;
+}
+body.light-mode .password-container #togglePassword {
+  color: #333;
+}
+body.dark-mode .password-container #togglePassword {
+  color: #E8F1F2;
 }
 
 #barrabusca {
