@@ -174,7 +174,7 @@
                                 <label for="message" class="contact__label">Mensagem</label>
                             </div>
 
-                            <button type="submit" class="contact__send">Enviar mensagem</button>
+                            <button type="submit" class="submit-button">Enviar mensagem</button>
 
                             <div id="result"></div>
            

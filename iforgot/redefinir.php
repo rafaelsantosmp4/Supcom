@@ -64,17 +64,31 @@
             <p>Crie uma nova senha</p>
 
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-            <div id="datas">                
-                <label for="password">Senha</label>
-                <input type="password" name="password" id="password" required/>
-                
-                <label for="checkpassword">Confirmar senha</label>
-                <input type="password" name="checkpassword" id="checkpassword" required/>
+            <div id="datas" class='grid <?php echo $themeClass; ?>' style="width: 100%;">
+                <div class="contact__box contact__area">
+                    <label for="password" class="contact__label">Senha</label>
+                    <input type="password" name="password" id="password" class="contact__input" required />
+                </div>
+
+                <div class="contact__box contact__area">
+                    <label for="checkpassword" class="contact__label">Confirmar senha</label>
+                    <input type="password" name="checkpassword" id="checkpassword" class="contact__input" required />
+                </div>
+
                 <p id="alertPassword"></p>
             </div>
             
             <button type="submit" class="submit-button">Redefinir</button>
         </form>
+        
+        <style>
+            .contact__area {
+                height: auto;
+            }
+            .grid {
+                gap: 20px;
+            }
+        </style>
     </div>
 
     <?php

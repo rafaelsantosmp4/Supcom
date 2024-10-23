@@ -48,20 +48,33 @@
             <h1>Entre na sua conta</h1>
             <p>Não tem uma conta? <a href="../signup/index.php"><i>cadastrar</i></a></p>
 
-            <div id="datas" style="width: 100%;">
-                <label for="email" id="emaillabel">E-mail</label>
-                <input type="email" name="email" id="email" required/>
-                
-                <label for="password" id="passwordlabel">Senha</label><br>       
-                <div class="password-container" style="position: relative;">
-                    <input type="password" name="password" id="password" required/>
-                    <span id="togglePassword"><i class="fa fa-eye"></i></span>
+            <div id="datas" class='grid <?php echo $themeClass; ?>' style="width: 100%;">
+                <div class="contact__box contact__area">
+                    <input type="email" name="email" id="email" class='contact__input' required/>
+                    <label for="email" id="emaillabel" class="contact__label">E-mail</label>
                 </div>
-            </div>
+
+                <div class="contact__box contact__area">
+                    <label for="password" id="passwordlabel" class="contact__label" style="margin-top: 17px; z-index: 100;">Senha</label><br>
+                    <div class="password-container" style="position: relative;">
+                        <input type="password" name="password" id="password" class='contact__input' required/>
+                        <span id="togglePassword"><i class="fa fa-eye"></i></span>
+                    </div>
+                </div>
+            </div><br>
 
             <a href="../iforgot/" class="forgot-password">Esqueceu a senha?</a>
             
             <button type="submit" class="submit-button">Entrar</button>
+
+            <style>
+                .contact__area {
+                    height: auto;
+                }
+                .grid {
+                    gap: 20px;
+                }
+            </style>
         </form>
     </div>
 

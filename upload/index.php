@@ -235,7 +235,7 @@
                         </style>
                     </div>
                 </center>
-                <div style="display: flex; justify-content: center; flex-direction: row-reverse;" class='grid <?php echo $themeClass; ?>'><button id="submitButtonnew" style="margin-bottom: 30px;" type="submit" class="contact__send">Enviar</button>
+                <div style="display: flex; justify-content: center; flex-direction: row-reverse;" class='grid <?php echo $themeClass; ?>'><button id="submitButtonnew" style="margin-bottom: 30px;" type="submit" class="submit-button bio">Enviar</button>
             </form></div>
             <?php
                 if ($result && mysqli_num_rows($result) > 0) {

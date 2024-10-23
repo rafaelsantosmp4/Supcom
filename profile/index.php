@@ -149,10 +149,26 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <div id="closebio"><i class="fa fa-times <?php echo $themeClass; ?>"></i></div>
         <ul>
-            <li style="font-size: 20pt; margin-bottom: 10px;">ATUALIZE SUA BIO:</li> 
             <form id="bioForm" method="POST">
-                <textarea name="bio" id="bio" rows="4" cols="50" maxlength="200" placeholder="max. 200 caracteres"></textarea>
-                <li><input type="submit" class="submit-button bio" value="Salvar"></li>
+                <div class='grid <?php echo $themeClass; ?>'>
+                    <div class="contact__box contact__area">
+                        <label for="bio" class="contact__label">Atualize sua bio:</label>
+                        <textarea name="bio" id="bio" rows="4" cols="50" class='contact__input' maxlength="200" placeholder="max. 200 caracteres"></textarea>
+                    </div>
+                    <li><button id="submitButtonnew" style="margin-bottom: 30px;" type="submit" class="submit-button bio">Enviar</button></li>
+                </div>
+                <style>
+                    #bio {
+                        font-size: 18pt;
+                        border: 3px solid #006494;
+                    }
+                    .grid {
+                        gap: 0px;
+                    }
+                    .contact__label {
+                        margin-left: 10%;
+                    }
+                </style>
             </form>
         </ul>
     </nav>

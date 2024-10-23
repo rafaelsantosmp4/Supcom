@@ -114,17 +114,12 @@
   margin-bottom: 10px;
 }
 #datas input, #datas select {
-  width: 95%;
+  width: 90%;
   height: 35pt;
-  border-radius: 50px;
-  border: 3px solid #006494;
   padding-left: 15px;
   
   font-family: Arial, sans-serif; 
-  font-size: 14pt; 
-  color: #333; 
-  margin-bottom: 10px;
-  background-color: light-dark(rgb(232, 240, 254), rgba(70, 90, 126, 0.4));
+  font-size: 14pt;
 }
 #datas select {
   width: 100%;
@@ -378,7 +373,7 @@
   background-color: #E8F1F2;
 }
 #addbio.dark-mode {
-  background-color: #374e66;
+  background-color: #233e53;
 }
 #addbio.dark-mode ul li {
   color: #E8F1F2;
@@ -428,19 +423,7 @@
 }
 #addbio textarea {
   width: 80%;
-  height: 100%;
-  border-radius: 20px;
-  border: 3px solid #006494;
-  padding-left: 15px;
-  padding-top: 10px;
-  max-width: 80%; 
-  max-height: 100px;
-  
-  font-family: Arial, sans-serif; 
-  font-size: 14pt; 
-  color: #333; 
-  margin-bottom: 10px;
-  background-color: light-dark(rgb(232, 240, 254), rgba(70, 90, 126, 0.4));
+  height: 70%;
 }
 .bio {
   width: 100px;
@@ -489,7 +472,7 @@
   background-color: #E8F1F2;
 }
 .navconfigs.dark-mode {
-  background-color: #374e66;
+  background-color: #233e53;
 }
 .navconfigs.dark-mode ul li {
   color: #E8F1F2;
@@ -740,14 +723,14 @@
   cursor: pointer;
   color: #333;
   font-size: 20pt;
-  padding-bottom: 10px;
+  padding-bottom: 4px;
   padding-right: 10px;
 }
 
 #barrabusca {
   width: 90%;
   height: 35pt;
-  border-radius: 50px;
+  border-radius: 8px;
   border: 3px solid #006494;
   padding-left: 15px;
   

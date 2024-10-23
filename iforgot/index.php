@@ -43,14 +43,33 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script>
-        window.addEventListener('load', function() {
-            document.querySelector('.loader-container').style.display = 'none';
-            document.body.style.pointerEvents = 'inherit';
-        });
-
         $(document).ready(function() {
-            $('#cnpj').mask('00.000.000/0000-00');
-            $('#tel').mask('(00) 0000-0000');
+            var behavior = function (val) {
+                return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+            },
+            options = {
+                onKeyPress: function (val, e, field, options) {
+                    field.mask(behavior.apply({}, arguments), options);
+                }
+            };
+            $('#tel').mask(behavior, options);
+
+            var options = {
+                onKeyPress: function (cpf, ev, el, op) {
+                    var masks = ['000.000.000-000', '00.000.000/0000-00'];
+                    $('#doc_serial').mask((cpf.length > 14) ? masks[1] : masks[0], op);
+                }
+            }
+            $('#doc_serial').length > 11 ? $('#doc_serial').mask('00.000.000/0000-00', options) : $('#doc_serial').mask('000.000.000-00#', options);
+
+            $('#doc_serial').on('input', function() {
+                var cnpjValue = $(this).val();
+                if (cnpjValue.length > 14) {
+                    $('label[for="doc_serial"]').text('CNPJ');
+                } else {
+                    $('label[for="doc_serial"]').text('CPF');
+                }
+            });
 
             var check = function() {
                 var modeClass = $('#left').hasClass('dark-mode') ? 'error' : '';
@@ -62,6 +81,11 @@
             };
             $('#password, #checkpassword').on('input', check);
         });
+
+        window.addEventListener('load', function() {
+            document.querySelector('.loader-container').style.display = 'none';
+            document.body.style.pointerEvents = 'inherit';
+        });
     </script>
 
     <div id="left" class="login <?php echo $themeClass; ?>">
@@ -70,22 +94,39 @@
             <h1>Recupere sua senha!</h1>
             <p>Apresente todas as informações EXATAS da empresa:</p>
 
-            <div id="datas">
-                <label for="nome">Nome da empresa</label>
-                <input type="text" name="nome" id="nome" required/>
+            <div id="datas" class='grid <?php echo $themeClass; ?>' style="width: 100%;">
+                <div class="contact__box contact__area">
+                    <label for="nome" class="contact__label">Nome da empresa</label>
+                    <input type="text" name="nome" id="nome" class="contact__input" required />
+                </div>
 
-                <label for="email">E-mail</label>
-                <input type="email" name="email" id="email" placeholder="xxxxx@email.com" required/>
-                
-                <label for="cnpj">CNPJ</label>
-                <input type="text" name="cnpj" id="cnpj" placeholder="00.000.000/0000-00" maxlength="18" required/>
-                
-                <label for="tel">Telefone</label>
-                <input type="text" name="tel" id="tel" placeholder="(99) 9999-9999" maxlength="14" required/>
+                <div class="contact__box contact__area">
+                    <label for="email" class="contact__label">E-mail</label>
+                    <input type="email" name="email" id="email" placeholder="xxxxx@email.com" class="contact__input" required />
+                </div>
+
+                <div class="contact__box contact__area">
+                    <label for="doc_serial" class="contact__label">CPF/CNPJ</label>
+                    <input type="text" name="doc_serial" id="doc_serial" maxlength="18" class="contact__input" required />
+                </div>
+
+                <div class="contact__box contact__area">
+                    <label for="tel" class="contact__label">Telefone</label>
+                    <input type="text" class="tel contact__input" name="tel" id="tel" maxlength="15" required />
+                </div><br>
             </div>
             
             <button type="submit" class="submit-button">Verificar cadastro</button>
         </form>
+        
+        <style>
+            .contact__area {
+                height: auto;
+            }
+            .grid {
+                gap: 20px;
+            }
+        </style>
     </div>
 
     <?php
@@ -98,15 +139,15 @@
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nome = $_POST['nome'];
             $email = $_POST['email'];
-            $cnpj = $_POST['cnpj'];
+            $doc_serial = $_POST['doc_serial'];
             $telefone = $_POST['tel'];
 
             $nome = mysqli_real_escape_string($db->con, $nome);
             $email = mysqli_real_escape_string($db->con, $email);
-            $cnpj = mysqli_real_escape_string($db->con, $cnpj);
+            $doc_serial = mysqli_real_escape_string($db->con, $doc_serial);
             $telefone = mysqli_real_escape_string($db->con, $telefone);
 
-            $query = "SELECT * FROM usuarios WHERE nome = '$nome' AND email = '$email' AND cnpj = '$cnpj' AND telefone = '$telefone'";
+            $query = "SELECT * FROM usuarios WHERE nome = '$nome' AND email = '$email' AND doc_serial = '$doc_serial' AND telefone = '$telefone'";
             $result = mysqli_query($db->con, $query);
 
             if ($result && mysqli_num_rows($result) > 0) {

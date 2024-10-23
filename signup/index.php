@@ -94,34 +94,58 @@
             <h1>Cadastre sua empresa na SUPCOM!</h1>
             <p>Já tem uma conta? <a href="../login/index.php"><i>entrar</i></a></p>
 
-            <div id="datas">
-                <label for="nome">Nome da empresa</label>
-                <input type="text" placeholder="Max. 30 caracteres" name="nome" id="nome" maxlength="30" required/>
+            <div id="datas" class='grid <?php echo $themeClass; ?>' style="width: 100%;">                
+                <div class="contact__box contact__area">
+                    <input type="text" placeholder="Max. 30 caracteres" name="nome" id="nome" maxlength="30" class='contact__input' required />
+                    <label for="nome" class="contact__label">Nome da empresa</label>
+                </div>
 
-                <label for="email">E-mail</label>
-                <input type="email" name="email" id="email" placeholder="xxxxx@email.com" required/>
+                <div class="contact__box contact__area">
+                    <input type="email" name="email" id="email" class='contact__input' required />
+                    <label for="email" id="emaillabel" class="contact__label">E-mail</label>
+                </div>
 
-                <label for="tipoconta">O que pretende na SUPCOM?</label>
-                <select name="tipoconta" id="tipoconta">
-                    <option value="loj">Encontrar fornecedores para minha empresa</option>
-                    <option value="forn">Vender mercadorias da minha empresa fornecedora</option>
-                </select>
-                
-                <label for="doc_serial">CPF/CNPJ</label>
-                <input type="text" name="doc_serial" id="doc_serial" maxlength="18" required/>
-                
-                <label for="tel">Telefone</label>
-                <input type="text" class="tel" name="tel" id="tel" maxlength="15" required/>
-                
-                <label for="password">Senha</label>
-                <input type="password" name="password" id="password" required/>
-                
-                <label for="checkpassword">Confirmar senha</label>
-                <input type="password" name="checkpassword" id="checkpassword" required/>
+                <div class="contact__box contact__area">
+                    <label for="tipoconta" id="tipocontalabel" class="contact__label">O que pretende na SUPCOM?</label>
+                    <select name="tipoconta" id="tipoconta" class="contact__input" style="padding-top: 15px; height: 60px;">
+                        <option value="loj">Encontrar fornecedores para minha empresa</option>
+                        <option value="forn">Vender mercadorias da minha empresa fornecedora</option>
+                    </select>
+                </div>
+
+                <div class="contact__box contact__area">
+                    <label for="doc_serial" class="contact__label">CPF/CNPJ</label>
+                    <input type="text" name="doc_serial" id="doc_serial" maxlength="18" class="contact__input" required />
+                </div>
+
+                <div class="contact__box contact__area">
+                    <label for="tel" class="contact__label">Telefone</label>
+                    <input type="text" class="tel contact__input" name="tel" id="tel" maxlength="15" required />
+                </div>
+
+                <div class="contact__box contact__area">
+                    <label for="password" class="contact__label">Senha</label>
+                    <input type="password" name="password" id="password" class="contact__input" required />
+                </div>
+
+                <div class="contact__box contact__area">
+                    <label for="checkpassword" class="contact__label">Confirmar senha</label>
+                    <input type="password" name="checkpassword" id="checkpassword" class="contact__input" required />
+                </div>
+
                 <p id="alertPassword"></p>
             </div>
             
             <button type="submit" class="submit-button">Cadastrar</button>
+
+            <style>
+                .contact__area {
+                    height: auto;
+                }
+                .grid {
+                    gap: 20px;
+                }
+            </style>
         </form>
     </div>
 
