@@ -222,7 +222,7 @@
                         </div>
 
                         <div class="contact__box contact__area">
-                            <input type="number" name="qtd" class='contact__input' id="qtd" required><br>
+                            <input type="number" name="qtd" class='contact__input' id="qtd" min='0' max='100000000' required><br>
                             <label for="qtd" class="contact__label">Quantidade disponível</label>
                         </div>
 
