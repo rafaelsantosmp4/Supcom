@@ -13,7 +13,6 @@
 #bemvindo a {
   padding: 5px 10px;
   text-decoration: none;
-  font-size: 20px;
   border-radius: 50px;
   margin-left: 10px;
   transition: 500ms;
@@ -31,9 +30,6 @@
   top: 50%;
   transform: translateY(-40%);
   margin-left: 10%;
-}
-#comecarcom h1 {
-  font-size: 40pt;
 }
 #imagem-contraria {
   background-image: url('../medias/contraria.webp');
@@ -206,7 +202,6 @@
   justify-content: space-evenly;
 }
 .produto h3 {
-  font-size: 20px;
   margin: 10px 0;
   max-width: 100%;
   white-space: nowrap;
@@ -220,12 +215,10 @@
   text-overflow: ellipsis;
 }
 .produto.light-mode p {
-  font-size: 14px;
   color: #666;
   margin: 5px 0;
 }
 .produto.dark-mode p {
-  font-size: 14px;
   color: rgb(201, 201, 201);
   margin: 5px 0;
 }
@@ -343,7 +336,6 @@
 }
 #pfp p {
   color: #dfdfdf;
-  font-size: 17pt;
   margin: 0;
   padding-top: 10px;
   line-height: 1.1;
@@ -831,6 +823,7 @@ body.light-mode .fa-search {
   left: 16px;
   font-weight: bold;
   padding: 8px;
+  font-size: 20px;
 }
 .grid.dark-mode .contact__label {
   background-color: #233e53;
@@ -846,7 +839,7 @@ body.light-mode .fa-search {
 }
 .contact__area textarea {
   resize: none;
-  padding-top: 1.25rem;
+  padding-top: 1.5rem;
 }
 .contact__section {
   width: 70%;

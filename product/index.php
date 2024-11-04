@@ -16,8 +16,16 @@
         $darkMode = isset($_POST['dark_mode']);
         setcookie('dark_mode', $darkMode ? '1' : '0', time() + (86400 * 30), "/");
         $_COOKIE['dark_mode'] = $darkMode ? '1' : '0';
+
+        if (isset($_POST['font_size'])) {
+            $fontSize = $_POST['font_size'];
+            setcookie('fontSize', $fontSize, time() + (86400 * 30), "/"); 
+            $_COOKIE['fontSize'] = $fontSize;
+        }
     }
     $themeClass = isset($_COOKIE['dark_mode']) && $_COOKIE['dark_mode'] === '1' ? 'dark-mode' : 'light-mode';
+
+    $fontSize = isset($_COOKIE['fontSize']) ? $_COOKIE['fontSize'] : '16'; 
 
     $logoSrc = $themeClass === 'dark-mode' ? '../medias/logo/Black-logo.png' : '../medias/logo/Logo-white.png';
 
@@ -38,6 +46,11 @@
                     <span class="toggle-slider round"></span>
                 </label>
             </form>
+        </div><br>
+        <li>Tamanho da Fonte:</li>
+        <div class="font-size-controller">
+            <input type="range" id="fontSlider" name="font_size" min="16" max="24" value="<?php echo $fontSize; ?>">
+            <p id="fontSizeDisplay">Tamanho da fonte: <?php echo $fontSize; ?>px</p>
         </div>
     </ul>
 </nav>
@@ -66,17 +79,17 @@
     });
 </script>
 
-<header class='<?php echo $themeClass; ?>'>
+<header class='<?php echo $themeClass; ?>' style="border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; font-size: <?php echo $fontSize; ?>px;">
     <a href="../home" id="button-logo-index"><img width="120px" id="default-logo" src="<?php echo $logoSrc; ?>"></a>
-    <nav id="mobile-nav">
+    <nav id="mobile-nav" class="font-adjustable">
         <ul>
-            <li><a href="../home">Início</a></li>
-            <li><a href="../forns/">Fornecedores</a></li>
-            <li><a href="../about/">Sobre nós</a></li>
-            <li><a href="../contact/">Fale conosco</a></li>
+            <li><a href="../home" class="font-adjustable">Início</a></li>
+            <li><a href="../forns/" class="font-adjustable">Fornecedores</a></li>
+            <li><a href="../about/" class="font-adjustable">Sobre nós</a></li>
+            <li><a href="../contact/" class="font-adjustable">Fale conosco</a></li>
             <li class="config-menu">
-                <div style="font-size: 40pt; padding: 10px 30px;" id="config-button" onclick="toggleConfigMenu()">Configurações <i class="fa fa-caret-down"></i></div>
-                <ul id="config-options" class="config-options">
+                <div class="font-adjustable" style="font-size: 40pt; padding: 10px 30px;" id="config-button" onclick="toggleConfigMenu()">Configurações <i class="fa fa-caret-down"></i></div>
+                <ul id="config-options" class="config-options font-adjustable">
                     <li>CONFIGS HERE</li>
                 </ul>
             </li>
@@ -112,7 +125,7 @@
         <button class="config-toggle <?php echo $themeClass; ?>" id="config_toggle" onclick="config_toggle()"><i class="fa fa-gear"></i></button>
         <div id='account-button' onclick='toggleAccountMenu()' style="position: relative;">
             <?php
-                echo "<div style='display: flex; align-items: center;'><img src='../chat/getprofilepfp.php?id=$iduser' style='margin-right: 10px; width: 40px; height: 40px; border-radius: 50%; object-fit: cover;'> <div id='fullname'>Bem-vindo, $nome </div><i class='fa fa-caret-down'></i></div>";
+                echo "<div style='display: flex; align-items: center;'><img src='../chat/getprofilepfp.php?id=$iduser' style='margin-right: 10px; width: 40px; height: 40px; border-radius: 50%; object-fit: cover;'> <div id='fullname' class='font-adjustable'>Bem-vindo, $nome </div><i class='fa fa-caret-down'></i></div>";
             ?>
         </div>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -184,8 +197,8 @@
                 <div class="rightdatas">
                     <br><center><?php echo $editarprod ?>
                     <h1 style="margin-top: 5px; margin-bottom: 12px;" id="tituloprodutounico"><?php echo $nome_produto; ?></h1>
-                    <span style="font-size: 24pt;"><?php echo $preco_produto; ?></span><br><br>
-                    <span style="font-size: 16pt;"><b> <?php echo $qtd_produto; ?> </b> disponíveis.</span><br><br>
+                    <h1 style="margin-top: 5px; margin-bottom: 0px;"><?php echo $preco_produto; ?></h1><br><br>
+                    <span><b><?php echo $qtd_produto; ?> </b> disponíveis.</span><br><br>
 
                     <?php                        
                         echo'<a href="../chat/company.php?myid='.$iduser.'&idforn='.$id_forn.'"><button style="width: 50%;" class="submit-button" id="entraremcontato">Entrar em contato</button></a>';

@@ -2,10 +2,10 @@
     <div id="parts">
         <center>
             <h1>Integrantes</h1>
-            <p class="nomes_inte">• Caio Custódio Parolin</p>
-            <p class="nomes_inte">• Leonardo M. N. Monteiro</p>
-            <p class="nomes_inte">• Rafael Santos Rodrigues</p>
-            <p class="nomes_inte">• Raul Ribeiro Fialho</p>
+            <p class="nomes_inte font-adjustable">• Caio Custódio Parolin</p>
+            <p class="nomes_inte font-adjustable">• Leonardo M. Nakashima Monteiro</p>
+            <p class="nomes_inte font-adjustable">• Rafael Santos Rodrigues</p>
+            <p class="nomes_inte font-adjustable">• Raul Ribeiro Fialho</p>
         </center>
     </div>
     <div id="parts">

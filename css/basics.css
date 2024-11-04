@@ -29,18 +29,16 @@ body.dark-mode {
 }
 #conteudo h1 {
   text-align: center;
-  font-size: 30pt;
+  font-size: 2.5em;
 }
 ::-webkit-scrollbar {
   width: 5px;
 }
-
 ::-webkit-scrollbar-track {
   background-color: #929292;
   -webkit-border-radius: 5px;
   border-radius: 5px;
 }
-
 ::-webkit-scrollbar-thumb {
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -162,17 +160,18 @@ header #mobile-nav a:hover:after, #account-options a:hover:after, #entrarlink:ho
     top: 50%;
     left: 50%;
     transform: translate(-50%, 500%);
-
-    display: flex;
-    justify-content: center;
     text-align: center;
     box-shadow: 0px 0px 20px black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   #configpcnav.light-mode {
     background-color: #E8F1F2;
   }
   #configpcnav.dark-mode {
     background-color: #374e66;
+    color: #E8F1F2;
   }
   #configpcnav.dark-mode ul li {
     color: #E8F1F2;
@@ -185,10 +184,7 @@ header #mobile-nav a:hover:after, #account-options a:hover:after, #entrarlink:ho
     transition: none !important;
 }
   #configpcnav ul {
-    color: #13293D;
     text-decoration: none;
-
-    padding-top: 40px;
     padding-left: 0px;
   }
   #configpcnav ul li {
@@ -196,6 +192,37 @@ header #mobile-nav a:hover:after, #account-options a:hover:after, #entrarlink:ho
     font-weight: bold;
     font-size: 15pt;
     margin-bottom: 5px;
+  }
+  #fontSlider {
+    width: 80%;
+    margin-top: 5px;
+    background: #ddd;
+    height: 10px;
+    border-radius: 5px;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  #fontSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #2196F3;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  #fontSlider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #2196F3;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  #fontSizeDisplay {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 10px;
   }
   .config-menu {
     display: none;

@@ -24,7 +24,6 @@
     }
     .fotinha-name {
         margin-top: 10px;
-        font-size: 18px;
         font-weight: bold;
         font-family: Arial, sans-serif;
     }
@@ -42,8 +41,6 @@
     .fotinha-handle a {
         text-decoration: none;
     }
-    .fotinha-handle a:hover {
-    }
     .fotinha-handle.light-mode a {
         color: #333;
     }
@@ -58,8 +55,16 @@
         $darkMode = isset($_POST['dark_mode']);
         setcookie('dark_mode', $darkMode ? '1' : '0', time() + (86400 * 30), "/");
         $_COOKIE['dark_mode'] = $darkMode ? '1' : '0';
+
+        if (isset($_POST['font_size'])) {
+            $fontSize = $_POST['font_size'];
+            setcookie('fontSize', $fontSize, time() + (86400 * 30), "/"); 
+            $_COOKIE['fontSize'] = $fontSize;
+        }
     }
     $themeClass = isset($_COOKIE['dark_mode']) && $_COOKIE['dark_mode'] === '1' ? 'dark-mode' : 'light-mode';
+
+    $fontSize = isset($_COOKIE['fontSize']) ? $_COOKIE['fontSize'] : '16'; 
 
     $logoSrc = $themeClass === 'dark-mode' ? '../medias/logo/Black-logo.png' : '../medias/logo/Logo-white.png';
 
@@ -80,6 +85,11 @@
                     <span class="toggle-slider round"></span>
                 </label>
             </form>
+        </div><br>
+        <li>Tamanho da Fonte:</li>
+        <div class="font-size-controller">
+            <input type="range" id="fontSlider" name="font_size" min="16" max="24" value="<?php echo $fontSize; ?>">
+            <p id="fontSizeDisplay">Tamanho da fonte: <?php echo $fontSize; ?>px</p>
         </div>
     </ul>
 </nav>
@@ -108,17 +118,17 @@
     });
 </script>
 
-<header class='<?php echo $themeClass; ?>'>
+<header class='<?php echo $themeClass; ?>' style="border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; font-size: <?php echo $fontSize; ?>px;">
     <a href="../home" id="button-logo-index"><img width="120px" id="default-logo" src="<?php echo $logoSrc; ?>"></a>
-    <nav id="mobile-nav">
+    <nav id="mobile-nav" class="font-adjustable">
         <ul>
-            <li><a href="../home">Início</a></li>
-            <li><a href="../forns/">Fornecedores</a></li>
-            <li><a href="../about/" class="active">Sobre nós</a></li>
-            <li><a href="../contact/">Fale conosco</a></li>
+            <li><a href="../home" class="font-adjustable">Início</a></li>
+            <li><a href="../forns/" class="font-adjustable">Fornecedores</a></li>
+            <li><a href="../about/" class="font-adjustable active">Sobre nós</a></li>
+            <li><a href="../contact/" class="font-adjustable">Fale conosco</a></li>
             <li class="config-menu">
-                <div style="font-size: 40pt; padding: 10px 30px;" id="config-button" onclick="toggleConfigMenu()">Configurações <i class="fa fa-caret-down"></i></div>
-                <ul id="config-options" class="config-options">
+                <div class="font-adjustable" style="font-size: 40pt; padding: 10px 30px;" id="config-button" onclick="toggleConfigMenu()">Configurações <i class="fa fa-caret-down"></i></div>
+                <ul id="config-options" class="config-options font-adjustable">
                     <li>CONFIGS HERE</li>
                 </ul>
             </li>
@@ -149,7 +159,7 @@
         <button class="config-toggle <?php echo $themeClass; ?>" id="config_toggle" onclick="config_toggle()"><i class="fa fa-gear"></i></button>
         <div id='account-button' onclick='toggleAccountMenu()' style="position: relative;">
             <?php
-                echo "<div style='display: flex; align-items: center;'><img src='../chat/getprofilepfp.php?id=$iduser' style='margin-right: 10px; width: 40px; height: 40px; border-radius: 50%; object-fit: cover;'> <div id='fullname'>Bem-vindo, $nome </div><i class='fa fa-caret-down'></i></div>";
+                echo "<div style='display: flex; align-items: center;'><img src='../chat/getprofilepfp.php?id=$iduser' style='margin-right: 10px; width: 40px; height: 40px; border-radius: 50%; object-fit: cover;'> <div id='fullname' class='font-adjustable'>Bem-vindo, $nome </div><i class='fa fa-caret-down'></i></div>";
             ?>
         </div>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -189,7 +199,7 @@
 
 
     <div id="container">
-        <div id="conteudo" style="width: 55%; font-size: 20px; margin-bottom: 30px;">
+        <div id="conteudo" style="width: 55%; margin-bottom: 30px;">
             <h1>Quem somos?</h1>
             <p style="margin-top: 4%;">
             Na SUPCOM, estamos comprometidos em facilitar a jornada de micro e pequenos negócios ao conectar diretamente fornecedores confiáveis às necessidades específicas de cada 
@@ -231,7 +241,6 @@
                     <p class="fotinha-handle <?php echo $themeClass; ?>"><a href="https://www.instagram.com/f.r4ul/" target="_blank"><i class="fab fa-instagram"></i> @f.r4ul</a></p>
                 </div>
             </div>
-
         </div>
     </div>
 </body>

@@ -16,14 +16,22 @@
         $darkMode = isset($_POST['dark_mode']);
         setcookie('dark_mode', $darkMode ? '1' : '0', time() + (86400 * 30), "/");
         $_COOKIE['dark_mode'] = $darkMode ? '1' : '0';
+
+        if (isset($_POST['font_size'])) {
+            $fontSize = $_POST['font_size'];
+            setcookie('fontSize', $fontSize, time() + (86400 * 30), "/"); 
+            $_COOKIE['fontSize'] = $fontSize;
+        }
     }
     $themeClass = isset($_COOKIE['dark_mode']) && $_COOKIE['dark_mode'] === '1' ? 'dark-mode' : 'light-mode';
+
+    $fontSize = isset($_COOKIE['fontSize']) ? $_COOKIE['fontSize'] : '16'; 
 
     $logoSrc = $themeClass === 'dark-mode' ? 'medias/logo/Black-logo.png' : 'medias/logo/Logo-white.png';
 ?>
 
 
-<header class="<?php echo $themeClass; ?>">
+<header class='<?php echo $themeClass; ?>' style="border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; font-size: <?php echo $fontSize; ?>px;">
     <a href="#" id="button-logo-index">
         <img width="120px" id="default-logo" src="<?php echo $logoSrc; ?>" alt="Logo">
     </a>
@@ -46,6 +54,11 @@
                     <span class="toggle-slider round"></span>
                 </label>
             </form>
+        </div><br>
+        <li>Tamanho da Fonte:</li>
+        <div class="font-size-controller">
+            <input type="range" id="fontSlider" name="font_size" min="16" max="24" value="<?php echo $fontSize; ?>">
+            <p id="fontSizeDisplay">Tamanho da fonte: <?php echo $fontSize; ?>px</p>
         </div>
     </ul>
 </nav>
@@ -81,7 +94,7 @@
 </div>
 <div class="overlay2" id="overlay2"></div>
 
-<body class="<?php echo $themeClass; ?>">
+<body class="<?php echo $themeClass; ?>" style="font-size: <?php echo $fontSize; ?>px;">
     <div id="bemvindo" class="<?php echo $themeClass; ?>">
         <div id="comecarcom">
             <h1>Bem vindo(a) a <br> SUPCOM!</h1>
@@ -170,10 +183,10 @@
     <div id="parts">
         <center>
             <h1>Integrantes</h1>
-            <p class="nomes_inte">• Caio Custódio Parolin</p>
-            <p class="nomes_inte">• Leonardo M. N. Monteiro</p>
-            <p class="nomes_inte">• Rafael Santos Rodrigues</p>
-            <p class="nomes_inte">• Raul Ribeiro Fialho</p>
+            <p class="nomes_inte font-adjustable">• Caio Custódio Parolin</p>
+            <p class="nomes_inte font-adjustable">• Leonardo M. Nakashima Monteiro</p>
+            <p class="nomes_inte font-adjustable">• Rafael Santos Rodrigues</p>
+            <p class="nomes_inte font-adjustable">• Raul Ribeiro Fialho</p>
         </center>
     </div>
     <div id="parts">
@@ -194,6 +207,13 @@
 
 <script type="text/javascript" >
     window.addEventListener('load', function() {
+        const savedFontSize = getCookie('fontSize');
+        if (savedFontSize) {
+            ajustarFonte(savedFontSize);
+            document.getElementById('fontSlider').value = savedFontSize;
+            updateFontSizeDisplay(savedFontSize);
+        }
+
         document.querySelector('.loader').style.display = 'none';
         document.querySelector('#container').style.opacity = 100;
         document.querySelector('#bemvindo').style.opacity = 100;
@@ -202,7 +222,40 @@
         document.querySelector('.loader-text').style.display = 'none';
         document.body.style.pointerEvents = 'inherit';
         document.body.style.overflow = 'inherit';
+        
+        document.getElementById('fontSlider').addEventListener('input', function(event) {
+            const newSize = event.target.value;
+            ajustarFonte(newSize);
+            updateFontSizeDisplay(newSize);
+        });
+
+        document.getElementById('fontSlider').addEventListener('change', function() {
+            const newSize = this.value;
+            setCookie('fontSize', newSize, 30);
+        });
     });
+
+    function ajustarFonte(size) {
+        document.body.style.fontSize = size + 'px';
+        document.querySelectorAll('.font-adjustable').forEach(function(element) {
+            element.style.fontSize = size + 'px';
+        });
+    }
+
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    function setCookie(name, value, days) {
+        const expires = new Date(Date.now() + days * 864e5).toUTCString();
+        document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
+    }
+
+    function updateFontSizeDisplay(fontSize) {
+        document.getElementById('fontSizeDisplay').innerText = `Tamanho da fonte: ${fontSize}px`;
+    }
 
     var count = 1;
     document.getElementById("radio1").checked = true;
