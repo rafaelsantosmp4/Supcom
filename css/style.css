@@ -121,11 +121,16 @@
   width: 100%;
   padding-right: 35px;
   appearance: none;
-  background-image: url('../medias/setabaixo.png');
   background-repeat: no-repeat;
   background-position: right 15px center;
   background-size: 20px;
   cursor: pointer;
+}
+body.light-mode #datas select {
+  background-image: url('../medias/setabaixo.png');
+}
+body.dark-mode #datas select {
+  background-image: url('../medias/setabaixobranca.png');
 }
 
 #voltarbut {
