@@ -212,11 +212,6 @@
             <h1>Informações da empresa:</h1>
             <ul align='center' style="list-style: none;">
                 <li><b>Email: </b><?php echo $email ?></li><br>
-                <?php
-                    if (strlen($doc_serial) > 14) {
-                        echo "<li><b>CNPJ: </b>$doc_serial</li><br>";
-                    }
-                ?>
                 <li><b>Telefone: </b><?php echo $telefone ?></li><br>
                 <li><b>Data de cadastro: </b><?php echo $formatted_date ?></li>
             </ul>
