@@ -88,7 +88,7 @@
     });
 </script>
 
-<header class='<?php echo $themeClass; ?>' style="border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; font-size: <?php echo $fontSize; ?>px;">
+<header class='<?php echo $themeClass; ?>' style="font-size: <?php echo $fontSize; ?>px;">
     <a href="../home" id="button-logo-index"><img width="120px" id="default-logo" src="<?php echo $logoSrc; ?>"></a>
     <nav id="mobile-nav" class="font-adjustable">
         <ul>
@@ -344,19 +344,44 @@
             <h1>Suas informações:</h1>
             <ul align='center' style="list-style: none;">
                 <li><b>Email: </b><?php echo $email ?></li><br>
-                <?php
-                    if (strlen($doc_serial) > 14) {
-                        echo "<li><b>CNPJ: </b>$doc_serial</li><br>";
-                    } else {
-                        echo "<li><b>CPF: </b>$doc_serial <br><i>Fique tranquilo(a), apenas você consegue ver essa informação!</i></li><br>";
-                    }
-                ?>
-                <li><b>Telefone: </b><?php echo $telefone ?></li><br>
-                <li><b>Tipo da conta: </b><?php echo $tipo ?></li><br>
-                <li><b>Data de cadastro: </b><?php echo $formatted_date ?></li><br>
-                <li><b>Hora de cadastro: </b><?php echo $formatted_time ?></li>
+                <li><b>Data de cadastro: </b><?php echo $formatted_date ?></li><br><br>
+
+                <li>
+                    <i>Informações ocultas:</i>
+                    <i class="fa fa-eye" id="toggle-visibility" style="cursor: pointer;" onclick="toggleVisibility()"></i>
+                </li><br>
+
+                <div id="hidden-info" class="hidden-info">
+                    <li><b>Telefone: </b><?php echo $telefone ?></li><br>
+                    <?php
+                        if (strlen($doc_serial) > 14) {
+                            echo "<li><b>CNPJ: </b>$doc_serial</li><br>";
+                        } else {
+                            echo "<li><b>CPF: </b>$doc_serial <br></li><br>";
+                        }
+                    ?>
+                    <li><b>Tipo da conta: </b><?php echo $tipo ?></li><br>
+                    <li><b>Hora de cadastro: </b><?php echo $formatted_time ?></li>
+                </div>
             </ul>
-            
+
+            <script>
+                function toggleVisibility() {
+                    const hiddenInfo = document.getElementById("hidden-info");
+                    const icon = document.getElementById("toggle-visibility");
+
+                    hiddenInfo.classList.toggle("show");
+
+                    if (hiddenInfo.classList.contains("show")) {
+                        icon.classList.remove("fa-eye");
+                        icon.classList.add("fa-eye-slash");
+                    } else {
+                        icon.classList.remove("fa-eye-slash");
+                        icon.classList.add("fa-eye");
+                    }
+                }
+            </script>
+
             <?php
                 if ($usuario["tipo_usuario"] == "fornecedor") {
                     echo '<h1>Seus produtos:</h1>';

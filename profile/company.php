@@ -78,7 +78,7 @@
     });
 </script>
 
-<header class='<?php echo $themeClass; ?>' style="border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; font-size: <?php echo $fontSize; ?>px;">
+<header class='<?php echo $themeClass; ?>' style="font-size: <?php echo $fontSize; ?>px;">
     <a href="../home" id="button-logo-index"><img width="120px" id="default-logo" src="<?php echo $logoSrc; ?>"></a>
     <nav id="mobile-nav" class="font-adjustable">
         <ul>
@@ -212,7 +212,6 @@
             <h1>Informações da empresa:</h1>
             <ul align='center' style="list-style: none;">
                 <li><b>Email: </b><?php echo $email ?></li><br>
-                <li><b>Telefone: </b><?php echo $telefone ?></li><br>
                 <li><b>Data de cadastro: </b><?php echo $formatted_date ?></li>
             </ul>
 
