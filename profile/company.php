@@ -120,8 +120,6 @@
             $usuarioprods = mysqli_fetch_assoc($resultprods);
             $nome = $usuarioprods['nome'];
             $email = $usuarioprods['email'];
-            $doc_serial = $usuarioprods['doc_serial'];
-            $telefone = $usuarioprods['telefone'];
             $data = $usuarioprods['data_cadastro'];
             $datacerta = new DateTime($data);
             $formatted_date = $datacerta->format('d/m/Y');

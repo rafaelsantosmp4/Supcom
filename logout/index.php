@@ -14,20 +14,19 @@
 <body>
     <?php
         session_start();
-        $darkMode = isset($_SESSION['dark_mode']) ? $_SESSION['dark_mode'] : null;
 
         session_unset();
         session_destroy();
 
         session_start();
 
-        if ($darkMode !== null) {
-            $_SESSION['dark_mode'] = $darkMode;
-        }
-
         $_SESSION['log'] = "desativado";
-
-        echo "<script>window.location.href = '../';</script>";
     ?>
+
+    <script>
+        localStorage.clear();
+
+        window.location.href = '../';
+    </script>
 </body>
 </html>

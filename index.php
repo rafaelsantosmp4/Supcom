@@ -29,7 +29,11 @@
 
     $logoSrc = $themeClass === 'dark-mode' ? 'medias/logo/Black-logo.png' : 'medias/logo/Logo-white.png';
 ?>
-
+<script>
+    if(localStorage.getItem("idUser")) {
+        window.location.href = 'home/';
+    }
+</script>
 
 <header class='<?php echo $themeClass; ?>' style="border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; font-size: <?php echo $fontSize; ?>px;">
     <a href="#" id="button-logo-index">

@@ -125,6 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (password_verify($senha, $usuario['senha'])) {
             $_SESSION['log'] = 'ativo';
             $_SESSION['id'] = $usuario['id_usuario'];
+            echo"<script>localStorage.setItem('idUser', '". $usuario['id_usuario'] ."');</script>";
             $_SESSION['nome'] = $usuario['nome'];
             $_SESSION['email'] = $usuario['email'];
             $_SESSION['doc_serial'] = $usuario['doc_serial'];
