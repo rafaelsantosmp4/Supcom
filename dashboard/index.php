@@ -158,7 +158,8 @@
     <div class="overlay"></div>
 
     <div id="container">
-        <div id="conteudo">            
+        <div id="conteudo">
+            <h1>Dashboard</h1>
             <div class="analytics-report">
                 <div class="dashboard-overview">
                     <?php
