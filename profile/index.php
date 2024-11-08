@@ -128,7 +128,11 @@
         <div id='account-options' class="<?php echo $themeClass; ?>">
             <ul>
                 <li><a href='../profile/'>Perfil <i class="fa fa-user" style="font-family: FontAwesome;"></i></a></li>
-                <li><a href='../dashboard/'>Dashboard <i class="fa fa-table" style="font-family: FontAwesome;"></i></a></li>
+                <?php
+                    if ($usuario["tipo_usuario"] == "fornecedor") {
+                        echo '<li><a href="../dashboard/">Dashboard <i class="fa fa-table" style="font-family: FontAwesome;"></i></a></li>';
+                    }
+                ?>
                 <li><a href='../logout/'>Sair da conta <i class="fa fa-sign-out" style="font-family: FontAwesome;"></i></a></li>
             </ul>
         </div>

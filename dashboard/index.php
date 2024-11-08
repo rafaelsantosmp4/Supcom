@@ -2,11 +2,12 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Contato</title>
+    <title>Dashboard</title>
     <link rel="shortcut icon" href="../medias/logo/Supcom-white.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/basics.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/mobile.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <?php
@@ -157,11 +158,136 @@
     <div class="overlay"></div>
 
     <div id="container">
-        <div id="conteudo">
-            <h1>Em construção</h1>          
+        <div id="conteudo">            
+            <div class="analytics-report">
+                <div class="dashboard-overview">
+                    <?php
+                        $querymyprods = "SELECT * FROM produto WHERE id_forn = $iduser";
+                        $resultmyprods = mysqli_query($db->con, $querymyprods);
+                        $count = 0;
+
+                        while ($produto = mysqli_fetch_assoc($resultmyprods)) {
+                            $count++;
+                        }
+
+                        $queryVisualizations = "SELECT nome_produto, visualizacoes FROM produto WHERE id_forn = $iduser";
+                        $resultVisualizations = mysqli_query($db->con, $queryVisualizations);
+
+                        $productLabels = [];
+                        $visualizationData = [];
+                        $totalVisualizations = 0;
+
+                        while ($produto = mysqli_fetch_assoc($resultVisualizations)) {
+                            $productLabels[] = $produto['nome_produto'];
+                            $visualizationData[] = $produto['visualizacoes'];
+                            $totalVisualizations += $produto['visualizacoes'];
+                        }
+                    ?>
+                    <div class="stat-card">
+                        <h3>Quantidade de produtos</h3>
+                        <p id="total-questions"><?php echo"$count"; ?></p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total de visualizações</h3>
+                        <p id="average-score"><?php echo number_format($totalVisualizations, 0, ',', '.'); ?></p>
+                    </div>
+                </div>
+
+                <div class="charts-container">
+                    <div class="chart-card">
+                        <h4>Métricas de visualizações</h4>
+                        <div class="chart-container">
+                        <canvas id="performance-chart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <h4>Distribuição de visualizações</h4>
+                        <div class="chart-container">
+                        <canvas id="score-distribution-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                const bodyClass = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+
+                const textColor = bodyClass === 'dark' ? '#f3f3f3' : '#333333';
+                const gridColor = bodyClass === 'dark' ? '#ffffff20' : '#00000020';
+
+                const ctxPerformance = document.getElementById('performance-chart').getContext('2d');
+                const performanceChart = new Chart(ctxPerformance, {
+                    type: 'bar',
+                    data: {
+                        labels: <?php echo json_encode($productLabels); ?>,
+                        datasets: [{
+                            label: 'Visualizações',
+                            data: <?php echo json_encode($visualizationData); ?>,
+                            backgroundColor: '#007bff80',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    color: textColor
+                                },
+                                grid: {
+                                    color: gridColor
+                                }
+                            },
+                            x: {
+                                ticks: {
+                                    color: textColor
+                                },
+                                grid: {
+                                    color: gridColor
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: textColor
+                                }
+                            }
+                        }
+                    }
+                });
+
+
+                const ctxScoreDistribution = document.getElementById('score-distribution-chart').getContext('2d');
+                const scoreDistributionChart = new Chart(ctxScoreDistribution, {
+                    type: 'pie',
+                    data: {
+                        labels: <?php echo json_encode($productLabels); ?>,
+                        datasets: [{
+                            label: 'Visualizações',
+                            data: <?php echo json_encode($visualizationData); ?>,
+                            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#FF9F40', '#4BC0C0', '#FF5733', '#C70039', '#900C3F', '#581845']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: textColor
+                                }
+                            }
+                        }
+                    }
+                });
+
+
+            </script>
         </div>
     </div>
-
 </body>
 <script>
     const iduser = '<?php echo $iduser; ?>';
