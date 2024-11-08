@@ -894,7 +894,6 @@ body.dark-mode .stat-card {
 
 .stat-card h3 {
   margin: 0;
-  font-size: 18px;
 }
 body.light-mode .stat-card h3 {
   color: #333;
@@ -904,7 +903,7 @@ body.dark-mode .stat-card h3 {
 }
 
 .stat-card p {
-  font-size: 24px;
+  font-size: 2em;
 }
 body.light-mode .stat-card p {
   color: #007bff;
@@ -935,7 +934,7 @@ body.dark-mode .chart-card {
 
 .chart-card h4 {
   margin-bottom: 15px;
-  font-size: 20px;
+  font-size: 1em;
 }
 body.light-mode .chart-card h4 {
   color: #333;
