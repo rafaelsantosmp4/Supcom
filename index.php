@@ -39,6 +39,13 @@
     <a href="#" id="button-logo-index">
         <img width="120px" id="default-logo" src="<?php echo $logoSrc; ?>" alt="Logo">
     </a>
+    <nav id="mobile-nav" class="font-adjustable">
+        <ul>
+            <li><a href="index.php" class="font-adjustable active">Início</a></li>
+            <li><a href="products.php" class="font-adjustable">Produtos</a></li>
+            <li><a href="contact.php" class="font-adjustable">Fale conosco</a></li>
+        </ul>
+    </nav>
     <div id="direita" style="justify-content: center; align-items: center; display: flex;">
         <a href="login/" class="<?php echo $themeClass; ?>" id='entrarlink'>Entrar</a>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -160,9 +167,85 @@
     </div>
 
     <div id="container">
-        <div id="conteudo">
-            <h1>O que é a SUPCOM?</h1>
-            <p>A SUPCOM é uma plataforma que busca facilitar a conexão entre uma empresa fornecedora e o lojista, que necessita de mercadorias e contatos confiáveis.</p>
+        <div id="conteudo" style="width: 55%; margin-bottom: 30px;">
+            <h1>Quem somos?</h1>
+            <p style="margin-top: 4%;">
+            Na SUPCOM, estamos comprometidos em facilitar a jornada de micro e pequenos negócios ao conectar diretamente fornecedores às necessidades específicas de cada 
+            lojista. Nossa plataforma nasceu da necessidade de simplificar e fortalecer essas parcerias, oferecendo um ambiente digital seguro e eficiente para que empresas prosperem 
+            juntas.
+            <br><br>
+            Nosso foco vai além da simples conexão. Acreditamos que a união entre fornecedores e lojistas é a base para alcançar resultados duradouros e significativos. Com um compromisso
+             claro com a eficiência e a transparência, buscamos não apenas atender, mas superar as expectativas de nossos clientes, proporcionando oportunidades de crescimento sustentável 
+             em um mercado cada vez mais dinâmico.
+            </p>
+            <h1>Venha conheçer a SUPCOM</h1>
+            <p>
+            Queremos simplificar e fortalecer as conexões entre micro e pequenos lojistas e fornecedores, criando uma plataforma eficiente e acessível que impulsione o crescimento de ambos.
+             Guiados pelos valores de transparência, assegurando negociações claras e acessíveis; eficiência, proporcionando soluções rápidas e práticas; e colaboração, acreditando que o crescimento mútuo 
+             é fruto de parcerias fortes, buscamos oferecer um ambiente onde a confiança e as relações duradouras floresçam. Assim, promovemos resultados sustentáveis e geramos oportunidades reais 
+             de sucesso para todos os nossos clientes.
+            </p>
+            <div id="fotinhas" style="width: 100%; height: 500px; display: flex; justify-content: space-between; margin-top: 35px;">
+                <div class="fotinha-container">
+                    <div id="fotinha" style="background-image: url('medias/caio_cort.jpg');"></div>
+                    <p class="fotinha-name <?php echo $themeClass; ?>">Caio Custódio Parolin</p>
+                    <p class="fotinha-handle <?php echo $themeClass; ?>"><a href="https://www.instagram.com/parolincaio_/" target="_blank"><i class="fab fa-instagram"></i> @parolincaio_</a></p>
+                </div>
+                <div class="fotinha-container">
+                    <div id="fotinha" style="background-image: url('medias/leo_cort.jpg');"></div>
+                    <p class="fotinha-name <?php echo $themeClass; ?>">Leonardo Moreira Nakashima Monteiro</p>
+                </div>
+                <div class="fotinha-container">
+                    <div id="fotinha" style="background-image: url('medias/fael_cort.jpg');"></div>
+                    <p class="fotinha-name <?php echo $themeClass; ?>">Rafael Santos Rodrigues</p>
+                    <p class="fotinha-handle <?php echo $themeClass; ?>"><a href="https://www.instagram.com/fael_v8/" target="_blank"><i class="fab fa-instagram"></i> @fael_v8</a></p>
+                </div>
+                <div class="fotinha-container">
+                    <div id="fotinha" style="background-image: url('medias/raul_cort.jpg');"></div>
+                    <p class="fotinha-name <?php echo $themeClass; ?>">Raul Ribeiro Fialho</p>
+                    <p class="fotinha-handle <?php echo $themeClass; ?>"><a href="https://www.instagram.com/f.r4ul/" target="_blank"><i class="fab fa-instagram"></i> @f.r4ul</a></p>
+                </div>
+            </div>
+
+            <style>
+                #fotinha {
+                    background-position: center;
+                    background-size: cover;
+                    width: 100%;
+                    height: 75%;
+                    border-radius: 30px;  
+                }
+                .fotinha-container {
+                    text-align: center;
+                    width: 25%;
+                    margin-left: 20px;
+                }
+                .fotinha-name {
+                    margin-top: 10px;
+                    font-weight: bold;
+                    font-family: Arial, sans-serif;
+                }
+                .fotinha-name.light-mode {
+                    color: #333;
+                }
+                .fotinha-name.dark-mode {
+                    color: #E8F1F2;
+                }
+                .fotinha-handle {
+                    margin-top: 5px;
+                    font-size: 15pt;
+                    font-family: Arial, sans-serif;
+                }
+                .fotinha-handle a {
+                    text-decoration: none;
+                }
+                .fotinha-handle.light-mode a {
+                    color: #333;
+                }
+                .fotinha-handle.dark-mode a {
+                    color: #E8F1F2;
+                }
+            </style>
 
             <h1>Missão, Visão e Valores</h1>
             <h2>Missão</h2>
@@ -177,10 +260,10 @@
                     <li><b>Eficiência:</b> Priorizamos a eficiência em todos os aspectos do nosso trabalho, desde a interface do usuário até o suporte técnico, para garantir uma experiência fluida e produtiva para nossos clientes.</li>
                     <li><b>Empoderamento:</b> Acreditamos no poder das micro e pequenas empresas e estamos empenhados em capacitá-las, fornecendo as ferramentas e recursos necessários para que alcancem o sucesso.</li>
                     <li><b>Compromisso com o cliente:</b> Colocamos as necessidades e interesses dos nossos clientes em primeiro lugar, comprometendo-nos a oferecer um serviço excepcional e atendimento personalizado em todas as etapas da jornada do usuário.</li>
+                </ul>
             </p>
         </div>
     </div>
-
 </body>
 
 <footer>
@@ -204,6 +287,7 @@
             <h1>Contate-nos!</h1>
             <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css'>
             <a target="_blank" href="https://www.instagram.com/officialsupcom/" style="text-decoration: none;"><i class="fab fa-instagram" title="Instagram" id="Instagram"></i></a>
+            <a href="contact.php" style="text-decoration: none;"><i class="fa fa-envelope-o" style="font-family: FontAwesome; margin-left: 20px;" id="Instagram"></i></a>
         </center>
     </div>
 </footer>
@@ -306,32 +390,16 @@
 
     const overlay2 = document.querySelector('.overlay2');
     overlay2.addEventListener('click', () => {
-        const mobileNav = document.getElementById('mobile-nav');
-        const pcnav = document.getElementById('configpcnav');
-        if (mobileNav) {
-            mobileNav.classList.remove('show');
-            overlay2.classList.remove('show');
-            document.getElementById('menu_toggle').classList.remove('Befixed');
-        }
-        if (pcnav) {
-        pcnav.classList.remove('show');
+        const configNav = document.getElementById('configpcnav');
+        configNav.classList.remove('show');
         overlay2.classList.remove('show');
-        }
     });
 
-    closebutton = document.getElementById("closenav");
-    closebutton.addEventListener('click', () => {
-    const mobileNav = document.getElementById('mobile-nav');
-    const pcnav = document.getElementById('configpcnav');
-    if (mobileNav) {
-        mobileNav.classList.remove('show');
+    
+    document.getElementById('closenav').addEventListener('click', function() {
+        const configNav = document.getElementById('configpcnav');
+        configNav.classList.remove('show');
         overlay2.classList.remove('show');
-        document.getElementById('menu_toggle').classList.remove('Befixed');
-    }
-    if (pcnav) {
-        pcnav.classList.remove('show');
-        overlay2.classList.remove('show');
-    }
     });
 </script>
 
