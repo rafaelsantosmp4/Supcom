@@ -65,7 +65,7 @@
     <nav id="mobile-nav" class="font-adjustable">
         <ul>
             <li><a href="../home" class="font-adjustable">Início</a></li>
-            <li><a href="../forns/" class="font-adjustable">Fornecedores</a></li>
+            <li><a href="../forns/" class="font-adjustable">Produtos</a></li>
             <li><a href="../about/" class="font-adjustable">Sobre nós</a></li>
             <li><a href="../contact/" class="font-adjustable">Fale conosco</a></li>
             <li class="config-menu">

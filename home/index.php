@@ -36,7 +36,7 @@
     <nav id="mobile-nav" class="font-adjustable">
         <ul>
             <li><a href="../home" class="font-adjustable active">Início</a></li>
-            <li><a href="../forns/" class="font-adjustable">Fornecedores</a></li>
+            <li><a href="../forns/" class="font-adjustable">Produtos</a></li>
             <li><a href="../about/" class="font-adjustable">Sobre nós</a></li>
             <li><a href="../contact/" class="font-adjustable">Fale conosco</a></li>
             <li class="config-menu">
@@ -162,11 +162,16 @@
 
     <div id="container">
         <div id="conteudo">
-            <h1>HOME - em construção</h1>
-            <p>CONTEUDO AQUI</p>
+            <form action="../forns/index.php" method="GET" id="formBarraBusca">
+                <center>
+                    <input type="text" placeholder="Busca" id="barrabusca" name="busca">
+                    <button type="submit" class="produto-link" style="background: none; border: none; cursor: pointer;">
+                        <i class="fa fa-search" style="font-size: 25pt;"></i>
+                    </button>
+                </center>
+            </form>
         </div>
     </div>
-
 </body>
 
 <script>
