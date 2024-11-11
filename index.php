@@ -28,12 +28,12 @@
     $fontSize = isset($_COOKIE['fontSize']) ? $_COOKIE['fontSize'] : '16'; 
 
     $logoSrc = $themeClass === 'dark-mode' ? 'medias/logo/Black-logo.png' : 'medias/logo/Logo-white.png';
-?>
-<script>
-    if(localStorage.getItem("idUser")) {
-        window.location.href = 'home/';
+
+    if (isset($_SESSION['log']) && $_SESSION['log'] == "ativo") {
+        header("Location: home/");
+        exit();
     }
-</script>
+?>
 
 <header class='<?php echo $themeClass; ?>' style="border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; font-size: <?php echo $fontSize; ?>px;">
     <a href="#" id="button-logo-index">
