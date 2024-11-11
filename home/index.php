@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../slider.css">
     <link rel="stylesheet" href="../css/mobile.css">
+    <link rel="stylesheet" href="../css/rating.css">
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4@4/bootstrap-4.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <?php
     session_start();
@@ -191,7 +194,7 @@
                 } else {
                     echo "
                         <h1 align='center'>Destaques do ano</h1>
-                        <h2>Produtos selecionados</h2>
+                        <h2>Produtos selecionados para você!</h2>
                     ";
 
                     while ($produto = mysqli_fetch_assoc($resultprods)) {
@@ -271,6 +274,145 @@
             <label for="radio4" class="manual-btn"></label>
         </div>
     </div>
+
+    <div id="container" style="opacity: 100;">
+        <div id="conteudo">
+            <h1>Queremos saber!</h1>
+            <h3 align="center">O quanto você está satisfeito com a Supcom?</h3>
+            <div id="feedback">
+                <ul class="feedback">
+                    <li class="angry" data-valor="1" onclick="selecionarEmocao(this)">
+                        <div>
+                            <svg class="eye left">
+                                <use xlink:href="#eye">
+                            </svg>
+                            <svg class="eye right">
+                                <use xlink:href="#eye">
+                            </svg>
+                            <svg class="mouth">
+                                <use xlink:href="#mouth">
+                            </svg>
+                        </div>
+                    </li>
+                    <li class="sad" data-valor="2" onclick="selecionarEmocao(this)">
+                        <div>
+                            <svg class="eye left">
+                                <use xlink:href="#eye">
+                            </svg>
+                            <svg class="eye right">
+                                <use xlink:href="#eye">
+                            </svg>
+                            <svg class="mouth">
+                                <use xlink:href="#mouth">
+                            </svg>
+                        </div>
+                    </li>
+                    <li class="ok" data-valor="3" onclick="selecionarEmocao(this)">
+                        <div></div>
+                    </li>
+                    <li class="good active" data-valor="4" onclick="selecionarEmocao(this)">
+                        <div>
+                            <svg class="eye left">
+                                <use xlink:href="#eye">
+                            </svg>
+                            <svg class="eye right">
+                                <use xlink:href="#eye">
+                            </svg>
+                            <svg class="mouth">
+                                <use xlink:href="#mouth">
+                            </svg>
+                        </div>
+                    </li>
+                    <li class="happy" data-valor="5" onclick="selecionarEmocao(this)">
+                        <div>
+                            <svg class="eye left">
+                                <use xlink:href="#eye">
+                            </svg>
+                            <svg class="eye right">
+                                <use xlink:href="#eye">
+                            </svg>
+                        </div>
+                    </li>
+                </ul>
+                
+                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                    <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
+                        <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
+                    </symbol>
+                    <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 7" id="mouth">
+                        <path d="M1,5.5 C3.66666667,2.5 6.33333333,1 9,1 C11.6666667,1 14.3333333,2.5 17,5.5"></path>
+                    </symbol>
+                </svg>
+            </div>
+            <center><button type="button" class="submit-button" style="margin-top: 20px; width: auto;" onclick="enviarEmocao()">Enviar</button></center>
+        </div>
+    </div><br><br>
+
+    <script>
+        let emocaoSelecionada = null;
+
+        function selecionarEmocao(elemento) {
+            emocaoSelecionada = elemento;
+            let todasEmocoes = document.querySelectorAll('.feedback li');
+            todasEmocoes.forEach(function(emocao) {
+                emocao.classList.remove('active');
+            });
+            elemento.classList.add('active');
+        }
+
+        function enviarEmocao() {
+            if (emocaoSelecionada) {
+                let valorEmocao = emocaoSelecionada.getAttribute('data-valor');
+
+                fetch('satisfacao.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'emocaoSelecionada=' + encodeURIComponent(valorEmocao)
+                })
+                .then(response => response.text())
+                .then(data => {
+                    Swal.fire({
+                        title: 'Sucesso!',
+                        text: 'Sua opinião é muito importante para nós!',
+                        icon: 'success',
+                        timer: 1500,
+                        showConfirmButton: false
+                    });
+                })
+                .catch(error => {
+                    Swal.fire({
+                        title: 'Erro!',
+                        text: 'Algum erro ocorreu.',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                });
+            }
+        }
+
+        window.onload = function() {
+            <?php
+                $query = "SELECT satisfacao FROM usuarios WHERE id_usuario = '$iduser'";
+                $result = mysqli_query($db->con, $query);
+                $row = mysqli_fetch_assoc($result);
+
+                $emocaoSelecionada = $row['satisfacao'];
+
+                echo "var satisfacaoUsuario = $emocaoSelecionada;";
+            ?>
+
+            let emocaoPadrao = document.querySelector('[data-valor="' + satisfacaoUsuario + '"]');
+            
+            if (emocaoPadrao) {
+                selecionarEmocao(emocaoPadrao);
+            } else {
+                emocaoPadrao = document.querySelector('[data-valor="3"]');
+                selecionarEmocao(emocaoPadrao);
+            }
+        }
+    </script>
 </body>
 
 <script>
