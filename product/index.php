@@ -180,8 +180,10 @@
         $nome_forn = $tempusuario['nome'];
         $nome_forn_encoded = urlencode($nome_forn);
 
-        $incrementaVisualizacoes = "UPDATE produto SET visualizacoes = visualizacoes + 1 WHERE id_produto = $id_produto";
-        mysqli_query($db->con, $incrementaVisualizacoes);
+        if($id_forn != $iduser) {
+            $incrementaVisualizacoes = "UPDATE produto SET visualizacoes = visualizacoes + 1 WHERE id_produto = $id_produto";
+            mysqli_query($db->con, $incrementaVisualizacoes);
+        }
     ?>
 
     <div id="container">
