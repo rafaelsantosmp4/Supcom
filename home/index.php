@@ -6,6 +6,7 @@
     <link rel="shortcut icon" href="../medias/logo/Supcom-white.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/basics.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../slider.css">
     <link rel="stylesheet" href="../css/mobile.css">
 </head>
 <?php
@@ -170,6 +171,104 @@
                     </button>
                 </center>
             </form>
+
+            <?php
+                $produtos_ids = [5, 8, 20, 28, 27, 21, 6, 26];
+
+                $ids_str = implode(',', $produtos_ids);
+                $queryprods = "SELECT * FROM produto WHERE id_produto IN ($ids_str)";
+                $resultprods = mysqli_query($db->con, $queryprods);
+
+                $prod_count = 0;
+                $prod_per_category = 4;
+                $first_category = true;
+
+                if (mysqli_num_rows($resultprods) == 0) {
+                    echo "
+                        <h1 align='center'>Nenhum produto encontrado!</h1>
+                        <div style='font-size: 300px; text-align: center; margin-bottom: 100px;'>:(</div>
+                    ";
+                } else {
+                    echo "
+                        <h1 align='center'>Destaques do ano</h1>
+                        <h2>Produtos selecionados</h2>
+                    ";
+
+                    while ($produto = mysqli_fetch_assoc($resultprods)) {
+                        if ($prod_count % $prod_per_category == 0) {
+                            if (!$first_category) {
+                                echo '</div></div>';
+                            }
+                            echo '<div class="categoria"><div class="produtos">';
+                            $first_category = false;
+                        }
+
+                        $nome_produto = $produto['nome_produto'];
+                        $descricao_produto = $produto['descricao_produto'];
+                        $preco_produto = $produto['preco_produto'];
+                        $foto_produto = base64_encode($produto['foto_prod']);
+                        $id_produto = $produto['id_produto'];
+
+                        $id_forn = $produto['id_forn'];
+                        $tempquery = "SELECT nome FROM usuarios WHERE id_usuario = '$id_forn'";
+                        $tempresult = mysqli_query($db->con, $tempquery);
+                        $tempusuario = mysqli_fetch_assoc($tempresult);
+                        $nome_forn = $tempusuario['nome'];
+                        $nome_produto_encoded = urlencode($nome_produto);
+                    ?>
+                        <a href="../product/index.php?id=<?php echo $id_produto; ?>&<?php echo $nome_produto_encoded; ?>" class="produto-link <?php echo $themeClass; ?>">
+                            <div class="produto <?php echo $themeClass; ?>">
+                                <img src="data:image/jpeg;base64,<?php echo $foto_produto; ?>" alt="<?php echo $nome_produto; ?>">
+                                <h3 title="<?php echo $nome_produto; ?>"><?php echo $nome_produto; ?></h3>
+                                <p title="<?php echo $descricao_produto; ?>" class="descricao-produto"><?php echo $descricao_produto; ?></p>
+                                <h4 style="margin-top: 5px; margin-bottom: 0px;"><?php echo $nome_forn; ?></h4>
+                                <h3><?php echo $preco_produto; ?></h3>
+                            </div>
+                        </a>
+                    <?php
+                        $prod_count++;
+                    }
+
+                    if ($prod_count > 0) {
+                        echo '</div></div>'; // Fecha as divs de produtos e categoria
+                    }
+                }
+            ?>
+        </div>
+    </div><br>
+    <div class="slider">
+        <div class="slides">
+            <input type="radio" name="radio-btn" id="radio1">
+            <input type="radio" name="radio-btn" id="radio2">
+            <input type="radio" name="radio-btn" id="radio3">
+            <input type="radio" name="radio-btn" id="radio4">
+
+            <div class="slide first">
+                <div class="divslide" style="width: 100%; height: 100%; background-image: url('../medias/baninit.png');"></div>
+            </div>
+            <div class="slide">
+                <div class="divslide" style="width: 100%; height: 100%; background-image: url('../medias/banconnect.png');"></div>
+            </div>
+            <div class="slide">
+                <div class="divslide" style="width: 100%; height: 100%; background-image: url('../medias/banmundo.png');"></div>
+            </div>
+            <div class="slide">
+                <div class="divslide" style="width: 100%; height: 100%; background-image: url('../medias/banabasteca.png');"></div>
+            </div>
+
+            <div class="navigation-auto">
+                <div class="auto-btn1"></div>
+                <div class="auto-btn2"></div>
+                <div class="auto-btn3"></div>
+                <div class="auto-btn4"></div>
+            </div>
+        </div>
+
+        <div class="manual-navigation">
+            <label for="radio1" class="manual-btn"></label>
+            <label for="radio2" class="manual-btn"></label>
+            <label for="radio3" class="manual-btn"></label>
+            <label for="radio4" class="manual-btn"></label>
         </div>
     </div>
 </body>
@@ -206,4 +305,18 @@
 <?php include '../universal/footer.php';?>
 
 <script src="../js/script.js"></script>
+<script>
+    var count = 1;
+    document.getElementById("radio1").checked = true;
+    setInterval( function() {
+        nextImage();
+    }, 6000)
+    function nextImage() {
+        count++;
+        if(count > 4) {
+            count = 1;
+        }
+        document.getElementById("radio" + count).checked = true;
+    }
+</script>
 </html>

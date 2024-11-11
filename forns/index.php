@@ -168,7 +168,7 @@
                     <i class="fa fa-search" style="font-size: 25pt;"></i>
                 </button>
             </center>
-        </form>            
+        </form>
             <?php
                 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                     $busca_nome = isset($_GET['busca']) ? mysqli_real_escape_string($db->con, $_GET['busca']) : '';
