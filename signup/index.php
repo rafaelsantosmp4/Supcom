@@ -133,10 +133,41 @@
                     <input type="password" name="checkpassword" id="checkpassword" class="contact__input" required />
                 </div>
 
+                <div class="contact__box contact__area">
+                    <div style="display: flex; align-items: center;">
+                        <input type="checkbox" id="terms" name="terms" required style="width: 60px; margin-right: 20px; margin-top: 0px;">
+                        <label for="terms" class="contact__label" id="concordo">
+                            Eu li e concordo com os <a href="../legal/termos-uso.php" target="_blank">Termos de Uso</a> e a <a href="../legal/privacidade.php" target="_blank">Política de Privacidade</a>.
+                        </label>
+                    </div>
+                </div>
+
+                <style>
+                    #concordo {
+                        position: inherit;
+                        padding: 0;
+                    }
+                </style>
+
                 <p id="alertPassword"></p>
             </div>
             
-            <button type="submit" class="submit-button">Cadastrar</button>
+            <button type="submit" id="submitButton" class="submit-button">Cadastrar</button>
+
+            <script>
+                window.addEventListener('load', function() {
+                    const checkbox = document.getElementById('terms');
+                    const submitButton = document.getElementById('submitButton');
+
+                    function toggleSubmitButton() {
+                        submitButton.disabled = !checkbox.checked;
+                    }
+
+                    toggleSubmitButton();
+
+                    checkbox.addEventListener('change', toggleSubmitButton);
+                });
+            </script>
 
             <style>
                 .contact__area {
@@ -144,6 +175,12 @@
                 }
                 .grid {
                     gap: 20px;
+                }
+                .submit-button:disabled {
+                    background-color: #ccc;
+                    color: #999;
+                    cursor: not-allowed;
+                    opacity: 0.7;
                 }
             </style>
         </form>
