@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Bem vindo(a)</title>
+    <title>Contato</title>
     <link rel="shortcut icon" href="medias/logo/Supcom-white.png" type="image/x-icon">
     <link rel="stylesheet" href="css/basics.css">
     <link rel="stylesheet" href="css/style.css">

@@ -131,8 +131,6 @@
 
     <?php
         include('../conexao/conexao.php');
-        session_start();
-
         $db = new BancodeDados();
         $db->conecta();
 
@@ -172,5 +170,10 @@
         $db->fechar();
     ?>
     <script src="../js/script.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            document.body.style.overflow = 'inherit';
+        });
+    </script>
 </body>
 </html>
