@@ -34,11 +34,11 @@
 
     <div id="voltarbut">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <a href="../signup/"><button class="back-toggle"><i class="fa fa-chevron-left"></i></button></a>
+        <a onclick="window.close()"><button class="back-toggle"><i class="fa fa-chevron-left"></i></button></a>
     </div>
 
     <div id="container">
-        <div id="conteudo" style="width: 800px;">
+        <div id="conteudo" style="width: 800px; padding-bottom: 40px;">
             <h1>Termos de Uso da Supcom</h1>
             <p>Última atualização: 18/11/2024</p>
 
@@ -119,6 +119,7 @@
             document.querySelector('.loader-container').style.display = 'none';
             document.body.style.pointerEvents = 'inherit';
             document.body.style.overflow = 'inherit';
+            document.querySelector('#container').style.opacity = '100';
         });
     </script>
     <script src="../js/script.js"></script>
