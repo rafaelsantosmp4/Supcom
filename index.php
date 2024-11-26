@@ -178,7 +178,7 @@
              claro com a eficiência e a transparência, buscamos não apenas atender, mas superar as expectativas de nossos clientes, proporcionando oportunidades de crescimento sustentável 
              em um mercado cada vez mais dinâmico.
             </p>
-            <h1>Venha conheçer a SUPCOM</h1>
+            <h1>Venha conhecer a SUPCOM</h1>
             <p>
             Queremos simplificar e fortalecer as conexões entre micro e pequenos lojistas e fornecedores, criando uma plataforma eficiente e acessível que impulsione o crescimento de ambos.
              Guiados pelos valores de transparência, assegurando negociações claras e acessíveis; eficiência, proporcionando soluções rápidas e práticas; e colaboração, acreditando que o crescimento mútuo 
