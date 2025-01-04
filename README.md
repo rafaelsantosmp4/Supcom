@@ -1,5 +1,3 @@
-![Status](https://img.shields.io/badge/status-em%20constru%C3%A7%C3%A3o-yellow)
-
 # SUPCOM 🧭
 ![home](https://github.com/user-attachments/assets/78fc2c54-9ffb-4549-b3bd-288827a532ce)
 ![dark-home](https://github.com/user-attachments/assets/7a64bf6b-0d57-4e5e-b5f3-f7ee5f5de945)
